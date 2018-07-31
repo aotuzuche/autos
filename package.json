@@ -1,0 +1,14 @@
+{
+  "name": "autos",
+  "version": "0.0.1",
+  "description": "auto standard tooling",
+  "main": "index.js",
+  "repository": "git@github.com:shaodahong/autos.git",
+  "author": "shaodahong <darryshaw@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.16.0",
+    "inquirer": "^6.0.0"
+  }
+}
