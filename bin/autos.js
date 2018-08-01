@@ -1,7 +1,24 @@
 #!/usr/bin/env node
 
-const program = require('commander')
 const chalk = require('chalk')
+
+const currentNodeVersion = process.versions.node;
+const semver = currentNodeVersion.split('.');
+const major = semver[0];
+
+// if (major < 8) {
+  console.error(
+    chalk.red(
+      '你的 node 版本 ' +
+        currentNodeVersion +
+        '.\n' +
+        '该脚手架需要 node 8 以上版本，请更新你的 node 版本'
+    )
+  );
+  process.exit(1);
+// }
+
+const program = require('commander')
 
 const q = require('inquirer')
 const questions = require('./lib/questions')

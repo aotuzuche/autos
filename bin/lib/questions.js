@@ -3,10 +3,7 @@ module.exports = [
     type: 'list',
     name: 'mobile',
     message: '选择初始化移动端项目还是后台项目',
-    choices: ['移动端', '后台'],
-    filter: answers => {
-      return answers === '移动端'
-    }
+    choices: [{ name: '移动端', value: true }, { name: '后台', value: false }]
   },
   {
     type: 'confirm',
