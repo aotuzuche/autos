@@ -2,12 +2,13 @@ const path = require('path')
 const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
-
-module.exports = async params => {
-  console.log('params', params)
+const generate = require('./lib/generate')
+demo()
+async function demo(params = {}) {
   const inCurrent = !params.new
-  const name = inCurrent ? path.relative('../', process.cwd()) : params.dir
-  const targetDir = path.resolve(params.dir || '.')
+  // const targetDir = path.resolve(params.dir || '.')
+  const targetDir = path.resolve('demo')
+  console.log('fs.existsSync(targetDir)', fs.existsSync(targetDir))
 
   if (fs.existsSync(targetDir) && !inCurrent) {
     const { result } = await q.prompt([
@@ -30,6 +31,9 @@ module.exports = async params => {
       await fs.remove(targetDir)
     }
   }
+  await fs.ensureDir(targetDir)
+
+  await generate(params, targetDir)
 
   console.log('targetDir', targetDir)
 }

@@ -2,11 +2,12 @@
 
 const chalk = require('chalk')
 
-const currentNodeVersion = process.versions.node;
-const semver = currentNodeVersion.split('.');
-const major = semver[0];
+const currentNodeVersion = process.versions.node
+const semver = currentNodeVersion.split('.')
+const major = semver[0]
 
-// if (major < 8) {
+// 判断 node 版本
+if (major < 8) {
   console.error(
     chalk.red(
       '你的 node 版本 ' +
@@ -14,9 +15,9 @@ const major = semver[0];
         '.\n' +
         '该脚手架需要 node 8 以上版本，请更新你的 node 版本'
     )
-  );
-  process.exit(1);
-// }
+  )
+  process.exit(1)
+}
 
 const program = require('commander')
 
@@ -26,11 +27,13 @@ const questions = require('./lib/questions')
 const mobile = require('./mobile')
 const backstage = require('./backstage')
 
+// 基本说明
 program
   .version(require('../package').version, '-v, --version')
   .description(chalk.green('凹凸脚手架'))
   .usage('<command> [options]')
 
+// 主命令
 program
   .command('init')
   .alias('i')
@@ -45,6 +48,7 @@ program
     })
   })
 
+// 帮助命令
 program.on('--help', () => {
   console.log('')
   console.log('  示例:')
@@ -55,6 +59,7 @@ program.on('--help', () => {
   console.log('')
 })
 
+// 处理未知命令
 program.arguments('<command>').action(cmd => {
   program.outputHelp()
   console.log(`  ` + chalk.red(`未知命令 ${chalk.yellow(cmd)}`))
