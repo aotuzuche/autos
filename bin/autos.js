@@ -3,25 +3,38 @@
 const program = require('commander')
 const chalk = require('chalk')
 
+const q = require('inquirer')
+const questions = require('./lib/questions')
+
+const mobile = require('./mobile')
+const backstage = require('./backstage')
+
 program
   .version(require('../package').version, '-v, --version')
-  .description('凹凸脚手架')
+  .description(chalk.green('凹凸脚手架'))
   .usage('<command> [options]')
 
 program
-  .command('init [dir]')
+  .command('init')
   .alias('i')
   .description('初始化项目')
-  .action(function(dir, otherDirs) {
-    console.log(111, dir)
+  .action((dir, otherDirs) => {
+    q.prompt(questions).then(answer => {
+      if (answer.mobile) {
+        mobile(answer)
+      } else {
+        backstage(answer)
+      }
+    })
   })
 
-program.on('--help', function() {
+program.on('--help', () => {
   console.log('')
   console.log('  示例:')
   console.log('')
-  console.log('    $ custom-help --help')
-  console.log('    $ custom-help -h')
+  console.log(chalk.red('    $ autos init'))
+  console.log(chalk.red('    $ autos -v'))
+  console.log(chalk.red('    $ autos -h'))
   console.log('')
 })
 

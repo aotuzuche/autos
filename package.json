@@ -6,6 +6,9 @@
   "repository": "git@github.com:shaodahong/autos.git",
   "author": "shaodahong <darryshaw@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "autos": "bin/autos.js"
+  },
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
