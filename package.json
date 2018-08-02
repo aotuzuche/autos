@@ -13,6 +13,8 @@
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
     "fs-extra": "^7.0.0",
-    "inquirer": "^6.0.0"
+    "handlebars": "^4.0.11",
+    "inquirer": "^6.0.0",
+    "metalsmith": "^2.3.0"
   }
 }
