@@ -12,7 +12,7 @@ metalsmith
   })
   .clean(false)
   .source(".")
-  .destination(process.cwd())
+  .destination(path.join(process.cwd(), "demo"))
   .build((err, files) => {
     console.log(err, files)
   })
