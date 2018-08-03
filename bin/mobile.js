@@ -3,8 +3,7 @@ const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
 const generate = require('./lib/generate')
-demo()
-async function demo(params = {}) {
+module.exports = async (params = {}) => {
   const inCurrent = !params.new
   // const targetDir = path.resolve(params.dir || '.')
   const targetDir = path.resolve('demo')

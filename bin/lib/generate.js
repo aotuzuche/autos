@@ -14,7 +14,7 @@ metalsmith
   .source(".")
   .destination(path.join(process.cwd(), "demo"))
   .build((err, files) => {
-    console.log(err, files)
+    // console.log(err, files)
   })
 
 // module.exports = async params => {
