@@ -33,6 +33,4 @@ module.exports = async (params = {}) => {
   await fs.ensureDir(targetDir)
 
   await generate(params, targetDir)
-
-  console.log('targetDir', targetDir)
 }

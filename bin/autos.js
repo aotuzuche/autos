@@ -40,6 +40,12 @@ program
   .description('初始化项目')
   .action((dir, otherDirs) => {
     q.prompt(questions).then(answer => {
+      // { mobile: true,
+      //   new: true,
+      //   dir: 'demo',
+      //   projectName: 'demoname',
+      //   projectType: 'm',
+      //   projectBuildDir: 'demo' }
       if (answer.mobile) {
         mobile(answer)
       } else {
