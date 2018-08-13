@@ -5,8 +5,7 @@ const chalk = require('chalk')
 const generate = require('./lib/generate')
 module.exports = async (params = {}) => {
   const inCurrent = !params.new
-  // const targetDir = path.resolve(params.dir || '.')
-  const targetDir = path.resolve('demo')
+  const targetDir = path.resolve(params.dir || '.')
   console.log('fs.existsSync(targetDir)', fs.existsSync(targetDir))
 
   if (fs.existsSync(targetDir) && !inCurrent) {

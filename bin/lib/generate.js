@@ -15,11 +15,15 @@ module.exports = async (params, targetDir) => {
     .destination(targetDir)
     .use((files, metalsmith, done) => {
       Object.keys(files).forEach(fileName => {
-        if (/\.js$|\.jsx$|\.json$|\.md$/.test(fileName)) {
-          console.log('fileName', fileName)
+        try {
+          if (/\.js$|\.jsx$|\.json$|\.md$/.test(fileName)) {
+            console.log('fileName', fileName)
 
-          const t = files[fileName].contents.toString()
-          files[fileName].contents = new Buffer(Handlebars.compile(t)(params))
+            const t = files[fileName].contents.toString()
+            files[fileName].contents = new Buffer(Handlebars.compile(t)(params))
+          }
+        } catch (error) {
+          console.log(`\n Template compile Error: ${error}`)
         }
       })
       done()
