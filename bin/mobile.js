@@ -50,8 +50,25 @@ module.exports = async (params = {}) => {
     async: true
   })
 
-  child.stdout.on('close', function(data) {
-    spinner.succeed('完成安装')
+  child.stdout.on('error', function(data) {
+    console.log(`\n${data}\n`)
+    spinner.fail('安装失败')
   })
 
+  child.stdout.on('close', function(data) {
+    spinner.succeed('完成安装')
+
+    if (inCurrent) {
+      console.log('')
+      console.log('  执行以下命令快速开始项目')
+      console.log(`   ${chalk.red('$')} ${chalk.red('yarn dev')}`)
+    } else {
+      console.log('')
+      console.log('  执行以下命令快速开始项目')
+      console.log(
+        `   ${chalk.red('$')} ${chalk.red('cd')} ${chalk.red(params.dir)}`
+      )
+      console.log(`   ${chalk.red('$')} ${chalk.red('yarn dev')}`)
+    }
+  })
 }

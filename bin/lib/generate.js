@@ -23,14 +23,14 @@ module.exports = async (params, targetDir) => {
               )
             }
           } catch (error) {
-            // console.log(`\n Template compile Error: ${error}`)
+            console.log(`\n Template compile Error: ${error}`)
           }
         })
         done()
       })
       .build((err, files) => {
         if (err) {
-          // reject(`\n Template build Error: ${err}`)
+          reject(`\n Template build Error: ${err}`)
         }
         resole()
       })

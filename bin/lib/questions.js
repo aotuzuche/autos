@@ -31,7 +31,7 @@ module.exports = [
     default: '凹凸租车'
   },
   {
-    type: 'rawlist',
+    type: 'list',
     name: 'projectType',
     message: '请选择项目类型',
     choices: ['act', 'm', 'system']
