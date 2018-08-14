@@ -16,7 +16,7 @@ module.exports = async (params, targetDir) => {
       .use((files, metalsmith, done) => {
         Object.keys(files).forEach(fileName => {
           try {
-            if (/\.js$|\.jsx$|\.json$|\.md$/.test(fileName)) {
+            if (/\.gitignore$|appConfig\.js$|package\.json$|template\.html$/.test(fileName)) {
               const t = files[fileName].contents.toString()
               files[fileName].contents = new Buffer(
                 Handlebars.compile(t)(params)

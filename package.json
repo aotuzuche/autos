@@ -3,12 +3,18 @@
   "version": "0.0.1",
   "description": "auto standard tooling",
   "main": "index.js",
+  "keywords": [
+    "auto",
+    "autos",
+    "standard tooling"
+  ],
   "repository": "git@github.com:shaodahong/autos.git",
-  "author": "shaodahong <darryshaw@gmail.com>",
+  "author": "shaodahong",
   "license": "MIT",
   "bin": {
     "autos": "bin/index.js"
   },
+  "preferGlobal": true,
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.16.0",
@@ -21,5 +27,8 @@
     "metalsmith": "^2.3.0",
     "ora": "^3.0.0",
     "shelljs": "^0.8.2"
+  },
+  "engines": {
+    "node": ">=8.11.3"
   }
 }
