@@ -24,7 +24,7 @@ module.exports = async (params, targetDir) => {
       .use((files, metalsmith, done) => {
         Object.keys(files).forEach(fileName => {
           try {
-            if (/\.gitignore$|appConfig\.js$/.test(fileName)) {
+            if (/\.gitignore$|appConfig\.js$|template\.html$/.test(fileName)) {
               const t = files[fileName].contents.toString()
               files[fileName].contents = new Buffer(ejs.compile(t)(params))
             }

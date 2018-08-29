@@ -9,6 +9,7 @@ module.exports = {
     {
       type: 'confirm',
       name: 'new',
+      default: false,
       message: '是否创建新的文件夹完成初始化'
     },
     {
@@ -35,7 +36,7 @@ module.exports = {
       type: 'list',
       name: 'projectType',
       message: '请选择项目类型',
-      choices: ['act', 'm', 'system']
+      choices: ['m', 'act', 'system']
     },
     {
       type: 'input',

@@ -62,7 +62,7 @@ program
       //   dir: 'demo',
       //   projectName: 'demoname',
       //   projectType: 'm',
-      //   projectBuildDir: 'demo' }
+      //   prodPath: 'demo' }
       if (answer.mobile) {
         mobile(answer)
       } else {
