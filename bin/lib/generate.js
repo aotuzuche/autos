@@ -25,7 +25,7 @@ module.exports = async (params, targetDir) => {
         Object.keys(files).forEach(fileName => {
           try {
             if (
-              /\.gitignore$|appConfig\.js$|package\.json$|template\.html$/.test(
+              /\.gitignore$|appConfig\.js$/.test(
                 fileName
               )
             ) {
