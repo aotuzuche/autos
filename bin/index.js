@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk')
+const latestVersion = require('latest-version')
 
 const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
@@ -19,7 +20,9 @@ if (major < 8) {
   process.exit(1)
 }
 
+
 const program = require('commander')
+const version = require('../package').version
 
 const q = require('inquirer')
 const {init: initQ, create: createQ} = require('./lib/questions')
@@ -29,7 +32,7 @@ const backstage = require('./backstage')
 
 // 基本说明
 program
-  .version(require('../package').version, '-v, --version')
+  .version(version, '-v, --version')
   .description(chalk.green('凹凸脚手架'))
   .usage('<command> [options]')
 
@@ -38,7 +41,21 @@ program
   .command('init')
   .alias('i')
   .description('初始化项目')
-  .action((dir, otherDirs) => {
+  .action(async (dir, otherDirs) => {
+    const lVersion = await latestVersion('autos')
+    if (lVersion !== version) {
+      console.error(
+        chalk.red(
+          '您的脚手架版本 ' +
+          version +
+            '\n' +
+            '该脚手架最新版本 '+ lVersion +
+            '\n' +
+            '请升级后再使用'
+        )
+      )
+      return
+    }
     q.prompt(initQ).then(answer => {
       // { mobile: true,
       //   new: true,

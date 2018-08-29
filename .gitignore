@@ -3,4 +3,4 @@ node_modules
 *.log
 .vscode
 demo
-lib/*
+lib/

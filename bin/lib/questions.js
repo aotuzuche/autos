@@ -39,7 +39,7 @@ module.exports = {
     },
     {
       type: 'input',
-      name: 'projectBuildDir',
+      name: 'prodPath',
       message: '请输入项目的打包出口目录',
       validate: input => {
         if (input === '') {

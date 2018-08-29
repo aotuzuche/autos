@@ -1,8 +1,8 @@
 const Metalsmith = require('metalsmith')
-const Handlebars = require('handlebars')
 const path = require('path')
 const fs = require('fs-extra')
 const DownloadGitRepo = require('./downloadGitRepo')
+const ejs = require('ejs')
 
 module.exports = async (params, targetDir) => {
   const templateDir = path.join(process.cwd(), '/lib/mobile')
@@ -24,15 +24,9 @@ module.exports = async (params, targetDir) => {
       .use((files, metalsmith, done) => {
         Object.keys(files).forEach(fileName => {
           try {
-            if (
-              /\.gitignore$|appConfig\.js$/.test(
-                fileName
-              )
-            ) {
+            if (/\.gitignore$|appConfig\.js$/.test(fileName)) {
               const t = files[fileName].contents.toString()
-              files[fileName].contents = new Buffer(
-                Handlebars.compile(t)(params)
-              )
+              files[fileName].contents = new Buffer(ejs.compile(t)(params))
             }
           } catch (error) {
             console.log(`\n Template compile Error: ${error}`)
