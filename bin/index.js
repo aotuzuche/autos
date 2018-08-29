@@ -22,7 +22,7 @@ if (major < 8) {
 const program = require('commander')
 
 const q = require('inquirer')
-const questions = require('./lib/questions')
+const {init: initQ, create: createQ} = require('./lib/questions')
 
 const mobile = require('./mobile')
 const backstage = require('./backstage')
@@ -39,7 +39,7 @@ program
   .alias('i')
   .description('初始化项目')
   .action((dir, otherDirs) => {
-    q.prompt(questions).then(answer => {
+    q.prompt(initQ).then(answer => {
       // { mobile: true,
       //   new: true,
       //   dir: 'demo',
@@ -54,12 +54,35 @@ program
     })
   })
 
+// 创建组件或页面
+program
+  .command('create')
+  .alias('c')
+  .description('创建组件或页面')
+  .action((dir, otherDirs) => {
+    console.log(__dirname)
+    // q.prompt(createQ).then(answer => {
+    //   // { mobile: true,
+    //   //   new: true,
+    //   //   dir: 'demo',
+    //   //   projectName: 'demoname',
+    //   //   projectType: 'm',
+    //   //   projectBuildDir: 'demo' }
+    //   if (answer.mobile) {
+    //     mobile(answer)
+    //   } else {
+    //     backstage(answer)
+    //   }
+    // })
+  })
+
 // 帮助命令
 program.on('--help', () => {
   console.log('')
   console.log('  示例:')
   console.log('')
   console.log(chalk.red('    $ autos init'))
+  console.log(chalk.red('    $ autos create'))
   console.log(chalk.red('    $ autos -v'))
   console.log(chalk.red('    $ autos -h'))
   console.log('')

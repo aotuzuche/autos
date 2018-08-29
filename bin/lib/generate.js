@@ -1,8 +1,16 @@
 const Metalsmith = require('metalsmith')
 const Handlebars = require('handlebars')
 const path = require('path')
+const fs = require('fs-extra')
+const DownloadGitRepo = require('./downloadGitRepo')
+
 module.exports = async (params, targetDir) => {
-  const metalsmith = Metalsmith(path.join(process.cwd(), '/lib/mobile'))
+  const templateDir = path.join(process.cwd(), '/lib/mobile')
+  await fs.remove(templateDir)
+  await fs.ensureDir(templateDir)
+  await DownloadGitRepo(templateDir)
+
+  const metalsmith = Metalsmith(templateDir)
   return new Promise((resole, reject) => {
     metalsmith
       .metadata({
@@ -16,7 +24,11 @@ module.exports = async (params, targetDir) => {
       .use((files, metalsmith, done) => {
         Object.keys(files).forEach(fileName => {
           try {
-            if (/\.gitignore$|appConfig\.js$|package\.json$|template\.html$/.test(fileName)) {
+            if (
+              /\.gitignore$|appConfig\.js$|package\.json$|template\.html$/.test(
+                fileName
+              )
+            ) {
               const t = files[fileName].contents.toString()
               files[fileName].contents = new Buffer(
                 Handlebars.compile(t)(params)

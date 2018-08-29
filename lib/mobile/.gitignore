@@ -1,9 +1,0 @@
-.idea
-.sass-cache
-*.bak
-*.log
-node_modules
-.DS_Store
-dist
-.vscode
-{{projectBuildDir}}
