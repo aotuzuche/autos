@@ -1,6 +1,6 @@
 {
   "name": "autos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "auto standard tooling",
   "main": "index.js",
   "keywords": [
@@ -32,5 +32,10 @@
   },
   "engines": {
     "node": ">=8.11.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.1"
   }
 }

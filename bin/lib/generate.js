@@ -5,13 +5,13 @@ const DownloadGitRepo = require('./downloadGitRepo')
 const ejs = require('ejs')
 
 module.exports = async (params, targetDir) => {
-  const templateDir = path.join(process.cwd(), '/lib/mobile')
+  const templateDir = path.join(__dirname, '../lib/mobile')
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo(templateDir)
+  await DownloadGitRepo('shaodahong/atzuche-mobile-template', templateDir)
 
   const metalsmith = Metalsmith(templateDir)
-  return new Promise((resole, reject) => {
+  return new Promise((resolve, reject) => {
     metalsmith
       .metadata({
         destDirName: '/',
@@ -26,7 +26,7 @@ module.exports = async (params, targetDir) => {
           try {
             if (/\.gitignore$|appConfig\.js$|template\.html$/.test(fileName)) {
               const t = files[fileName].contents.toString()
-              files[fileName].contents = new Buffer(ejs.compile(t)(params))
+              files[fileName].contents = Buffer.from(ejs.compile(t)(params))
             }
           } catch (error) {
             console.log(`\n Template compile Error: ${error}`)
@@ -35,10 +35,8 @@ module.exports = async (params, targetDir) => {
         done()
       })
       .build((err, files) => {
-        if (err) {
-          reject(`\n Template build Error: ${err}`)
-        }
-        resole()
+        if (err) return reject(`\n Template build Error: ${err}`)
+        resolve()
       })
   })
 }

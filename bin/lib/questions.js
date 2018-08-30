@@ -16,9 +16,7 @@ module.exports = {
       type: 'input',
       name: 'dir',
       message: '请输入要初始化的文件夹名称',
-      when: answers => {
-        return answers.new
-      },
+      when: answers => answers.new,
       validate: input => {
         if (input === '') {
           return '请输入有效的文件夹名称'
@@ -50,5 +48,22 @@ module.exports = {
       }
     }
   ],
-  create: []
+  create: [
+    {
+      type: 'list',
+      name: 'createClass',
+      message: '选择创建组件还是页面',
+      default: 'component',
+      choices: [
+        { name: '组件', value: 'component' },
+        { name: '页面', value: 'view' }
+      ]
+    },
+    {
+      type: 'input',
+      name: 'createName',
+      message: '请输入名称 (驼峰)',
+      default: 'demo'
+    }
+  ]
 }

@@ -1,7 +1,16 @@
 #!/usr/bin/env node
 
 const chalk = require('chalk')
-const latestVersion = require('latest-version')
+const program = require('commander')
+const fs = require('fs-extra')
+const path = require('path')
+const version = require('../package').version
+const q = require('inquirer')
+const { init: initQ, create: createQ } = require('./lib/questions')
+const mobile = require('./mobile')
+const backstage = require('./backstage')
+const compareVersion = require('./lib/compareVersion')
+const create = require('./lib/create')
 
 const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
@@ -20,16 +29,6 @@ if (major < 8) {
   process.exit(1)
 }
 
-
-const program = require('commander')
-const version = require('../package').version
-
-const q = require('inquirer')
-const {init: initQ, create: createQ} = require('./lib/questions')
-
-const mobile = require('./mobile')
-const backstage = require('./backstage')
-
 // 基本说明
 program
   .version(version, '-v, --version')
@@ -42,33 +41,22 @@ program
   .alias('i')
   .description('初始化项目')
   .action(async (dir, otherDirs) => {
-    const lVersion = await latestVersion('autos')
-    if (lVersion !== version) {
-      console.error(
-        chalk.red(
-          '您的脚手架版本 ' +
-          version +
-            '\n' +
-            '该脚手架最新版本 '+ lVersion +
-            '\n' +
-            '请升级后再使用'
-        )
-      )
-      return
-    }
-    q.prompt(initQ).then(answer => {
-      // { mobile: true,
-      //   new: true,
-      //   dir: 'demo',
-      //   projectName: 'demoname',
-      //   projectType: 'm',
-      //   prodPath: 'demo' }
-      if (answer.mobile) {
-        mobile(answer)
-      } else {
-        backstage(answer)
-      }
-    })
+    try {
+      await compareVersion()
+      q.prompt(initQ).then(answer => {
+        // { mobile: true,
+        //   new: true,
+        //   dir: 'demo',
+        //   projectName: 'demoname',
+        //   projectType: 'm',
+        //   prodPath: 'demo' }
+        if (answer.mobile) {
+          mobile(answer)
+        } else {
+          backstage(answer)
+        }
+      })
+    } catch (error) {}
   })
 
 // 创建组件或页面
@@ -76,21 +64,24 @@ program
   .command('create')
   .alias('c')
   .description('创建组件或页面')
-  .action((dir, otherDirs) => {
-    console.log(__dirname)
-    // q.prompt(createQ).then(answer => {
-    //   // { mobile: true,
-    //   //   new: true,
-    //   //   dir: 'demo',
-    //   //   projectName: 'demoname',
-    //   //   projectType: 'm',
-    //   //   projectBuildDir: 'demo' }
-    //   if (answer.mobile) {
-    //     mobile(answer)
-    //   } else {
-    //     backstage(answer)
-    //   }
-    // })
+  .action(async (dir, otherDirs) => {
+    try {
+      await compareVersion()
+      const isExist = await fs.pathExists(
+        path.join(process.cwd(), 'appConfig.js')
+      )
+      if (!isExist) {
+        return
+      }
+      q.prompt(createQ).then(answer => {
+        const options = {
+          createName: 'demo',
+          createClass: 'component'
+        }
+        Object.assign(options, answer)
+        create(options)
+      })
+    } catch (error) {}
   })
 
 // 帮助命令
