@@ -71,6 +71,9 @@ program
         path.join(process.cwd(), 'appConfig.js')
       )
       if (!isExist) {
+        console.log('')
+        console.log('  请在项目根目录下执行')
+        console.log('')
         return
       }
       q.prompt(createQ).then(answer => {
