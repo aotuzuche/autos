@@ -87,6 +87,48 @@ program
     } catch (error) {}
   })
 
+// 升级配置
+program
+  .command('update')
+  .description('升级脚手架')
+  .action(async (dir, otherDirs) => {
+    try {
+      console.log('update')
+    } catch (error) {}
+  })
+
+// 本地开发项目
+program
+  .command('dev')
+  .description('本地开发项目')
+  .action(async (dir, otherDirs) => {
+    try {
+      process.env.NODE_ENV = 'development'
+      process.env.PACKAGE = 'development'
+      require('./lib/dev')()
+    } catch (error) {
+      console.log('autos:dev--error', error)
+    }
+  })
+
+// 构建项目
+program
+  .command('build')
+  .description('构建项目')
+  .option('-t, --test', '测试环境')
+  .action(options => {
+    const isTest = options.test
+    if (isTest) {
+      process.env.NODE_ENV = 'production'
+      process.env.PACKAGE = 'test'
+    } else {
+      process.env.NODE_ENV = 'production'
+      process.env.PACKAGE = 'production'
+    }
+
+    require('./lib/build')()
+  })
+
 // 帮助命令
 program.on('--help', () => {
   console.log('')
