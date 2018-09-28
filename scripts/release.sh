@@ -19,6 +19,8 @@ then
   git tag v$VERSION
   git commit -am "build: release $VERSION"
 
+  npm run release:note
+
   # publish
   git push origin master
   git push origin refs/tags/v$VERSION
