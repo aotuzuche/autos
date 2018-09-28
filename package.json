@@ -62,6 +62,7 @@
     "ejs": "^2.6.1",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "file-loader": "^1.1.6",
     "friendly-errors-webpack-plugin": "^1.7.0",
