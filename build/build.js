@@ -58,7 +58,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           chunks: 'all',
           test: function(module, count) {
             return (
-              module.resource && /(\/|\@|\\)auto(\/|\\)/.test(module.resource)
+              module.resource && /(\/|\@|\\)auto-ui(\/|\\)/.test(module.resource)
             )
           },
           enforce: true

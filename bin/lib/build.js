@@ -1,12 +1,21 @@
 const webpack = require('webpack')
 const config = require('../../build/config')
-const webpackConfig = require('../../build/build')
+let webpackConfig = require('../../build/build')
 const ora = require('ora')
 const chalk = require('chalk')
 const rm = require('rimraf')
 const path = require('path')
+const merge = require('webpack-merge')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 
-module.exports = () => {
+module.exports = options => {
+  if (options.analyzer) {
+    webpackConfig = merge(webpackConfig, {
+      plugins: [new BundleAnalyzerPlugin()]
+    })
+  }
+
   // 开始转菊花
   const spin = ora(chalk.blue(`build for ${process.env.PACKAGE}...`))
   spin.start()

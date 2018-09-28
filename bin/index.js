@@ -116,9 +116,10 @@ program
   .command('build')
   .description('构建项目')
   .option('-t, --test', '测试环境')
+  .option('--analyzer', '开始分析仪')
   .action(options => {
-    const isTest = options.test
-    if (isTest) {
+    const { test, analyzer } = options
+    if (test) {
       process.env.NODE_ENV = 'production'
       process.env.PACKAGE = 'test'
     } else {
@@ -126,7 +127,9 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    require('./lib/build')()
+    require('./lib/build')({
+      analyzer
+    })
   })
 
 // 帮助命令
