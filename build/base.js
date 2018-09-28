@@ -38,28 +38,16 @@ const webpackConfig = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: isDev
-          ? [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 10000,
-                name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-                publicPath: config[process.env.PACKAGE].cssAssetsPath
-              }
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: utils.assetsPath('img/[name].[hash:7].[ext]'),
+              publicPath: config[process.env.PACKAGE].cssAssetsPath
             }
-          ]
-          : [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 10000,
-                name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-                publicPath: config[process.env.PACKAGE].cssAssetsPath
-              }
-            },
-            'tinyimg-loader'
-          ]
+          }
+        ]
       },
       {
         test: /\.css$/,
