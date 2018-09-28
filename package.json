@@ -16,7 +16,8 @@
   },
   "scripts": {
     "release:note": "node scripts/release.note.js",
-    "release": "sh scripts/release.sh"
+    "release": "sh scripts/release.sh",
+    "commit": "git-cz"
   },
   "husky": {
     "hooks": {
@@ -103,9 +104,16 @@
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
+    "commitizen": "^2.10.1",
     "conventional-changelog": "^2.0.3",
+    "cz-conventional-changelog": "^2.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-react": "^7.11.1",
     "husky": "^1.0.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
