@@ -1,5 +1,4 @@
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-// const path = require('path')
 const config = require('./config')
 const utils = require('./utils')
 const webpack = require('webpack')
@@ -41,6 +40,9 @@ const webpackConfig = merge(baseWebpackConfig, {
           路由==> http://${address.ip()}:${port}
           `
         ]
+      },
+      onErrors: function(severity, errors) {
+        console.log(severity, errors)
       }
     })
   ]

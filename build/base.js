@@ -76,7 +76,13 @@ const webpackConfig = {
           'px2rem-loader?remUnit=100',
           {
             loader: 'postcss-loader',
-            options: { plugins: [require('autoprefixer')] }
+            options: {
+              plugins: [
+                require('autoprefixer')({
+                  browsers: ['iOS >= 7', 'Android >= 4.1']
+                })
+              ]
+            }
           },
           'sass-loader'
         ]
@@ -91,7 +97,7 @@ const webpackConfig = {
       threads: 4,
       loaders: [
         {
-          loader: 'babel-loader?cacheDirectory',
+          loader: 'babel-loader',
           options: require('./babel.config'),
           exclude: ['/node_modules/']
         },
