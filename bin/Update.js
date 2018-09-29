@@ -1,11 +1,11 @@
-const path = require('path')
 const fs = require('fs-extra')
-const DownloadGitRepo = require('./downloadGitRepo')
+const DownloadGitRepo = require('./lib/downloadGitRepo')
 const ora = require('ora')
 const merge = require('deepmerge')
+const { resolveAutosPath, resolveProjectPath } = require('./lib/utils')
 
 module.exports = async () => {
-  const templateDir = path.join(__dirname, '../../lib/mobile')
+  const templateDir = resolveAutosPath('lib/mobile')
 
   const spinner = ora('更新模板').start()
 
@@ -16,11 +16,8 @@ module.exports = async () => {
   spinner.color = 'yellow'
   spinner.text = '合并 package.json'
 
-  const newPackageJson = require(path.join(
-    __dirname,
-    '../../lib/mobile/package.json'
-  ))
-  const oldPackageJson = require(path.join(process.cwd(), 'package.json'))
+  const newPackageJson = require(resolveAutosPath('lib/mobile/package.json'))
+  const oldPackageJson = require(resolveProjectPath('package.json'))
 
   // 删除一些不需要 merge 的配置
   delete newPackageJson.name
@@ -31,7 +28,7 @@ module.exports = async () => {
 
   const newJson = merge(oldPackageJson, newPackageJson)
 
-  fs.outputJson(path.join(process.cwd(), 'package.json'), newJson, {
+  fs.outputJson(resolveProjectPath('package.json'), newJson, {
     spaces: 2
   })
 

@@ -1,17 +1,17 @@
-const path = require('path')
 const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
 const shell = require('shelljs')
 const ora = require('ora')
+const { resolveProjectPath } = require('./lib/utils')
 
 const generate = require('./lib/generate')
 
 module.exports = async (params = {}) => {
-  const inCurrent = !params.new
-  const targetDir = path.resolve(params.dir || '.')
+  const inCurrentDir = !params.new
+  const targetDir = resolveProjectPath(params.dir || '')
 
-  if (fs.existsSync(targetDir) && !inCurrent) {
+  if (fs.existsSync(targetDir) && !inCurrentDir) {
     const { result } = await q.prompt([
       {
         name: 'result',
@@ -41,7 +41,7 @@ module.exports = async (params = {}) => {
   spinner.color = 'yellow'
   spinner.text = '安装项目依赖'
 
-  if (!inCurrent) {
+  if (!inCurrentDir) {
     shell.cd(targetDir)
   }
 
@@ -58,7 +58,7 @@ module.exports = async (params = {}) => {
   child.stdout.on('close', function(data) {
     spinner.succeed('完成安装')
 
-    if (inCurrent) {
+    if (inCurrentDir) {
       console.log('')
       console.log('  执行以下命令快速开始项目')
       console.log(`   ${chalk.red('$')} ${chalk.red('yarn dev')}`)

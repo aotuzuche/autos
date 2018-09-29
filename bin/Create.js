@@ -1,18 +1,18 @@
 const Metalsmith = require('metalsmith')
-const path = require('path')
 const fs = require('fs-extra')
 const ejs = require('ejs')
 const q = require('inquirer')
-const DownloadGitRepo = require('./downloadGitRepo')
-const { capitalize } = require('./utils.js')
+const DownloadGitRepo = require('./lib/downloadGitRepo')
+const {
+  capitalize,
+  resolveProjectPath,
+  resolveAutosPath
+} = require('./lib/utils')
 
 module.exports = async options => {
   const { createName, createClass } = options
-  const templateDir = path.join(__dirname, '../../lib/create')
-  const targetDir = path.join(
-    process.cwd(),
-    `/src/${createClass}s/${createName}`
-  )
+  const templateDir = resolveAutosPath('lib/create')
+  const targetDir = resolveProjectPath(`/src/${createClass}s/${createName}`)
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
   await DownloadGitRepo('shaodahong/atzuche-create-template', templateDir)
@@ -32,7 +32,9 @@ module.exports = async options => {
     }
   }
 
-  const metalsmith = Metalsmith(path.join(templateDir, 'template', createClass))
+  const metalsmith = Metalsmith(
+    resolveAutosPath(`lib/create/template/${createClass}`)
+  )
   return new Promise((resolve, reject) => {
     // 首字母大写
     options.createName = capitalize(options.createName)

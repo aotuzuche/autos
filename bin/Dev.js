@@ -1,8 +1,8 @@
 const WebpackDevServer = require('webpack-dev-server')
 const Webpack = require('webpack')
 
-const webpackDevConfig = require('../../build/dev')
-const config = require('../../build/config')
+const webpackDevConfig = require('../build/dev')
+const config = require('../build/config')
 const opn = require('opn')
 
 module.exports = () => {

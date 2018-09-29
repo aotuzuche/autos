@@ -7,11 +7,11 @@ const path = require('path')
 const version = require('../package').version
 const q = require('inquirer')
 const { init: initQ, create: createQ } = require('./lib/questions')
-const mobile = require('./mobile')
+const init = require('./Init')
 const backstage = require('./backstage')
 const compareVersion = require('./lib/compareVersion')
-const create = require('./lib/create')
-const update = require('./lib/update')
+const create = require('./Create')
+const update = require('./Update')
 
 const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
@@ -52,7 +52,7 @@ program
         //   projectType: 'm',
         //   prodPath: 'demo' }
         if (answer.mobile) {
-          mobile(answer)
+          init(answer)
         } else {
           backstage(answer)
         }
@@ -94,10 +94,10 @@ program
   .description('升级脚手架')
   .action(async (dir, otherDirs) => {
     try {
-      const result = await q.prompt([
+      const { result } = await q.prompt([
         {
           type: 'confirm',
-          name: 'update',
+          name: 'result',
           message: '是否确定升级?'
         }
       ])
@@ -117,7 +117,7 @@ program
     try {
       process.env.NODE_ENV = 'development'
       process.env.PACKAGE = 'development'
-      require('./lib/dev')()
+      require('./Dev')()
     } catch (error) {
       console.log('autos:dev--error', error)
     }
@@ -139,7 +139,7 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    require('./lib/build')({
+    require('./Build')({
       analyzer
     })
   })
@@ -149,10 +149,10 @@ program.on('--help', () => {
   console.log('')
   console.log('  示例:')
   console.log('')
-  console.log(chalk.red('    $ autos init'))
-  console.log(chalk.red('    $ autos create'))
-  console.log(chalk.red('    $ autos -v'))
-  console.log(chalk.red('    $ autos -h'))
+  console.log(chalk.yellow('    $ autos init'))
+  console.log(chalk.yellow('    $ autos create'))
+  console.log(chalk.yellow('    $ autos -v'))
+  console.log(chalk.yellow('    $ autos -h'))
   console.log('')
 })
 
