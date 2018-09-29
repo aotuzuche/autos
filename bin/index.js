@@ -11,6 +11,7 @@ const mobile = require('./mobile')
 const backstage = require('./backstage')
 const compareVersion = require('./lib/compareVersion')
 const create = require('./lib/create')
+const update = require('./lib/update')
 
 const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
@@ -93,8 +94,19 @@ program
   .description('升级脚手架')
   .action(async (dir, otherDirs) => {
     try {
-      console.log('update')
-    } catch (error) {}
+      const result = await q.prompt([
+        {
+          type: 'confirm',
+          name: 'update',
+          message: '是否确定升级?'
+        }
+      ])
+      if (result) {
+        await update()
+      }
+    } catch (error) {
+      console.log('autos:update--error', error)
+    }
   })
 
 // 本地开发项目
