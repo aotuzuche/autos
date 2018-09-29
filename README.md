@@ -5,7 +5,7 @@
 - [x] 支持在当前和新文件夹初始化项目
 - [x] 支持覆盖, 删除, 合并
 - [ ] 优化创建模板的效率
-- [ ] 单独升级 webpack 打包目录
+- [x] 单独升级 webpack 打包目录
 - [x] 简化配置，所有的可配置项暴露到  `appConfig.js`
 
 ## 快速开始
@@ -82,11 +82,13 @@ $ npm run prod
 
 ## 升级项目
 
-未完成
+升级项目配置
 
 ```bash
 $ autos update
 ```
+
+![update.gif](./assets/images/update.gif)
 
 ## 开启分析仪
 
