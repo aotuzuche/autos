@@ -15,7 +15,6 @@
     "autos": "bin/index.js"
   },
   "scripts": {
-    "release:note": "node scripts/release.note.js",
     "release": "sh scripts/release.sh",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
