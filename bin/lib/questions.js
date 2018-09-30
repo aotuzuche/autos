@@ -10,7 +10,7 @@ module.exports = {
       type: 'confirm',
       name: 'new',
       default: false,
-      message: '是否创建新的文件夹完成初始化'
+      message: '是否需要创建新的文件夹来初始化项目？'
     },
     {
       type: 'input',
@@ -39,10 +39,10 @@ module.exports = {
     {
       type: 'input',
       name: 'prodPath',
-      message: '请输入项目的打包出口目录',
+      message: '请输入项目构建的目标文件夹名',
       validate: input => {
         if (input === '') {
-          return '请输入有效的打包出口目录'
+          return '请输入有效的文件名'
         }
         return true
       }

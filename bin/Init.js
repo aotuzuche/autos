@@ -1,11 +1,12 @@
 const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
-const shell = require('shelljs')
+const execa = require('execa')
 const ora = require('ora')
-const { resolveProjectPath } = require('./lib/utils')
 
+const { resolveProjectPath } = require('./lib/utils')
 const generate = require('./lib/generate')
+const installDeps = require('./lib/installDeps')
 
 module.exports = async (params = {}) => {
   const inCurrentDir = !params.new
@@ -34,41 +35,35 @@ module.exports = async (params = {}) => {
   }
   await fs.ensureDir(targetDir)
 
-  const spinner = ora('开始生成模板').start()
+  console.log('')
+  const spinner = ora('拉取模板生成项目中').start()
 
   await generate(params, targetDir)
 
-  spinner.color = 'yellow'
-  spinner.text = '安装项目依赖'
+  spinner.succeed('项目生成啦！！！')
+  console.log('')
+
+  console.log(`🌈  ${chalk.white('yarn install')}`)
+  console.log('')
 
   if (!inCurrentDir) {
-    shell.cd(targetDir)
+    execa(`cd ${targetDir}`)
   }
 
-  const child = shell.exec('yarn', {
-    silent: true,
-    async: true
-  })
+  await installDeps()
 
-  child.stdout.on('error', function(data) {
-    console.log(`\n${data}\n`)
-    spinner.fail('安装失败')
-  })
-
-  child.stdout.on('close', function(data) {
-    spinner.succeed('完成安装')
-
-    if (inCurrentDir) {
-      console.log('')
-      console.log('  执行以下命令快速开始项目')
-      console.log(`   ${chalk.red('$')} ${chalk.red('yarn dev')}`)
-    } else {
-      console.log('')
-      console.log('  执行以下命令快速开始项目')
-      console.log(
-        `   ${chalk.red('$')} ${chalk.red('cd')} ${chalk.red(params.dir)}`
-      )
-      console.log(`   ${chalk.red('$')} ${chalk.red('yarn dev')}`)
-    }
-  })
+  if (inCurrentDir) {
+    console.log('')
+    console.log('🍺  快速开始 🍺')
+    console.log(`${chalk.green('命令行执行：')} ${chalk.yellow('yarn dev')}`)
+  } else {
+    console.log('')
+    console.log('🍺  快速开始 🍺')
+    console.log(
+      `${chalk.green('命令行执行：')} ${chalk.yellow('cd')} ${chalk.yellow(
+        params.dir
+      )}`
+    )
+    console.log(`${chalk.green('命令行执行：')} ${chalk.yellow('yarn dev')}`)
+  }
 }
