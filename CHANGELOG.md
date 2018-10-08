@@ -1,3 +1,27 @@
+<a name="0.0.9"></a>
+## [0.0.9](https://github.com/shaodahong/autos/compare/v0.0.8...v0.0.9) (2018-10-08)
+
+
+### Bug Fixes
+
+* **package.json:** 修复 scritps 中 changelog 命令错误不生成新的更新文档 ([91d3f19](https://github.com/shaodahong/autos/commit/91d3f19))
+* 删除无用的忽略规则 ([fd9df51](https://github.com/shaodahong/autos/commit/fd9df51))
+
+
+### Features
+
+* 增加 autos lint 命令，修改 autos dev 中 eslint-loader 的配置，聚合 eslint 配置 ([61bf896](https://github.com/shaodahong/autos/commit/61bf896))
+
+
+### Performance Improvements
+
+* 优化 autos init 的性能，提升命令行的交互,去掉一些无用依赖 ([b661a30](https://github.com/shaodahong/autos/commit/b661a30))
+* 优化 autos 开发和构建的代码 ([9e3623d](https://github.com/shaodahong/autos/commit/9e3623d))
+* 增加 command 错误处理，修改了 init 的异步写法 ([f9ef848](https://github.com/shaodahong/autos/commit/f9ef848))
+* 添加公用的 resolveProjectPath 和 resolveAutosPath 来获取项目路径和脚手架路径，并且优化了一些文件目录结构 ([c556996](https://github.com/shaodahong/autos/commit/c556996))
+
+
+
 <a name="0.0.8"></a>
 ## [0.0.8](https://github.com/shaodahong/autos/compare/v0.0.7...v0.0.8) (2018-09-29)
 
