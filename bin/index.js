@@ -44,20 +44,23 @@ program
   .action(async (dir, otherDirs) => {
     try {
       await compareVersion()
-      q.prompt(initQ).then(answer => {
-        // { mobile: true,
-        //   new: true,
-        //   dir: 'demo',
-        //   projectName: 'demoname',
-        //   projectType: 'm',
-        //   prodPath: 'demo' }
-        if (answer.mobile) {
-          init(answer)
-        } else {
-          backstage(answer)
-        }
-      })
-    } catch (error) {}
+      const result = await q.prompt(initQ)
+      // result
+      // { mobile: true,
+      //   new: true,
+      //   dir: 'demo',
+      //   projectName: 'demoname',
+      //   projectType: 'm',
+      //   prodPath: 'demo' }
+
+      if (result.mobile) {
+        init(result)
+      } else {
+        backstage(result)
+      }
+    } catch (error) {
+      console.log('autos:init--error', error)
+    }
   })
 
 // 创建组件或页面
@@ -85,7 +88,9 @@ program
         Object.assign(options, answer)
         create(options)
       })
-    } catch (error) {}
+    } catch (error) {
+      console.log('autos:create--error', error)
+    }
   })
 
 // 升级配置
