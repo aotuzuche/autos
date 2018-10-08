@@ -9,7 +9,11 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
-const { resolveAutosPath } = require('../lib/utils')
+const { resolveProjectPath } = require('../lib/utils')
+
+const { ignorePattern } = require(resolveProjectPath(
+  'appConfig.js'
+)).eslintConfig
 
 function resolve(dir) {
   return path.join(process.cwd(), dir)
@@ -97,8 +101,9 @@ const webpackConfig = {
         {
           loader: 'eslint-loader',
           options: {
-            cache: true,
-            configFile: resolveAutosPath('bin/build/config/eslintrc.js')
+            baseConfig: require('./config/eslintrc'),
+            formatter: require('eslint/lib/formatters/codeframe'),
+            ignorePattern
           },
           exclude: ['/node_modules/']
         }

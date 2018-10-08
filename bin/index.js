@@ -149,6 +149,19 @@ program
     })
   })
 
+// 测试项目
+program
+  .command('lint')
+  .description('测试项目')
+  .action(async (dir, otherDirs) => {
+    try {
+      const lint = require('./Lint')
+      await lint()
+    } catch (error) {
+      console.log('autos:lint--error', error)
+    }
+  })
+
 // 帮助命令
 program.on('--help', () => {
   console.log('')
