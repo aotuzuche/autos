@@ -8,7 +8,7 @@
 - [x] 单独升级 webpack 打包目录
 - [x] 简化配置，所有的可配置项暴露到`appConfig.js`
 - [ ] 支持自定义配置
-- [ ] 支持一些简单的测试
+- [x] 支持 eslint 测试
 
 ## 快速开始
 
@@ -98,4 +98,12 @@ $ autos update
 
 ```bash
 $ autos build -t --analyzer
+```
+
+## eslint 测试
+
+执行 eslint 检查项目
+
+```bash
+$ autos lint
 ```
