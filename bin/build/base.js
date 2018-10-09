@@ -31,7 +31,11 @@ const webpackConfig = {
       {
         test: /\.js[x]?$/,
         loader: 'happypack/loader?id=jsx',
-        include: [resolve('src')]
+        include: [
+          resolveProjectPath('src'),
+          resolveProjectPath('node_modules/auto-libs'),
+          resolveProjectPath('appConfig.js')
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -92,8 +96,7 @@ const webpackConfig = {
       loaders: [
         {
           loader: 'babel-loader',
-          options: require('./config/babel.config'),
-          exclude: ['/node_modules/']
+          options: require('./config/babel.config')
         },
         {
           loader: path.join(__dirname, '/auto-prod-filter-loader')
@@ -104,8 +107,7 @@ const webpackConfig = {
             baseConfig: require('./config/eslintrc'),
             formatter: require('eslint/lib/formatters/codeframe'),
             ignorePattern
-          },
-          exclude: ['/node_modules/']
+          }
         }
       ]
     }),
@@ -154,14 +156,13 @@ const webpackConfig = {
   resolve: {
     extensions: ['.js', '.jsx', '.scss', '.css', '.mass'],
     alias: {
-      src: resolve('src'),
-      '@': resolve('src'),
-      auto: resolve('src/auto'),
-      $assets: resolve('src/assets'),
-      $components: resolve('src/components'),
-      $containers: resolve('src/containers'),
-      $redux: resolve('src/redux'),
-      $views: resolve('src/views')
+      src: resolveProjectPath('src'),
+      '@': resolveProjectPath('src'),
+      $assets: resolveProjectPath('src/assets'),
+      $components: resolveProjectPath('src/components'),
+      $containers: resolveProjectPath('src/containers'),
+      $redux: resolveProjectPath('src/redux'),
+      $views: resolveProjectPath('src/views')
     }
   }
 }

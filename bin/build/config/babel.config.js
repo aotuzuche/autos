@@ -8,7 +8,8 @@ module.exports = {
         useBuiltIns: 'usage',
         targets: {
           browsers: ['ios >= 7', 'android >= 4.4']
-        }
+        },
+        modules: 'commonjs'
       }
     ]
   ],
