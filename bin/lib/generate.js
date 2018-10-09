@@ -8,7 +8,7 @@ module.exports = async (params, targetDir) => {
   const templateDir = path.join(__dirname, '../../lib/mobile')
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo('shaodahong/atzuche-mobile-template', templateDir)
+  await DownloadGitRepo('aotuzuche/atzuche-mobile-template', templateDir)
 
   const metalsmith = Metalsmith(templateDir)
   return new Promise((resolve, reject) => {

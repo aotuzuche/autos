@@ -15,7 +15,7 @@ module.exports = async options => {
   const targetDir = resolveProjectPath(`/src/${createClass}s/${createName}`)
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo('shaodahong/atzuche-create-template', templateDir)
+  await DownloadGitRepo('aotuzuche/atzuche-create-template', templateDir)
 
   const isExist = await fs.pathExists(targetDir)
 

@@ -8,7 +8,7 @@
     "autos",
     "standard tooling"
   ],
-  "repository": "git@github.com:shaodahong/autos.git",
+  "repository": "git@github.com:aotuzuche/autos.git",
   "author": "shaodahong",
   "license": "MIT",
   "bin": {
