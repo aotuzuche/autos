@@ -34,6 +34,7 @@ const webpackConfig = {
         include: [
           resolveProjectPath('src'),
           resolveProjectPath('node_modules/auto-libs'),
+          resolveProjectPath('node_modules/auto-ui'),
           resolveProjectPath('appConfig.js')
         ]
       },
