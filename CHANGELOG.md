@@ -1,3 +1,33 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/aotuzuche/autos/compare/v0.1.2...v0.1.3) (2018-10-19)
+
+
+### Bug Fixes
+
+* 修复构建的时候 include 没有包含 auto-ui 目录导致构建失败 ([c14c6e8](https://github.com/aotuzuche/autos/commit/c14c6e8))
+
+
+
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/aotuzuche/autos/compare/v0.1.1...v0.1.2) (2018-10-09)
+
+
+### Bug Fixes
+
+* 修复构建的路径报错 ([bcc4aab](https://github.com/aotuzuche/autos/commit/bcc4aab))
+
+
+
+<a name="0.1.1"></a>
+## [0.1.1](https://github.com/aotuzuche/autos/compare/v0.1.0...v0.1.1) (2018-10-09)
+
+
+### Bug Fixes
+
+* 修复 babel-loader include 的文件 bug，修复 babel preset-env 中的 modules 没有设置导致导入模块报错 ([1c0e858](https://github.com/aotuzuche/autos/commit/1c0e858))
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/aotuzuche/autos/compare/v0.0.9...v0.1.0) (2018-10-09)
 
