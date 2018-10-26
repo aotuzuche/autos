@@ -1,3 +1,13 @@
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/aotuzuche/autos/compare/v0.1.3...v0.1.4) (2018-10-26)
+
+
+### Bug Fixes
+
+* **autos create:** 修复创建的时候错误使用 path.resolve 导致创建错误的目录 ([3208f19](https://github.com/aotuzuche/autos/commit/3208f19))
+
+
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/aotuzuche/autos/compare/v0.1.2...v0.1.3) (2018-10-19)
 
