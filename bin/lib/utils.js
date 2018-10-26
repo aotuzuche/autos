@@ -7,10 +7,10 @@ exports.capitalize = str => {
 
 // 以项目根目录生成路径
 exports.resolveProjectPath = (...toPath) => {
-  return path.resolve(process.cwd(), ...toPath)
+  return path.join(process.cwd(), ...toPath)
 }
 
 // 以脚手架目录生成路径
 exports.resolveAutosPath = (...toPath) => {
-  return path.resolve(__dirname, '../../', ...toPath)
+  return path.join(__dirname, '../../', ...toPath)
 }

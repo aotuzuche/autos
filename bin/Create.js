@@ -12,7 +12,7 @@ const {
 module.exports = async options => {
   const { createName, createClass } = options
   const templateDir = resolveAutosPath('lib/create')
-  const targetDir = resolveProjectPath(`/src/${createClass}s/${createName}`)
+  const targetDir = resolveProjectPath(`src/${createClass}s/${createName}`)
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
   await DownloadGitRepo('aotuzuche/atzuche-create-template', templateDir)
