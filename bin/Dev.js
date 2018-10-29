@@ -10,7 +10,7 @@ module.exports = () => {
     progress: true,
     contentBase: __dirname,
     hot: true,
-    host: 'localhost',
+    host: '0.0.0.0',
     open: true,
     inline: true,
     quiet: true,
@@ -31,7 +31,7 @@ module.exports = () => {
   WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const server = new WebpackDevServer(Webpack(webpackDevConfig), options)
 
-  server.listen(config.APP_CONFIG.port, 'localhost', () => {
+  server.listen(config.APP_CONFIG.port, '0.0.0.0', () => {
     opn('http://localhost:' + config.APP_CONFIG.port)
   })
 }
