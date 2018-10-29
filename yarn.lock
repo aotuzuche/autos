@@ -4644,6 +4644,11 @@ eslint-config-airbnb@^17.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
+eslint-config-alloy@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-1.4.2.tgz#7dcb015992a6598055679483103badf55534a0a6"
+  integrity sha512-DtzV8CC4VawC9E6T2J3RQ7tO6c6zTSxPAm8IdpnQcGDhF8/7GXCf46vclSs6tzkodFLbKwnqcCRG1QZV6BsViw==
+
 eslint-config-standard@^11.0.0:
   version "11.0.0"
   resolved "http://registry.npmjs.org/eslint-config-standard/-/eslint-config-standard-11.0.0.tgz#87ee0d3c9d95382dc761958cbb23da9eea31e0ba"

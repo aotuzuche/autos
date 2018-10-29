@@ -9,7 +9,6 @@ module.exports = async () => {
   const engine = new CLIEngine({
     cwd,
     extensions: ['.js', '.jsx'],
-    baseConfig: require('./build/config/eslintrc'),
     ignorePattern
   })
 

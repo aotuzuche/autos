@@ -105,7 +105,6 @@ const webpackConfig = {
         {
           loader: 'eslint-loader',
           options: {
-            baseConfig: require('./config/eslintrc'),
             formatter: require('eslint/lib/formatters/codeframe'),
             ignorePattern
           }
