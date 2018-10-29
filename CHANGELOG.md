@@ -1,3 +1,13 @@
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/aotuzuche/autos/compare/v0.1.4...v0.1.5) (2018-10-29)
+
+
+### Bug Fixes
+
+* **autos lint:** 去掉内置 eslintrc 文件, eslint 配置文件放在 package.json 里面, 修复了编辑器不实时检测 ([a451331](https://github.com/aotuzuche/autos/commit/a451331))
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/aotuzuche/autos/compare/v0.1.3...v0.1.4) (2018-10-26)
 
