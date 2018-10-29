@@ -15,6 +15,7 @@ module.exports = () => {
     inline: true,
     quiet: true,
     disableHostCheck: true,
+    historyApiFallback: true,
     noInfo: false,
     port: config.APP_CONFIG.port,
     proxy: {
