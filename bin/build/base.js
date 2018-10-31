@@ -30,7 +30,22 @@ const webpackConfig = {
     rules: [
       {
         test: /\.js[x]?$/,
-        loader: 'happypack/loader?id=jsx',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: require('./config/babel.config')
+          },
+          {
+            loader: path.join(__dirname, '/auto-prod-filter-loader')
+          },
+          {
+            loader: 'eslint-loader',
+            options: {
+              formatter: require('eslint/lib/formatters/codeframe'),
+              ignorePattern
+            }
+          }
+        ],
         include: [
           resolveProjectPath('src'),
           resolveProjectPath('node_modules/auto-libs'),
@@ -91,26 +106,26 @@ const webpackConfig = {
 
   plugins: [
     // 多线程打包
-    new HappyPack({
-      id: 'jsx',
-      threads: 4,
-      loaders: [
-        {
-          loader: 'babel-loader',
-          options: require('./config/babel.config')
-        },
-        {
-          loader: path.join(__dirname, '/auto-prod-filter-loader')
-        },
-        {
-          loader: 'eslint-loader',
-          options: {
-            formatter: require('eslint/lib/formatters/codeframe'),
-            ignorePattern
-          }
-        }
-      ]
-    }),
+    // new HappyPack({
+    //   id: 'jsx',
+    //   threads: 4,
+    //   loaders: [
+    //     {
+    //       loader: 'babel-loader',
+    //       options: require('./config/babel.config')
+    //     },
+    //     {
+    //       loader: path.join(__dirname, '/auto-prod-filter-loader')
+    //     },
+    //     {
+    //       loader: 'eslint-loader',
+    //       options: {
+    //         formatter: require('eslint/lib/formatters/codeframe'),
+    //         ignorePattern
+    //       }
+    //     }
+    //   ]
+    // }),
 
     // 提取html模板
     new HtmlWebpackPlugin({
