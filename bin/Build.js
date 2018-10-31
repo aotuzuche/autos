@@ -1,15 +1,22 @@
-const webpack = require('webpack')
-const config = require('./build/config')
-let webpackConfig = require('./build/build')
-const ora = require('ora')
-const chalk = require('chalk')
-const rm = require('rimraf')
-const path = require('path')
-const merge = require('webpack-merge')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
-
 module.exports = options => {
+  const webpack = require('webpack')
+  const config = require('./build/config')
+  let webpackConfig = require('./build/build')
+  const ora = require('ora')
+  const chalk = require('chalk')
+  const rm = require('rimraf')
+  const path = require('path')
+  const merge = require('webpack-merge')
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin
+  const formatStats = require('./lib/formatStats')
+
+  const APP_CONFIG = config.APP_CONFIG
+
+  const setting = {
+    test: '测试环境',
+    production: '生产环境'
+  }
   if (options.analyzer) {
     webpackConfig = merge(webpackConfig, {
       plugins: [new BundleAnalyzerPlugin()]
@@ -17,34 +24,31 @@ module.exports = options => {
   }
 
   // 开始转菊花
-  const spin = ora(chalk.blue(`build for ${process.env.PACKAGE}...`))
+  console.log()
+  const spin = ora(`开始构建 -> ${chalk.cyan(setting[process.env.PACKAGE])}...`)
   spin.start()
 
   // 删除构建目录
   // 然后重新构建项目
   rm(path.join(config[process.env.PACKAGE].assetsRoot), err => {
-    if (err) throw err
+    if (err) {
+      return console.log(err)
+    }
 
-    webpack(webpackConfig, (err, status) => {
-      if (err) throw err
-
-      process.stdout.write(
-        '\n\n' +
-          status.toString({
-            colors: true,
-            modules: false,
-            children: false,
-            chunks: false,
-            chunkModules: false
-          }) +
-          '\n\n'
-      )
-
+    webpack(webpackConfig, (err, stats) => {
       spin.stop()
+      if (err) {
+        return console.log(err)
+      }
+
+      if (stats.hasErrors()) {
+        return console.log(`构建出现错误`)
+      }
+
+      console.log()
+      console.log(formatStats(stats, APP_CONFIG.prodPath))
       console.log(
-        chalk.cyan(
-          '  Build for ' + process.env.PACKAGE + ' package complete.\n'
-        )
+        `  构建完成, 可以去构建目录 ${chalk.cyan(APP_CONFIG.prodPath)} 查看`
       )
     })
   })
