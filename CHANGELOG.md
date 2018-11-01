@@ -1,10 +1,41 @@
-<a name="0.1.5"></a>
-## [0.1.5](https://github.com/aotuzuche/autos/compare/v0.1.4...v0.1.5) (2018-10-29)
+<a name="0.1.9"></a>
+## [0.1.9](https://github.com/aotuzuche/autos/compare/v0.1.8...v0.1.9) (2018-10-31)
+
+
+### Performance Improvements
+
+* 改善代码构建后的信息展示,增加 Gzipped 信息展示,去掉图片等资源的信息展示 ([d37ff99](https://github.com/aotuzuche/autos/commit/d37ff99))
+
+
+
+<a name="0.1.8"></a>
+## [0.1.8](https://github.com/aotuzuche/autos/compare/v0.1.7...v0.1.8) (2018-10-31)
+
+
+### Bug Fixes
+
+* 修复 autos dev 模式下编译进度和报错信息不够饱满,去掉 happypack ([49f82ef](https://github.com/aotuzuche/autos/commit/49f82ef))
+
+
+
+<a name="0.1.7"></a>
+## [0.1.7](https://github.com/aotuzuche/autos/compare/v0.1.6...v0.1.7) (2018-10-29)
+
+
+### Bug Fixes
+
+* webpackDevServer options 添加 historyApiFallback, 修复 spa 页面路由报错 ([5c2c6c3](https://github.com/aotuzuche/autos/commit/5c2c6c3))
+
+
+
+<a name="0.1.6"></a>
+## [0.1.6](https://github.com/aotuzuche/autos/compare/v0.1.4...v0.1.6) (2018-10-29)
 
 
 ### Bug Fixes
 
 * **autos lint:** 去掉内置 eslintrc 文件, eslint 配置文件放在 package.json 里面, 修复了编辑器不实时检测 ([a451331](https://github.com/aotuzuche/autos/commit/a451331))
+* fix WebpackDevServer host 修改为 0.0.0.0 ([884592a](https://github.com/aotuzuche/autos/commit/884592a))
 
 
 
