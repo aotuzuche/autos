@@ -8,6 +8,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
+const getCacheIdentifier = require('./lib/getCacheIdentifier')
 
 const { resolveProjectPath } = require('../lib/utils')
 
@@ -88,6 +89,8 @@ const webpackConfig = {
           {
             loader: 'eslint-loader',
             options: {
+              cache: true,
+              cacheIdentifier: getCacheIdentifier(),
               formatter: require('eslint/lib/formatters/codeframe'),
               ignorePattern
             }
