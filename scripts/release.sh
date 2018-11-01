@@ -27,4 +27,9 @@ then
   git push origin dev
 
   npm publish
+
+  # docs
+  npm run changelog
+  git commit -am "docs: add $VERSION docs"
+  git push origin dev
 fi
