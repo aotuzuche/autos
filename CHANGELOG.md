@@ -1,3 +1,12 @@
+## [0.1.12](https://github.com/aotuzuche/autos/compare/v0.1.11...v0.1.12) (2018-12-04)
+
+
+### Bug Fixes
+
+* fix [@babel](https://github.com/babel)/plugin-proposal-decorators legacy没有导致编译错误 ([0c57ded](https://github.com/aotuzuche/autos/commit/0c57ded))
+
+
+
 ## [0.1.11](https://github.com/aotuzuche/autos/compare/v0.1.10...v0.1.11) (2018-12-04)
 
 
