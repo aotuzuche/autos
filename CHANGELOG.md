@@ -1,4 +1,17 @@
-<a name="0.1.9"></a>
+## [0.1.10](https://github.com/aotuzuche/autos/compare/v0.1.9...v0.1.10) (2018-12-04)
+
+
+### Bug Fixes
+
+* 修复 uglifyjs-webpack-plug 依赖不存在 ([53a0010](https://github.com/aotuzuche/autos/commit/53a0010))
+
+
+### Performance Improvements
+
+* eslint 添加 cache ,并且引入 cacheIdentifier 来识别缓存的有效 ([9578ae7](https://github.com/aotuzuche/autos/commit/9578ae7))
+
+
+
 ## [0.1.9](https://github.com/aotuzuche/autos/compare/v0.1.8...v0.1.9) (2018-10-31)
 
 
@@ -8,7 +21,6 @@
 
 
 
-<a name="0.1.8"></a>
 ## [0.1.8](https://github.com/aotuzuche/autos/compare/v0.1.7...v0.1.8) (2018-10-31)
 
 
@@ -18,7 +30,6 @@
 
 
 
-<a name="0.1.7"></a>
 ## [0.1.7](https://github.com/aotuzuche/autos/compare/v0.1.6...v0.1.7) (2018-10-29)
 
 
@@ -28,7 +39,6 @@
 
 
 
-<a name="0.1.6"></a>
 ## [0.1.6](https://github.com/aotuzuche/autos/compare/v0.1.4...v0.1.6) (2018-10-29)
 
 
@@ -39,7 +49,6 @@
 
 
 
-<a name="0.1.4"></a>
 ## [0.1.4](https://github.com/aotuzuche/autos/compare/v0.1.3...v0.1.4) (2018-10-26)
 
 
@@ -49,7 +58,6 @@
 
 
 
-<a name="0.1.3"></a>
 ## [0.1.3](https://github.com/aotuzuche/autos/compare/v0.1.2...v0.1.3) (2018-10-19)
 
 
@@ -59,7 +67,6 @@
 
 
 
-<a name="0.1.2"></a>
 ## [0.1.2](https://github.com/aotuzuche/autos/compare/v0.1.1...v0.1.2) (2018-10-09)
 
 
@@ -69,7 +76,6 @@
 
 
 
-<a name="0.1.1"></a>
 ## [0.1.1](https://github.com/aotuzuche/autos/compare/v0.1.0...v0.1.1) (2018-10-09)
 
 
@@ -79,7 +85,6 @@
 
 
 
-<a name="0.1.0"></a>
 # [0.1.0](https://github.com/aotuzuche/autos/compare/v0.0.9...v0.1.0) (2018-10-09)
 
 
@@ -94,7 +99,6 @@
 
 
 
-<a name="0.0.9"></a>
 ## [0.0.9](https://github.com/aotuzuche/autos/compare/v0.0.8...v0.0.9) (2018-10-08)
 
 
@@ -118,7 +122,6 @@
 
 
 
-<a name="0.0.8"></a>
 ## [0.0.8](https://github.com/aotuzuche/autos/compare/v0.0.7...v0.0.8) (2018-09-29)
 
 
@@ -140,7 +143,6 @@
 
 
 
-<a name="0.0.7"></a>
 ## [0.0.7](https://github.com/aotuzuche/autos/compare/v0.0.6...v0.0.7) (2018-09-28)
 
 
@@ -150,7 +152,6 @@
 
 
 
-<a name="0.0.6"></a>
 ## [0.0.6](https://github.com/aotuzuche/autos/compare/v0.0.4...v0.0.6) (2018-09-28)
 
 
@@ -161,7 +162,6 @@
 
 
 
-<a name="0.0.4"></a>
 ## 0.0.4 (2018-09-27)
 
 
