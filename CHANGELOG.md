@@ -1,3 +1,12 @@
+## [0.1.11](https://github.com/aotuzuche/autos/compare/v0.1.10...v0.1.11) (2018-12-04)
+
+
+### Bug Fixes
+
+* fix [@babel](https://github.com/babel)/plugin-proposal-decorators 未设置 decoratorsBeforeExport 导致编译报错 ([2469efb](https://github.com/aotuzuche/autos/commit/2469efb))
+
+
+
 ## [0.1.10](https://github.com/aotuzuche/autos/compare/v0.1.9...v0.1.10) (2018-12-04)
 
 
