@@ -157,7 +157,6 @@ program
   .action(async options => {
     try {
       const { fix } = options
-      console.log(fix)
       const lint = require('./Lint')
       await lint({
         fix: Boolean(fix)
