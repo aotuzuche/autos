@@ -153,10 +153,15 @@ program
 program
   .command('lint')
   .description('测试项目')
-  .action(async (dir, otherDirs) => {
+  .option('--fix', 'fix code')
+  .action(async options => {
     try {
+      const { fix } = options
+      console.log(fix)
       const lint = require('./Lint')
-      await lint()
+      await lint({
+        fix: Boolean(fix)
+      })
     } catch (error) {
       console.log('autos:lint--error', error)
     }

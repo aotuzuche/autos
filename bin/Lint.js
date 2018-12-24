@@ -1,4 +1,4 @@
-module.exports = async () => {
+module.exports = async (options = {}) => {
   const { resolveProjectPath } = require('./lib/utils')
   const { CLIEngine } = require('eslint')
   const cwd = resolveProjectPath()
@@ -7,6 +7,7 @@ module.exports = async () => {
   )).eslintConfig
 
   const engine = new CLIEngine({
+    ...options,
     cwd,
     extensions: ['.js', '.jsx'],
     ignorePattern
@@ -15,6 +16,10 @@ module.exports = async () => {
   const formatter = engine.getFormatter('codeframe')
 
   const report = engine.executeOnFiles(['src'])
+
+  if (options.fix) {
+    CLIEngine.outputFixes(report)
+  }
 
   if (report.errorCount || report.warningCount) {
     console.log(formatter(report.results))
