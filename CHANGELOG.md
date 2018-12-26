@@ -1,3 +1,12 @@
+## [0.1.13](https://github.com/aotuzuche/autos/compare/v0.1.12...v0.1.13) (2018-12-24)
+
+
+### Features
+
+* **autos lint:** 添加 --fix 参数 ([786f363](https://github.com/aotuzuche/autos/commit/786f363))
+
+
+
 ## [0.1.12](https://github.com/aotuzuche/autos/compare/v0.1.11...v0.1.12) (2018-12-04)
 
 
