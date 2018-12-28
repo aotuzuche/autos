@@ -45,13 +45,6 @@ program
     try {
       await compareVersion()
       const result = await q.prompt(initQ)
-      // result
-      // { mobile: true,
-      //   new: true,
-      //   dir: 'demo',
-      //   projectName: 'demoname',
-      //   projectType: 'm',
-      //   prodPath: 'demo' }
 
       if (result.mobile) {
         init(result)
@@ -59,7 +52,7 @@ program
         backstage(result)
       }
     } catch (error) {
-      console.log('autos:init--error', error)
+      console.log(error)
     }
   })
 
@@ -89,7 +82,7 @@ program
         create(options)
       })
     } catch (error) {
-      console.log('autos:create--error', error)
+      console.log(error)
     }
   })
 

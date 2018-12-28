@@ -9,8 +9,8 @@ module.exports = async () => {
     if (lVersion === version) {
       resolve()
     } else {
-      console.error(
-        chalk.red(
+      reject(
+        chalk.magenta(
           '\n' +
             '本地脚手架版本 V' +
             version +
@@ -26,7 +26,6 @@ module.exports = async () => {
             '$ npm i autos -g'
         )
       )
-      reject()
     }
   })
 }

@@ -21,7 +21,7 @@ module.exports = async (params = {}) => {
         choices: [
           { name: '覆盖', value: 'overwrite' },
           { name: '合并', value: 'merge' },
-          { name: '去掉', value: false }
+          { name: '取消', value: false }
         ]
       }
     ])
@@ -60,10 +60,10 @@ module.exports = async (params = {}) => {
     console.log('')
     console.log('🍺  快速开始 🍺')
     console.log(
-      `${chalk.green('命令行执行：')} ${chalk.yellow('cd')} ${chalk.yellow(
+      `${chalk.green('$')} ${chalk.yellow('cd')} ${chalk.yellow(
         params.dir
       )}`
     )
-    console.log(`${chalk.green('命令行执行：')} ${chalk.yellow('yarn dev')}`)
+    console.log(`${chalk.green('$')} ${chalk.yellow('yarn dev')}`)
   }
 }

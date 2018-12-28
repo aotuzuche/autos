@@ -23,6 +23,9 @@ module.exports = async (params, targetDir) => {
       .destination(targetDir)
       .use((files, metalsmith, done) => {
         Object.keys(files).forEach(fileName => {
+          if (/yarn\.lock$/.test(fileName)) {
+            delete files[fileName]
+          }
           try {
             if (/\.gitignore$|appConfig\.js$/.test(fileName)) {
               const t = files[fileName].contents.toString()
