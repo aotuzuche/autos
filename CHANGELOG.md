@@ -1,3 +1,12 @@
+## [0.1.14](https://github.com/aotuzuche/autos/compare/v0.1.13...v0.1.14) (2018-12-28)
+
+
+### Bug Fixes
+
+* **autos init:** 初始化新项目的时候去掉 yarn.lock 文件 ([f00643c](https://github.com/aotuzuche/autos/commit/f00643c))
+
+
+
 ## [0.1.13](https://github.com/aotuzuche/autos/compare/v0.1.12...v0.1.13) (2018-12-24)
 
 
