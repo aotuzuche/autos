@@ -1,3 +1,12 @@
+## [0.1.15](https://github.com/aotuzuche/autos/compare/v0.1.14...v0.1.15) (2019-01-14)
+
+
+### Bug Fixes
+
+* 修复 auto-ui 打包相关的配置 ([3ed3577](https://github.com/aotuzuche/autos/commit/3ed3577))
+
+
+
 ## [0.1.14](https://github.com/aotuzuche/autos/compare/v0.1.13...v0.1.14) (2018-12-28)
 
 
