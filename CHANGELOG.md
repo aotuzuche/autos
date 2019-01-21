@@ -1,3 +1,12 @@
+## [0.1.16](https://github.com/aotuzuche/autos/compare/v0.1.15...v0.1.16) (2019-01-21)
+
+
+### Bug Fixes
+
+* 修复 css 样式没有转化 rem 的 bug ([a9be1c6](https://github.com/aotuzuche/autos/commit/a9be1c6))
+
+
+
 ## [0.1.15](https://github.com/aotuzuche/autos/compare/v0.1.14...v0.1.15) (2019-01-14)
 
 
