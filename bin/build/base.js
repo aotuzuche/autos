@@ -129,7 +129,8 @@ const webpackConfig = {
         test: /\.css$/,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader'
+          'css-loader',
+          'px2rem-loader?remUnit=100'
         ]
       },
       {
