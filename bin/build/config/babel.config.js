@@ -19,8 +19,7 @@ module.exports = {
     [
       'import',
       {
-        libraryName: 'auto-ui',
-        style: true
+        libraryName: 'auto-ui'
       }
     ],
     [
