@@ -1,3 +1,13 @@
+## [0.1.17](https://github.com/aotuzuche/autos/compare/v0.1.16...v0.1.17) (2019-01-24)
+
+
+### Bug Fixes
+
+* 去掉 babel 中 import 配置的 style 引入，由组件引入 ([3f35421](https://github.com/aotuzuche/autos/commit/3f35421))
+* **autos update:** 修复 deepmerge 的时候对数组没有做合并导致元素重复 ([c2fc165](https://github.com/aotuzuche/autos/commit/c2fc165))
+
+
+
 ## [0.1.16](https://github.com/aotuzuche/autos/compare/v0.1.15...v0.1.16) (2019-01-21)
 
 
