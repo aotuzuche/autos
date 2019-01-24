@@ -5,6 +5,26 @@ const merge = require('deepmerge')
 const { resolveAutosPath, resolveProjectPath } = require('./lib/utils')
 
 module.exports = async () => {
+  const emptyTarget = value => (Array.isArray(value) ? [] : {})
+  const clone = (value, options) => merge(emptyTarget(value), value, options)
+
+  function combineMerge(target, source, options) {
+    const destination = target.slice()
+
+    source.forEach(function(e, i) {
+      if (typeof destination[i] === 'undefined') {
+        const cloneRequested = options.clone !== false
+        const shouldClone = cloneRequested && options.isMergeableObject(e)
+        destination[i] = shouldClone ? clone(e, options) : e
+      } else if (options.isMergeableObject(e)) {
+        destination[i] = merge(target[i], e, options)
+      } else if (target.indexOf(e) === -1) {
+        destination.push(e)
+      }
+    })
+    return destination
+  }
+
   const templateDir = resolveAutosPath('lib/mobile')
 
   const spinner = ora('更新模板').start()
@@ -26,7 +46,9 @@ module.exports = async () => {
   delete newPackageJson.description
   delete newPackageJson.main
 
-  const newJson = merge(oldPackageJson, newPackageJson)
+  const newJson = merge(oldPackageJson, newPackageJson, {
+    arrayMerge: combineMerge
+  })
 
   fs.outputJson(resolveProjectPath('package.json'), newJson, {
     spaces: 2
