@@ -8,7 +8,21 @@ module.exports = () => {
   const opn = require('opn')
   const address = require('address')
   const chalk = require('chalk')
-  const port = config.APP_CONFIG.port
+
+  const target = config.APP_CONFIG.target
+  const {
+    port = 3000,
+    proxy = {
+      '/proxy/*': {
+        target: target,
+        pathRewrite: {
+          '^/proxy/': '/'
+        },
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  } = config.APP_CONFIG
 
   const options = {
     // clientLogLevel: 'none',
@@ -22,16 +36,7 @@ module.exports = () => {
     historyApiFallback: true,
     port: port,
     overlay: { warnings: false, errors: true },
-    proxy: {
-      '/proxy/*': {
-        target: config.APP_CONFIG.target,
-        pathRewrite: {
-          '^/proxy/': '/'
-        },
-        changeOrigin: true,
-        secure: false
-      }
-    }
+    proxy: proxy
   }
   WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackDevConfig)
@@ -56,7 +61,7 @@ module.exports = () => {
     console.log(`  当前环境为开发模式`)
   })
 
-  server.listen(config.APP_CONFIG.port, '0.0.0.0', () => {
+  server.listen(port, '0.0.0.0', () => {
     opn('http://localhost:' + port)
   })
 }
