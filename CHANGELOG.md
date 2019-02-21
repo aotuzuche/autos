@@ -1,3 +1,22 @@
+## [0.1.18](https://github.com/aotuzuche/autos/compare/v0.1.17...v0.1.18) (2019-02-21)
+
+
+### Bug Fixes
+
+* 修改 auto-ui 按需加载的文件夹目录 ([22f3b69](https://github.com/aotuzuche/autos/commit/22f3b69))
+
+
+### Features
+
+* 🎸 autos dev 下支持 appConfig.js proxy 参数，方便自定义代理 ([8752899](https://github.com/aotuzuche/autos/commit/8752899))
+
+
+### Performance Improvements
+
+* ⚡️ 抽出 deepMerge, 支持到数组的深度 merge ([fb0d8e2](https://github.com/aotuzuche/autos/commit/fb0d8e2))
+
+
+
 ## [0.1.17](https://github.com/aotuzuche/autos/compare/v0.1.16...v0.1.17) (2019-01-24)
 
 
