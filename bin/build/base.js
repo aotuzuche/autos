@@ -11,7 +11,7 @@ const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const getCacheConfig = require('./lib/getCacheConfig')
 
-const { resolveProjectPath } = require('../lib/utils')
+const { resolveProjectPath, resolveAutosPath } = require('../lib/utils')
 const { cacheIdentifier } = getCacheConfig(
   'eslint-loader',
   {
@@ -108,7 +108,7 @@ const webpackConfig = {
         test: /\.js[x]?$/,
         use: [
           {
-            loader: require.resolve('cache-loader'),
+            loader: 'cache-loader',
             options: getCacheConfig(
               'babel-loader',
               {
@@ -120,8 +120,8 @@ const webpackConfig = {
               ['babel.config.js', '.browserslistrc']
             )
           },
-          require.resolve('thread-loader'),
-          require.resolve('babel-loader')
+          'thread-loader',
+          'babel-loader'
         ],
         include: [resolveProjectPath('src'), resolveProjectPath('appConfig.js')]
       },
@@ -245,8 +245,12 @@ const webpackConfig = {
       $components: resolveProjectPath('src/components'),
       $containers: resolveProjectPath('src/containers'),
       $redux: resolveProjectPath('src/redux'),
-      $views: resolveProjectPath('src/views')
+      $views: resolveProjectPath('src/views'),
+      $utils: resolveProjectPath('src/utils')
     }
+  },
+  resolveLoader: {
+    modules: [resolveAutosPath('node_modules')]
   }
 }
 
