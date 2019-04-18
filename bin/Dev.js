@@ -1,7 +1,7 @@
 module.exports = () => {
   const WebpackDevServer = require('webpack-dev-server')
   const Webpack = require('webpack')
-  const { resolveProjectPath } = require('./lib/utils')
+  // const { resolveProjectPath } = require('./lib/utils')
 
   const webpackDevConfig = require('./build/dev')
   const config = require('./build/config')
@@ -26,11 +26,10 @@ module.exports = () => {
 
   const options = {
     // clientLogLevel: 'none',
-    contentBase: resolveProjectPath('src'),
-    watchContentBase: true,
+    // contentBase: config[process.env.PACKAGE].assetsRoot,
+    // watchContentBase: true,
     hot: true,
     host: '0.0.0.0',
-    open: true,
     quiet: true,
     disableHostCheck: true,
     historyApiFallback: true,
@@ -38,9 +37,11 @@ module.exports = () => {
     overlay: { warnings: false, errors: true },
     proxy: proxy
   }
-  WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
+  // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackDevConfig)
   const server = new WebpackDevServer(compiler, options)
+
+  let isFirstCompile = true
 
   compiler.hooks.done.tap('autos server', stats => {
     if (stats.hasErrors()) {
@@ -53,15 +54,22 @@ module.exports = () => {
       `  - 本地: ${chalk.magenta(`http://localhost:${chalk.cyan(port)}/`)}`
     )
     console.log(
-      `  - 本地: ${chalk.magenta(
+      `  - 局域网: ${chalk.magenta(
         `http://${address.ip()}:${chalk.cyan(port)}/`
       )}`
     )
     console.log()
     console.log(`  当前环境为开发模式`)
+
+    if (isFirstCompile) {
+      isFirstCompile = false
+      openBrowser(`http://localhost:${port}`)
+    }
   })
 
-  server.listen(port, '0.0.0.0', () => {
-    openBrowser('http://127.0.0.1:' + port)
+  server.listen(port, '0.0.0.0', err => {
+    if (err) {
+      console.loglog(err)
+    }
   })
 }
