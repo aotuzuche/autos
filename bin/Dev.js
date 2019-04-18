@@ -5,7 +5,7 @@ module.exports = () => {
 
   const webpackDevConfig = require('./build/dev')
   const config = require('./build/config')
-  const opn = require('opn')
+  const { openBrowser } = require('./lib/openBrowser')
   const address = require('address')
   const chalk = require('chalk')
 
@@ -62,6 +62,6 @@ module.exports = () => {
   })
 
   server.listen(port, '0.0.0.0', () => {
-    opn('http://localhost:' + port)
+    openBrowser('http://127.0.0.1:' + port)
   })
 }
