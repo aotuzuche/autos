@@ -26,6 +26,7 @@ const assetsPrePath = prefixPath
 
 module.exports = {
   APP_CONFIG,
+  isSystem: APP_CONFIG.prodPathPrefix === 'system',
   development: {
     port: APP_CONFIG.port,
     assetsPublicPath: '/',

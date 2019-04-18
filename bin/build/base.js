@@ -1,6 +1,7 @@
 const path = require('path')
 const config = require('./config')
 const APP_CONFIG = config.APP_CONFIG
+const isSystem = config.isSystem
 const utils = require('./utils')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
@@ -8,13 +9,25 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
-const getCacheIdentifier = require('./lib/getCacheIdentifier')
+const getCacheConfig = require('./lib/getCacheConfig')
 
 const { resolveProjectPath } = require('../lib/utils')
-
-const { ignorePattern } = require(resolveProjectPath(
-  'appConfig.js'
-)).eslintConfig
+const { cacheIdentifier } = getCacheConfig(
+  'eslint-loader',
+  {
+    'eslint-loader': require('eslint-loader/package.json').version,
+    eslint: require(resolveProjectPath('node_modules/eslint/package.json'))
+      .version
+  },
+  [
+    '.eslintrc.js',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    '.eslintrc',
+    'package.json'
+  ]
+)
 
 function resolve(dir) {
   return path.join(process.cwd(), dir)
@@ -77,31 +90,40 @@ const webpackConfig = {
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.js[x]?$/,
+        include: [resolveProjectPath('src')],
         use: [
-          {
-            loader: 'babel-loader',
-            options: require('./config/babel.config')
-          },
-          {
-            loader: path.join(__dirname, '/auto-prod-filter-loader')
-          },
           {
             loader: 'eslint-loader',
             options: {
               cache: true,
-              cacheIdentifier: getCacheIdentifier(),
-              formatter: require('eslint/lib/formatters/codeframe'),
-              ignorePattern
+              cacheIdentifier,
+              eslintPath: resolveProjectPath('node_modules/eslint')
             }
           }
-        ],
-        include: [
-          resolveProjectPath('src'),
-          resolveProjectPath('node_modules/auto-libs'),
-          resolveProjectPath('node_modules/auto-ui'),
-          resolveProjectPath('appConfig.js')
         ]
+      },
+      {
+        test: /\.js[x]?$/,
+        use: [
+          {
+            loader: require.resolve('cache-loader'),
+            options: getCacheConfig(
+              'babel-loader',
+              {
+                '@babel/core': require('@babel/core/package.json').version,
+                'babel-loader': require('babel-loader/package.json').version,
+                browserslist: require(resolveProjectPath('package.json'))
+                  .browserslist
+              },
+              ['babel.config.js', '.browserslistrc']
+            )
+          },
+          require.resolve('thread-loader'),
+          require.resolve('babel-loader')
+        ],
+        include: [resolveProjectPath('src'), resolveProjectPath('appConfig.js')]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -127,30 +149,40 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'px2rem-loader?remUnit=100'
-        ]
+        use: isSystem
+          ? [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
+          : [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'px2rem-loader?remUnit=100'
+          ]
       },
       {
         test: /\.scss$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'px2rem-loader?remUnit=100',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [
-                require('autoprefixer')({
-                  browsers: ['iOS >= 7', 'Android >= 4.1']
-                })
-              ]
-            }
-          },
-          'sass-loader'
-        ]
+        use: isSystem
+          ? [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')]
+              }
+            },
+            'sass-loader'
+          ]
+          : [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'px2rem-loader?remUnit=100',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')]
+              }
+            },
+            'sass-loader'
+          ]
       }
     ]
   },

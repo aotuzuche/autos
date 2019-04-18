@@ -46,11 +46,7 @@ program
       await compareVersion()
       const result = await q.prompt(initQ)
 
-      if (result.mobile) {
-        init(result)
-      } else {
-        backstage(result)
-      }
+      init(result)
     } catch (error) {
       console.log(error)
     }

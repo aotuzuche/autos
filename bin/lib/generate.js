@@ -5,10 +5,18 @@ const DownloadGitRepo = require('./downloadGitRepo')
 const ejs = require('ejs')
 
 module.exports = async (params, targetDir) => {
-  const templateDir = path.join(__dirname, '../../lib/mobile')
+  const templateDir = path.join(
+    __dirname,
+    `../../lib/${params.mobile ? 'mobile' : 'backstage'}`
+  )
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo('aotuzuche/atzuche-mobile-template', templateDir)
+  await DownloadGitRepo(
+    params.mobile
+      ? 'aotuzuche/atzuche-mobile-template'
+      : 'aotuzuche/atzuche-backstage-template',
+    templateDir
+  )
 
   const metalsmith = Metalsmith(templateDir)
   return new Promise((resolve, reject) => {
