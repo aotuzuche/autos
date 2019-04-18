@@ -58,7 +58,8 @@ const webpackConfig = merge(baseWebpackConfig, {
           chunks: 'all',
           test: function(module, count) {
             return (
-              module.resource && /(\/|\@|\\)auto-ui(\/|\\)/.test(module.resource)
+              module.resource &&
+              /(\/|\@|\\)auto-ui(\/|\\)/.test(module.resource)
             )
           },
           enforce: true
@@ -124,21 +125,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[name].[chunkhash].js'),
     publicPath: config[process.env.PACKAGE].assetsPublicPath
-  },
-
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
-    axios: 'axios',
-    'react-redux': 'ReactRedux',
-    'react-router': 'ReactRouter',
-    'react-router-dom': 'ReactRouterDOM',
-    redux: 'Redux',
-    'redux-thunk': 'ReduxThunk',
-    'seamless-immutable': 'Immutable',
-    fastclick: 'FastClick',
-    qs: 'Qs',
-    classnames: 'classNames'
   }
 })
 
