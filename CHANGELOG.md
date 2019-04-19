@@ -1,3 +1,28 @@
+# [1.0.0](https://github.com/aotuzuche/autos/compare/v0.1.18...v1.0.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* **base.js:** 修复 loader 依赖查找路径 ([cd58fd3](https://github.com/aotuzuche/autos/commit/cd58fd3))
+* **Dev.js:** 修复热更新不生效 ([86fb6f6](https://github.com/aotuzuche/autos/commit/86fb6f6))
+* 修复 lint 报错 ([41c4c30](https://github.com/aotuzuche/autos/commit/41c4c30))
+
+
+### Features
+
+* 新增管理后台打包，优化了配置文件，项目为单位 ([4fc24f7](https://github.com/aotuzuche/autos/commit/4fc24f7))
+
+
+### Performance Improvements
+
+* **build.js:** 去掉 externals 参数 ([27222a6](https://github.com/aotuzuche/autos/commit/27222a6))
+* **DEV:** 添加 openBrowser 方法，优化本地开发重复打开新的标签 ([ff7c389](https://github.com/aotuzuche/autos/commit/ff7c389))
+* **package.json:** 去掉无用的依赖 ([55de8fe](https://github.com/aotuzuche/autos/commit/55de8fe))
+* 优化 webpack 配置, 优化了 webpack 环境变量的设置 ([093910d](https://github.com/aotuzuche/autos/commit/093910d))
+* 优化了 webpack 环境变量的设置 ([d48ef13](https://github.com/aotuzuche/autos/commit/d48ef13))
+
+
+
 ## [0.1.18](https://github.com/aotuzuche/autos/compare/v0.1.17...v0.1.18) (2019-02-21)
 
 
