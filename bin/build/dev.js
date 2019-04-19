@@ -1,4 +1,3 @@
-
 const config = require('./config')
 const utils = require('./utils')
 const webpack = require('webpack')
@@ -17,11 +16,6 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
 
   plugins: [
-    // 设置环境变量
-    new webpack.DefinePlugin({
-      'process.env.PACKAGE': JSON.stringify(process.env.PACKAGE)
-    }),
-
     new webpack.NamedModulesPlugin(),
     // 热更新
     new webpack.HotModuleReplacementPlugin(),

@@ -10,6 +10,8 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const getCacheConfig = require('./lib/getCacheConfig')
+const webpack = require('webpack')
+const getEnvs = require('./lib/getEnvs')
 
 const { resolveProjectPath, resolveAutosPath } = require('../lib/utils')
 const { cacheIdentifier } = getCacheConfig(
@@ -44,6 +46,8 @@ const rules = [
       `You may need to install it.`
   }
 ]
+
+const envs = getEnvs()
 
 const transformer = error => {
   if (error.webpackError) {
@@ -188,6 +192,9 @@ const webpackConfig = {
   },
 
   plugins: [
+    // 设置环境变量
+    new webpack.DefinePlugin(envs),
+
     // 提取html模板
     new HtmlWebpackPlugin({
       template: 'src/template.html',

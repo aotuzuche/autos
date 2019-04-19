@@ -96,11 +96,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]
   },
   plugins: [
-    // 设置环境变量
-    new webpack.DefinePlugin({
-      'process.env.PACKAGE': JSON.stringify(process.env.PACKAGE)
-    }),
-
     new PreloadWebpackPlugin({
       rel: 'preload',
       include: 'initial',
