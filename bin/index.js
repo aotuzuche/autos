@@ -8,7 +8,6 @@ const version = require('../package').version
 const q = require('inquirer')
 const { init: initQ, create: createQ } = require('./lib/questions')
 const init = require('./Init')
-const backstage = require('./backstage')
 const compareVersion = require('./lib/compareVersion')
 const create = require('./Create')
 const update = require('./Update')
