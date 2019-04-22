@@ -80,12 +80,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     minimizer: [
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
-          safe: true,
-          // 以ios大于等于7安卓大于等于4.1开始兼容，优化压缩
-          autoprefixer: {
-            add: true,
-            browsers: ['iOS >= 7', 'Android >= 4.1']
-          }
+          safe: true
         }
       }),
       new UglifyJsPlugin({
