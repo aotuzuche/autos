@@ -257,7 +257,10 @@ const webpackConfig = {
     }
   },
   resolveLoader: {
-    modules: [resolveAutosPath('node_modules')]
+    modules: [
+      resolveAutosPath('node_modules'),
+      resolveProjectPath('node_modules')
+    ]
   }
 }
 
