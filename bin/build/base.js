@@ -154,10 +154,35 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: isSystem
-          ? [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
+          ? [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')()]
+              }
+            }
+          ]
           : [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')()]
+              }
+            },
             'px2rem-loader?remUnit=100'
           ]
       },
@@ -166,23 +191,33 @@ const webpackConfig = {
         use: isSystem
           ? [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2
+              }
+            },
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')]
+                plugins: [require('autoprefixer')()]
               }
             },
             'sass-loader'
           ]
           : [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 3
+              }
+            },
             'px2rem-loader?remUnit=100',
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')]
+                plugins: [require('autoprefixer')()]
               }
             },
             'sass-loader'
