@@ -1,3 +1,14 @@
+## [1.0.1](https://github.com/aotuzuche/autos/compare/v1.0.0...v1.0.1) (2019-04-22)
+
+
+### Bug Fixes
+
+* **base.js:** 修复 resolveLoader modules 路径报错 ([6033977](https://github.com/aotuzuche/autos/commit/6033977))
+* **base.js:** 修复样式解析应用错误 ([13d87b2](https://github.com/aotuzuche/autos/commit/13d87b2))
+* **build.js:** 去掉多余的 option ([56562d2](https://github.com/aotuzuche/autos/commit/56562d2))
+
+
+
 # [1.0.0](https://github.com/aotuzuche/autos/compare/v0.1.18...v1.0.0) (2019-04-19)
 
 
