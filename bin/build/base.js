@@ -127,7 +127,14 @@ const webpackConfig = {
           'thread-loader',
           'babel-loader'
         ],
-        include: [resolveProjectPath('src'), resolveProjectPath('appConfig.js')]
+        include: [
+          resolveProjectPath('src'),
+          resolveProjectPath('appConfig.js')
+        ].concat(
+          APP_CONFIG.includeFiles && Array.isArray(APP_CONFIG.includeFiles)
+            ? APP_CONFIG.includeFiles.map(file => resolveProjectPath(file))
+            : []
+        )
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
