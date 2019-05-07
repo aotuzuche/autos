@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/aotuzuche/autos/compare/v1.0.2...v1.0.3) (2019-05-07)
+
+
+### Bug Fixes
+
+* 🐛 base.js ([f371a07](https://github.com/aotuzuche/autos/commit/f371a07))
+
+
+
 ## [1.0.2](https://github.com/aotuzuche/autos/compare/v1.0.1...v1.0.2) (2019-05-07)
 
 
