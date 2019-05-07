@@ -1,4 +1,4 @@
-const path = require('path')
+const fs = require('fs')
 const config = require('./config')
 const APP_CONFIG = config.APP_CONFIG
 const isSystem = config.isSystem
@@ -7,13 +7,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const getCacheConfig = require('./lib/getCacheConfig')
 const webpack = require('webpack')
 const getEnvs = require('./lib/getEnvs')
+const {
+  resolveProjectPath,
+  resolveAutosPath,
+  formatter,
+  transformer
+} = require('../lib/utils')
 
-const { resolveProjectPath, resolveAutosPath } = require('../lib/utils')
+// 获取 eslint-loader 的缓存标识
 const { cacheIdentifier } = getCacheConfig(
   'eslint-loader',
   {
@@ -31,56 +38,15 @@ const { cacheIdentifier } = getCacheConfig(
   ]
 )
 
-function resolve(dir) {
-  return path.join(process.cwd(), dir)
-}
+// 获取 webpack 入口路径，支持 typescript
+function resolveEntry() {
+  const supportEntrySuffixs = ['js', 'jsx', 'ts', 'tsx']
 
-const chalk = require('chalk')
-
-const rules = [
-  {
-    type: 'cant-resolve-loader',
-    re: /Can't resolve '(.*loader)'/,
-    msg: (e, match) =>
-      `Failed to resolve loader: ${chalk.yellow(match[1])}\n` +
-      `You may need to install it.`
-  }
-]
-
-const envs = getEnvs()
-
-const transformer = error => {
-  if (error.webpackError) {
-    const message =
-      typeof error.webpackError === 'string'
-        ? error.webpackError
-        : error.webpackError.message || ''
-    for (const { re, msg, type } of rules) {
-      const match = message.match(re)
-      if (match) {
-        return Object.assign({}, error, {
-          // type is necessary to avoid being printed as defualt error
-          // by friendly-error-webpack-plugin
-          type,
-          shortMessage: msg(error, match)
-        })
-      }
+  for (const suffix of supportEntrySuffixs) {
+    const path = resolveProjectPath(`src/mian.${suffix}`)
+    if (fs.existsSync(path)) {
+      return path
     }
-    // no match, unknown webpack error without a message.
-    // friendly-error-webpack-plugin fails to handle this.
-    if (!error.message) {
-      return Object.assign({}, error, {
-        type: 'unknown-webpack-error',
-        shortMessage: message
-      })
-    }
-  }
-  return error
-}
-const formatter = errors => {
-  errors = errors.filter(e => e.shortMessage)
-  if (errors.length) {
-    return errors.map(e => e.shortMessage)
   }
 }
 
@@ -88,7 +54,7 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
 
   entry: {
-    app: resolve('src/main.js')
+    app: resolveEntry()
   },
 
   module: {
@@ -234,8 +200,10 @@ const webpackConfig = {
   },
 
   plugins: [
+    new CaseSensitivePathsPlugin(),
+
     // 设置环境变量
-    new webpack.DefinePlugin(envs),
+    new webpack.DefinePlugin(getEnvs()),
 
     // 提取html模板
     new HtmlWebpackPlugin({
@@ -300,8 +268,8 @@ const webpackConfig = {
   },
   resolveLoader: {
     modules: [
-      resolveAutosPath('node_modules'),
-      resolveProjectPath('node_modules')
+      resolveProjectPath('node_modules'),
+      resolveAutosPath('node_modules')
     ]
   }
 }
