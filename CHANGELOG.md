@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/aotuzuche/autos/compare/v1.0.3...v1.0.4) (2019-05-07)
+
+
+### Bug Fixes
+
+* 🐛 build.js ([832e655](https://github.com/aotuzuche/autos/commit/832e655))
+
+
+
 ## [1.0.3](https://github.com/aotuzuche/autos/compare/v1.0.2...v1.0.3) (2019-05-07)
 
 
