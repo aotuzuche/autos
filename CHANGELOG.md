@@ -1,3 +1,17 @@
+## [1.0.2](https://github.com/aotuzuche/autos/compare/v1.0.1...v1.0.2) (2019-05-07)
+
+
+### Bug Fixes
+
+* **base.js:** 增加 APP_CONFIG.includeFiles 逻辑 ([1f4c693](https://github.com/aotuzuche/autos/commit/1f4c693))
+
+
+### Features
+
+* 🎸 优化 base.js ([638797f](https://github.com/aotuzuche/autos/commit/638797f))
+
+
+
 ## [1.0.1](https://github.com/aotuzuche/autos/compare/v1.0.0...v1.0.1) (2019-04-22)
 
 
