@@ -53,9 +53,7 @@ function resolveEntry() {
 const webpackConfig = {
   mode: process.env.NODE_ENV,
 
-  entry: {
-    app: resolveEntry()
-  },
+  entry: [resolveEntry()],
 
   module: {
     rules: [

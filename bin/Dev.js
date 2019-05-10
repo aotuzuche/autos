@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = async () => {
   const WebpackDevServer = require('webpack-dev-server')
   const Webpack = require('webpack')
   // const { resolveProjectPath } = require('./lib/utils')
@@ -8,9 +8,12 @@ module.exports = () => {
   const { openBrowser } = require('./lib/openBrowser')
   const address = require('address')
   const chalk = require('chalk')
+  const portfinder = require('portfinder')
 
   const target = config.APP_CONFIG.target
-  const {
+  const host = '0.0.0.0'
+
+  let {
     port = 3000,
     proxy = {
       '/proxy/*': {
@@ -24,12 +27,24 @@ module.exports = () => {
     }
   } = config.APP_CONFIG
 
+  // dynamic get port
+  portfinder.basePort = port
+  port = await portfinder.getPortPromise()
+
+  // add hot update
+  webpackDevConfig.entry.unshift(require.resolve('webpack/hot/dev-server'))
+  webpackDevConfig.entry.unshift(
+    `${require.resolve(
+      'webpack-dev-server/client'
+    )}?http://${host}${port}/sockjs-node`
+  )
+
   const options = {
     // clientLogLevel: 'none',
     // contentBase: config[process.env.PACKAGE].assetsRoot,
     // watchContentBase: true,
     hot: true,
-    host: '0.0.0.0',
+    host: host,
     quiet: true,
     disableHostCheck: true,
     historyApiFallback: true,
@@ -43,7 +58,7 @@ module.exports = () => {
 
   let isFirstCompile = true
 
-  compiler.hooks.done.tap('autos server', stats => {
+  compiler.hooks.done.tap('autos dev', stats => {
     if (stats.hasErrors()) {
       return
     }
@@ -67,9 +82,9 @@ module.exports = () => {
     }
   })
 
-  server.listen(port, '0.0.0.0', err => {
+  server.listen(port, host, err => {
     if (err) {
-      console.loglog(err)
+      console.error(err)
     }
   })
 }
