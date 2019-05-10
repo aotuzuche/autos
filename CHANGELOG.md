@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/aotuzuche/autos/compare/v1.0.4...v1.0.5) (2019-05-10)
+
+
+### Bug Fixes
+
+* 🐛 autos dev ([c2c800f](https://github.com/aotuzuche/autos/commit/c2c800f))
+
+
+
 ## [1.0.4](https://github.com/aotuzuche/autos/compare/v1.0.3...v1.0.4) (2019-05-07)
 
 
