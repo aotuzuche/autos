@@ -12,6 +12,7 @@ const InlineScriptPlugin = require('./inline-script-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const getCacheConfig = require('./lib/getCacheConfig')
 const webpack = require('webpack')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const getEnvs = require('./lib/getEnvs')
 const {
   resolveProjectPath,
@@ -59,7 +60,7 @@ const webpackConfig = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.js[x]?$/,
+        test: /\.(j|t)s[x]?$/,
         include: [resolveProjectPath('src')],
         use: [
           {
@@ -90,6 +91,40 @@ const webpackConfig = {
           },
           'thread-loader',
           'babel-loader'
+        ],
+        include: [
+          resolveProjectPath('src'),
+          resolveProjectPath('appConfig.js')
+        ].concat(
+          APP_CONFIG.includeFiles && Array.isArray(APP_CONFIG.includeFiles)
+            ? APP_CONFIG.includeFiles.map(file => resolveProjectPath(file))
+            : []
+        )
+      },
+      {
+        test: /\.ts[x]?$/,
+        use: [
+          {
+            loader: 'cache-loader',
+            options: getCacheConfig(
+              'ts-loader',
+              {
+                typescript: require('typescript/package.json').version,
+                'ts-loader': require('ts-loader/package.json').version
+              },
+              'tsconfig.json'
+            )
+          },
+          'thread-loader',
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              happyPackMode: true,
+              configFile: resolveProjectPath('tsconfig.json')
+            }
+          }
         ],
         include: [
           resolveProjectPath('src'),
@@ -249,6 +284,12 @@ const webpackConfig = {
     new FriendlyErrorsWebpackPlugin({
       additionalTransformers: [transformer],
       additionalFormatters: [formatter]
+    }),
+
+    new ForkTsCheckerWebpackPlugin({
+      formatter: 'codeframe',
+      checkSyntacticErrors: true,
+      tsconfig: resolveProjectPath('tsconfig.json')
     })
   ],
   resolve: {
