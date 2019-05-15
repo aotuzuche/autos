@@ -1,3 +1,30 @@
+## [1.0.8](https://github.com/aotuzuche/autos/compare/v1.0.7...v1.0.8) (2019-05-15)
+
+
+### Bug Fixes
+
+* 🐛 base.js ([5b0a4f1](https://github.com/aotuzuche/autos/commit/5b0a4f1))
+
+
+
+## [1.0.7](https://github.com/aotuzuche/autos/compare/v1.0.6...v1.0.7) (2019-05-15)
+
+
+### Bug Fixes
+
+* 🐛 package.json ([b6e8f37](https://github.com/aotuzuche/autos/commit/b6e8f37))
+
+
+
+## [1.0.6](https://github.com/aotuzuche/autos/compare/v1.0.5...v1.0.6) (2019-05-15)
+
+
+### Features
+
+* 🎸 base.js ([b1ef41e](https://github.com/aotuzuche/autos/commit/b1ef41e))
+
+
+
 ## [1.0.5](https://github.com/aotuzuche/autos/compare/v1.0.4...v1.0.5) (2019-05-10)
 
 
