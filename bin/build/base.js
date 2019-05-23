@@ -96,11 +96,12 @@ let webpackConfig = {
         exclude: filepath => {
           if (
             APP_CONFIG.includeFiles &&
-            Array.isArray(APP_CONFIG.includeFiles)
-          ) {
-            return !APP_CONFIG.includeFiles.some(file =>
+            Array.isArray(APP_CONFIG.includeFiles) &&
+            APP_CONFIG.includeFiles.some(file =>
               new RegExp(file).test(filepath)
             )
+          ) {
+            return false
           }
           return /node_modules/.test(filepath)
         }
@@ -316,11 +317,12 @@ if (fs.existsSync(tsconfigPath)) {
           exclude: filepath => {
             if (
               APP_CONFIG.includeFiles &&
-              Array.isArray(APP_CONFIG.includeFiles)
-            ) {
-              return !APP_CONFIG.includeFiles.some(file =>
+              Array.isArray(APP_CONFIG.includeFiles) &&
+              APP_CONFIG.includeFiles.some(file =>
                 new RegExp(file).test(filepath)
               )
+            ) {
+              return false
             }
             return /node_modules/.test(filepath)
           }
