@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/aotuzuche/autos/compare/v1.0.8...v1.0.9) (2019-05-23)
+
+
+### Bug Fixes
+
+* 🐛 loader include 替换成 exclude,兼容性更好,增加 resolve.modules ([82a7ac1](https://github.com/aotuzuche/autos/commit/82a7ac1))
+
+
+
 ## [1.0.8](https://github.com/aotuzuche/autos/compare/v1.0.7...v1.0.8) (2019-05-15)
 
 
