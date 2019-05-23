@@ -93,14 +93,17 @@ let webpackConfig = {
           'thread-loader',
           'babel-loader'
         ],
-        include: [
-          resolveProjectPath('src'),
-          resolveProjectPath('appConfig.js')
-        ].concat(
-          APP_CONFIG.includeFiles && Array.isArray(APP_CONFIG.includeFiles)
-            ? APP_CONFIG.includeFiles.map(file => resolveProjectPath(file))
-            : []
-        )
+        exclude: filepath => {
+          if (
+            APP_CONFIG.includeFiles &&
+            Array.isArray(APP_CONFIG.includeFiles)
+          ) {
+            return !APP_CONFIG.includeFiles.some(file =>
+              new RegExp(file).test(filepath)
+            )
+          }
+          return /node_modules/.test(filepath)
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -264,12 +267,18 @@ let webpackConfig = {
       $redux: resolveProjectPath('src/redux'),
       $views: resolveProjectPath('src/views'),
       $utils: resolveProjectPath('src/utils')
-    }
+    },
+    modules: [
+      resolveAutosPath('node_modules'),
+      resolveProjectPath('node_modules'),
+      'node_modules'
+    ]
   },
   resolveLoader: {
     modules: [
+      resolveAutosPath('node_modules'),
       resolveProjectPath('node_modules'),
-      resolveAutosPath('node_modules')
+      'node_modules'
     ]
   }
 }
@@ -304,14 +313,17 @@ if (fs.existsSync(tsconfigPath)) {
               }
             }
           ],
-          include: [
-            resolveProjectPath('src'),
-            resolveProjectPath('appConfig.js')
-          ].concat(
-            APP_CONFIG.includeFiles && Array.isArray(APP_CONFIG.includeFiles)
-              ? APP_CONFIG.includeFiles.map(file => resolveProjectPath(file))
-              : []
-          )
+          exclude: filepath => {
+            if (
+              APP_CONFIG.includeFiles &&
+              Array.isArray(APP_CONFIG.includeFiles)
+            ) {
+              return !APP_CONFIG.includeFiles.some(file =>
+                new RegExp(file).test(filepath)
+              )
+            }
+            return /node_modules/.test(filepath)
+          }
         }
       ]
     },
