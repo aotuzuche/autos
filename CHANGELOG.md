@@ -1,3 +1,12 @@
+## [1.0.11](https://github.com/aotuzuche/autos/compare/v1.0.10...v1.0.11) (2019-06-06)
+
+
+### Bug Fixes
+
+* 🐛 修复 hmr 地址拼写错误 ([7694c6b](https://github.com/aotuzuche/autos/commit/7694c6b))
+
+
+
 ## [1.0.10](https://github.com/aotuzuche/autos/compare/v1.0.9...v1.0.10) (2019-05-23)
 
 
