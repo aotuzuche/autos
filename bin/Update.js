@@ -11,7 +11,7 @@ module.exports = async () => {
 
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo('shaodahong/atzuche-mobile-template', templateDir)
+  await DownloadGitRepo('aotuzuche/atzuche-mobile-template', templateDir)
 
   spinner.color = 'yellow'
   spinner.text = '合并 package.json'

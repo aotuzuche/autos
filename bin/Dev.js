@@ -36,7 +36,7 @@ module.exports = async () => {
   webpackDevConfig.entry.unshift(
     `${require.resolve(
       'webpack-dev-server/client'
-    )}?http://${host}${port}/sockjs-node`
+    )}?http://${host}:${port}/sockjs-node`
   )
 
   const options = {
