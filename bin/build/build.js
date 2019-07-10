@@ -3,7 +3,7 @@ const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const baseWebpackConfig = require('./base')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
 
@@ -58,7 +58,8 @@ const webpackConfig = merge(baseWebpackConfig, {
           chunks: 'all',
           test: function(module, count) {
             return (
-              module.resource && /(\/|\@|\\)auto-ui(\/|\\)/.test(module.resource)
+              module.resource &&
+              /(\/|\@|\\)auto-ui(\/|\\)/.test(module.resource)
             )
           },
           enforce: true
@@ -87,10 +88,46 @@ const webpackConfig = merge(baseWebpackConfig, {
           }
         }
       }),
-      new UglifyJsPlugin({
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            // turn off flags with small gains to speed up minification
+            arrows: false,
+            collapse_vars: false, // 0.3kb
+            comparisons: false,
+            computed_props: false,
+            hoist_funs: false,
+            hoist_props: false,
+            hoist_vars: false,
+            inline: false,
+            loops: false,
+            negate_iife: false,
+            properties: false,
+            reduce_funcs: false,
+            reduce_vars: false,
+            switches: false,
+            toplevel: false,
+            typeofs: false,
+
+            // a few flags with noticable gains/speed ratio
+            // numbers based on out of the box vendor bundle
+            booleans: true, // 0.7kb
+            if_return: true, // 0.4kb
+            sequences: true, // 0.7kb
+            unused: true, // 2.3kb
+
+            // required features to drop conditional branches
+            conditionals: true,
+            dead_code: true,
+            evaluate: true
+          },
+          mangle: {
+            safari10: true
+          }
+        },
+        sourceMap: true,
         cache: true,
-        parallel: true, // 多线程构建提升速度
-        sourceMap: true // set to true if you want JS source maps
+        parallel: true
       })
     ]
   },
