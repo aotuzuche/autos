@@ -164,6 +164,43 @@ let webpackConfig = {
           ]
       },
       {
+        test: /\.mcss$/,
+        use: isSystem
+          ? [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader?importLoader=1&modules&localIdentName=[local]_[hash:base64:6]',
+              options: {
+                importLoaders: 2
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')()]
+              }
+            },
+            'sass-loader'
+          ]
+          : [
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader?importLoader=1&modules&localIdentName=[local]_[hash:base64:6]',
+              options: {
+                importLoaders: 3
+              }
+            },
+            'px2rem-loader?remUnit=100',
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: [require('autoprefixer')()]
+              }
+            },
+            'sass-loader'
+          ]
+      },
+      {
         test: /\.scss$/,
         use: isSystem
           ? [
