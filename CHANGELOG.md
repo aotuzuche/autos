@@ -1,3 +1,12 @@
+## [1.0.13](https://github.com/aotuzuche/autos/compare/v1.0.12...v1.0.13) (2019-07-15)
+
+
+### Bug Fixes
+
+* 🐛 修复 .mscc 解析不生效 ([926ff6c](https://github.com/aotuzuche/autos/commit/926ff6c))
+
+
+
 ## [1.0.12](https://github.com/aotuzuche/autos/compare/v1.0.11...v1.0.12) (2019-07-15)
 
 
