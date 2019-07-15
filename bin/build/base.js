@@ -169,9 +169,11 @@ let webpackConfig = {
           ? [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader?importLoader=1&modules&localIdentName=[local]_[hash:base64:6]',
+              loader: 'css-loader',
               options: {
-                importLoaders: 2
+                importLoaders: 2,
+                modules: true,
+                localIdentName: '[local]_[hash:base64:6]'
               }
             },
             {
@@ -185,9 +187,11 @@ let webpackConfig = {
           : [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader?importLoader=1&modules&localIdentName=[local]_[hash:base64:6]',
+              loader: 'css-loader',
               options: {
-                importLoaders: 3
+                importLoaders: 3,
+                modules: true,
+                localIdentName: '[local]_[hash:base64:6]'
               }
             },
             'px2rem-loader?remUnit=100',
