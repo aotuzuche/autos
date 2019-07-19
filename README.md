@@ -7,8 +7,43 @@
 - [ ] 优化创建模板的效率
 - [x] 单独升级 webpack 打包目录
 - [x] 简化配置，所有的可配置项暴露到`appConfig.js`
-- [ ] 支持自定义配置
+- [x] 支持自定义配置
 - [x] 支持 eslint 测试
+
+```js
+// appConfig.js
+
+module.exports = {
+  basename: `/${this.prodPathPrefix}/${this.prodPath}`,
+
+  // 打包出口目录的前缀，注意：不需要以/开头
+  prodPathPrefix: 'system',
+
+  // 打包的出口目录(默认dist目录)
+  prodPath: 'financialManagement',
+
+  // 管理后台系统码
+  syscode: 'financialManagement',
+
+  // 本地测试端口，默认 3000
+  port: 3000,
+
+  // 本地代理环境地址
+  target: 'http://github.com/',
+
+  // html 文档的标题
+  title: 'Autos',
+
+  // 自定义 webpack 配置
+  modify: webpackConfig => webpackConfig,
+
+  // 自定义 tsconConfig 路径，默认 tsconfig.json
+  tsConfigPath: 'tsconfig.json',
+
+  // 增加转译路径，因为默认不包含 nodu_modules
+  includeFiles: ['nodu_modules/some_module'],
+};
+```
 
 ## 快速开始
 
@@ -98,12 +133,4 @@ $ autos update
 
 ```bash
 $ autos build -t --analyzer
-```
-
-## eslint 测试
-
-执行 eslint 检查项目
-
-```bash
-$ autos lint
 ```

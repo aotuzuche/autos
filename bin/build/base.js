@@ -325,7 +325,12 @@ let webpackConfig = {
   }
 }
 
-const tsconfigPath = resolveProjectPath('tsconfig.json')
+/**
+ * 如果项目配置文件有配置 tsConfigPath 或者根目录有 tsconfig.json 文件，那么说明是 ts 项目，启用 ts-loader
+ */
+const tsconfigPath = resolveProjectPath(
+  APP_CONFIG.tsConfigPath || 'tsconfig.json'
+)
 if (fs.existsSync(tsconfigPath)) {
   webpackConfig = merge(webpackConfig, {
     module: {
@@ -378,6 +383,14 @@ if (fs.existsSync(tsconfigPath)) {
       })
     ]
   })
+}
+
+/**
+ * 增加自定义配置功能
+ */
+
+if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
+  webpackConfig = APP_CONFIG.modify(webpackConfig)
 }
 
 module.exports = webpackConfig
