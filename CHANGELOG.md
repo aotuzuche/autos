@@ -1,3 +1,13 @@
+## [1.0.14](https://github.com/aotuzuche/autos/compare/v1.0.13...v1.0.14) (2019-07-24)
+
+
+### Features
+
+* **base.js:** 支持项目配置 tsConfigPath 和 modify 来扩展项目 ([c53b3d1](https://github.com/aotuzuche/autos/commit/c53b3d1))
+* **config.js:** 添加 isSystem 识别管理后台项目 ([62a1030](https://github.com/aotuzuche/autos/commit/62a1030))
+
+
+
 ## [1.0.13](https://github.com/aotuzuche/autos/compare/v1.0.12...v1.0.13) (2019-07-15)
 
 
