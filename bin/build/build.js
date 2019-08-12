@@ -6,9 +6,10 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const baseWebpackConfig = require('./base')
 const PreloadWebpackPlugin = require('preload-webpack-plugin')
+const APP_CONFIG = config.APP_CONFIG
 
 // 针对发布环境修改配置
-const webpackConfig = merge(baseWebpackConfig, {
+let webpackConfig = merge(baseWebpackConfig, {
   devtool: config[process.env.PACKAGE].productionSourceMap
     ? '#source-map'
     : false,
@@ -153,5 +154,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     publicPath: config[process.env.PACKAGE].assetsPublicPath
   }
 })
+
+/**
+ * 增加自定义配置功能
+ */
+
+if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
+  webpackConfig = APP_CONFIG.modify(webpackConfig, {
+    package: process.env.PACKAGE
+  })
+}
 
 module.exports = webpackConfig

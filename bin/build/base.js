@@ -385,12 +385,4 @@ if (fs.existsSync(tsconfigPath)) {
   })
 }
 
-/**
- * 增加自定义配置功能
- */
-
-if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
-  webpackConfig = APP_CONFIG.modify(webpackConfig)
-}
-
 module.exports = webpackConfig

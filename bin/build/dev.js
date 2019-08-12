@@ -2,10 +2,11 @@ const config = require('./config')
 const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const APP_CONFIG = config.APP_CONFIG
 
 const baseWebpackConfig = require('./base')
 // 针对生产环境修改配置
-const webpackConfig = merge(baseWebpackConfig, {
+let webpackConfig = merge(baseWebpackConfig, {
   devtool: '#cheap-module-eval-source-map',
 
   output: {
@@ -23,5 +24,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.ProgressPlugin()
   ]
 })
+
+/**
+ * 增加自定义配置功能
+ */
+
+if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
+  webpackConfig = APP_CONFIG.modify(webpackConfig, {
+    package: process.env.PACKAGE
+  })
+}
 
 module.exports = webpackConfig
