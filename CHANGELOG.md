@@ -1,3 +1,12 @@
+## [1.0.16](https://github.com/aotuzuche/autos/compare/v1.0.15...v1.0.16) (2019-08-12)
+
+
+### Bug Fixes
+
+* 修改 appConfig modify 参数 package => packageEnv ([5a0dbb9](https://github.com/aotuzuche/autos/commit/5a0dbb9))
+
+
+
 ## [1.0.15](https://github.com/aotuzuche/autos/compare/v1.0.14...v1.0.15) (2019-08-12)
 
 
