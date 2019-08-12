@@ -35,7 +35,7 @@ module.exports = {
   title: 'Autos',
 
   // 自定义 webpack 配置
-  modify: (webpackConfig, { package }) => webpackConfig,
+  modify: (webpackConfig, { packageEnv }) => webpackConfig,
 
   // 自定义 tsconConfig 路径，默认 tsconfig.json
   tsConfigPath: 'tsconfig.json',

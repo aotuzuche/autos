@@ -31,7 +31,7 @@ let webpackConfig = merge(baseWebpackConfig, {
 
 if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
   webpackConfig = APP_CONFIG.modify(webpackConfig, {
-    package: process.env.PACKAGE
+    packageEnv: process.env.PACKAGE
   })
 }
 
