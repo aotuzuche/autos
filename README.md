@@ -31,6 +31,18 @@ module.exports = {
   // 本地代理环境地址
   target: 'http://github.com/',
 
+  // 本地代理配置默认值，支持重写
+  proxy: {
+    '/proxy/*': {
+      target: this.target,
+      pathRewrite: {
+        '^/proxy/': '/'
+      },
+      changeOrigin: true,
+      secure: false
+    }
+  },
+
   // html 文档的标题
   title: 'Autos',
 
