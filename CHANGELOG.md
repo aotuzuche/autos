@@ -1,3 +1,12 @@
+## [1.0.15](https://github.com/aotuzuche/autos/compare/v1.0.14...v1.0.15) (2019-08-12)
+
+
+### Features
+
+* appConfig modify 增加第二个参数, 传入 package 变量 ([53b07df](https://github.com/aotuzuche/autos/commit/53b07df))
+
+
+
 ## [1.0.14](https://github.com/aotuzuche/autos/compare/v1.0.13...v1.0.14) (2019-07-24)
 
 
