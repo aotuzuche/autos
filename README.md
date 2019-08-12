@@ -35,13 +35,13 @@ module.exports = {
   title: 'Autos',
 
   // 自定义 webpack 配置
-  modify: webpackConfig => webpackConfig,
+  modify: (webpackConfig, { package }) => webpackConfig,
 
   // 自定义 tsconConfig 路径，默认 tsconfig.json
   tsConfigPath: 'tsconfig.json',
 
   // 增加转译路径，因为默认不包含 nodu_modules
-  includeFiles: ['nodu_modules/some_module'],
+  includeFiles: ['nodu_modules/some_module']
 };
 ```
 
