@@ -46,11 +46,7 @@ module.exports = async (params = {}) => {
   console.log(`🌈  ${chalk.white('yarn install')}`)
   console.log('')
 
-  if (!inCurrentDir) {
-    execa(`cd ${targetDir}`)
-  }
-
-  await installDeps()
+  await installDeps(targetDir)
 
   if (inCurrentDir) {
     console.log('')

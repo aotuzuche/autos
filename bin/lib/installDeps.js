@@ -1,13 +1,12 @@
 const execa = require('execa')
 const readline = require('readline')
 const chalk = require('chalk')
-const { resolveProjectPath } = require('./utils')
 
-module.exports = () => {
+module.exports = targetDir => {
   return new Promise((resolve, reject) => {
     const child = execa('yarn', [], {
-      cwd: resolveProjectPath(),
-      stdio: ['inherit', 'inherit', 'pipe']
+      cwd: targetDir,
+      stdio: ['inherit', 'inherit', 'pipe'],
     })
 
     child.stderr.on('data', buf => {
@@ -40,7 +39,7 @@ module.exports = () => {
       const bar = ` ${curr}/${total}`
       const availableSpace = Math.max(
         0,
-        process.stderr.columns - bar.length - 3
+        process.stderr.columns - bar.length - 3,
       )
       const width = Math.min(total, availableSpace)
       const completeLength = Math.round(width * ratio)
