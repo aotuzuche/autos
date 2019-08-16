@@ -1,14 +1,13 @@
 module.exports = async (options = {}) => {
   const { resolveProjectPath } = require('./lib/utils')
-  const { CLIEngine } =
-    require(resolveProjectPath('node_modules/eslint')) || require('eslint')
+  const { CLIEngine } = require(resolveProjectPath('node_modules/eslint'))
 
   const cwd = resolveProjectPath()
 
   const engine = new CLIEngine({
     ...options,
     cwd,
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   })
 
   const formatter = engine.getFormatter('codeframe')

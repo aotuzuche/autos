@@ -36,11 +36,11 @@ module.exports = {
     '/proxy/*': {
       target: this.target,
       pathRewrite: {
-        '^/proxy/': '/'
+        '^/proxy/': '/',
       },
       changeOrigin: true,
-      secure: false
-    }
+      secure: false,
+    },
   },
 
   // html 文档的标题
@@ -53,8 +53,8 @@ module.exports = {
   tsConfigPath: 'tsconfig.json',
 
   // 增加转译路径，因为默认不包含 nodu_modules
-  includeFiles: ['nodu_modules/some_module']
-};
+  includeFiles: ['nodu_modules/some_module'],
+}
 ```
 
 ## 快速开始

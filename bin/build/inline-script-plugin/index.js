@@ -7,64 +7,52 @@ class InlineScriptPlugin {
 
   apply(compiler) {
     const id = 'InlineScriptPlugin'
-    const name = this.name
+    const { name } = this
+
+    function getAssetName(chunks, chunkName) {
+      return (chunks.filter(chunk => chunk.name === chunkName)[0] || { files: [] }).files[0]
+    }
+
+    function inlineWhenMatched(compilation, scripts, manifestAssetName) {
+      return scripts.filter(script => {
+        const isManifestScript =
+          script.tagName === 'script' &&
+          script.attributes.src &&
+          script.attributes.src.indexOf(manifestAssetName) >= 0
+
+        if (isManifestScript) {
+          return false
+        }
+
+        return script
+      })
+    }
 
     compiler.hooks.emit.tap(id, compilation => {
-      delete compilation.assets[this.getAssetName(compilation.chunks, name)]
+      delete compilation.assets[getAssetName(compilation.chunks, name)]
     })
 
     compiler.hooks.compilation.tap(id, compilation => {
-      compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync(
-        id,
-        (data, cb) => {
-          const manifestAssetName = this.getAssetName(compilation.chunks, name)
+      compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync(id, (data, cb) => {
+        const manifestAssetName = getAssetName(compilation.chunks, name)
 
-          if (manifestAssetName) {
-            ['head', 'body'].forEach(section => {
-              data[section] = this.inlineWhenMatched(
-                compilation,
-                data[section],
-                manifestAssetName
-              )
-            })
+        if (manifestAssetName) {
+          // eslint-disable-next-line no-extra-semi
+          ;['head', 'body'].forEach(section => {
+            data[section] = inlineWhenMatched(compilation, data[section], manifestAssetName)
+          })
 
-            data['head'].push({
-              tagName: 'script',
-              closeTag: true,
-              attributes: {
-                type: 'text/javascript'
-              },
-              innerHTML: sourceMappingURL.removeFrom(
-                compilation.assets[manifestAssetName].source()
-              )
-            })
-          }
-          cb(null, data)
+          data.head.push({
+            tagName: 'script',
+            closeTag: true,
+            attributes: {
+              type: 'text/javascript',
+            },
+            innerHTML: sourceMappingURL.removeFrom(compilation.assets[manifestAssetName].source()),
+          })
         }
-      )
-    })
-  }
-
-  getAssetName(chunks, chunkName) {
-    return (
-      chunks.filter(function(chunk) {
-        return chunk.name === chunkName
-      })[0] || { files: [] }
-    ).files[0]
-  }
-
-  inlineWhenMatched(compilation, scripts, manifestAssetName) {
-    return scripts.filter(function(script) {
-      const isManifestScript =
-        script.tagName === 'script' &&
-        script.attributes.src &&
-        script.attributes.src.indexOf(manifestAssetName) >= 0
-
-      if (isManifestScript) {
-        return false
-      }
-
-      return script
+        cb(null, data)
+      })
     })
   }
 }

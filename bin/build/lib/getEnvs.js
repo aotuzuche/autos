@@ -8,8 +8,8 @@ module.exports = () => {
       },
       {
         NODE_ENV: process.env.NODE_ENV || 'development',
-        PACKAGE: process.env.PACKAGE || 'development'
-      }
+        PACKAGE: process.env.PACKAGE || 'development',
+      },
     )
   // Stringify all values so we can feed into Webpack DefinePlugin
   const stringified = Object.keys(raw).reduce((env, key) => {

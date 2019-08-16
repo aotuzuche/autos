@@ -1,6 +1,6 @@
 const fs = require('fs-extra')
-const DownloadGitRepo = require('./lib/downloadGitRepo')
 const ora = require('ora')
+const DownloadGitRepo = require('./lib/downloadGitRepo')
 const deepMerge = require('./lib/deepMerge')
 const { resolveAutosPath, resolveProjectPath } = require('./lib/utils')
 
@@ -29,7 +29,7 @@ module.exports = async () => {
   const newJson = deepMerge(oldPackageJson, newPackageJson)
 
   fs.outputJson(resolveProjectPath('package.json'), newJson, {
-    spaces: 2
+    spaces: 2,
   })
 
   spinner.succeed('升级完成')

@@ -14,7 +14,7 @@ module.exports = (oldData, newData) => {
   function combineMerge(target, source, options) {
     const destination = target.slice()
 
-    source.forEach(function(e, i) {
+    source.forEach((e, i) => {
       if (typeof destination[i] === 'undefined') {
         const cloneRequested = options.clone !== false
         const shouldClone = cloneRequested && options.isMergeableObject(e)
@@ -29,6 +29,6 @@ module.exports = (oldData, newData) => {
   }
 
   return merge(oldData, newData, {
-    arrayMerge: combineMerge
+    arrayMerge: combineMerge,
   })
 }

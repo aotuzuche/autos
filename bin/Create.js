@@ -3,11 +3,7 @@ const fs = require('fs-extra')
 const ejs = require('ejs')
 const q = require('inquirer')
 const DownloadGitRepo = require('./lib/downloadGitRepo')
-const {
-  capitalize,
-  resolveProjectPath,
-  resolveAutosPath
-} = require('./lib/utils')
+const { capitalize, resolveProjectPath, resolveAutosPath } = require('./lib/utils')
 
 module.exports = async options => {
   const { createName, createClass } = options
@@ -24,7 +20,7 @@ module.exports = async options => {
       type: 'confirm',
       name: 'isContinue',
       default: false,
-      message: '目录已存在是否继续?'
+      message: '目录已存在是否继续?',
     })
 
     if (!answer) {
@@ -32,9 +28,7 @@ module.exports = async options => {
     }
   }
 
-  const metalsmith = Metalsmith(
-    resolveAutosPath(`lib/create/template/${createClass}`)
-  )
+  const metalsmith = Metalsmith(resolveAutosPath(`lib/create/template/${createClass}`))
   return new Promise((resolve, reject) => {
     // 首字母大写
     options.createName = capitalize(options.createName)
@@ -42,7 +36,7 @@ module.exports = async options => {
       .metadata({
         destDirName: '/',
         inPlace: targetDir,
-        noEscape: true
+        noEscape: true,
       })
       .clean(false)
       .source('.')
@@ -54,7 +48,7 @@ module.exports = async options => {
         })
         done()
       })
-      .build((err, files) => {
+      .build(err => {
         if (err) return reject(`\n Template build Error: ${err}`)
         resolve()
       })

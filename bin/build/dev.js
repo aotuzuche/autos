@@ -1,8 +1,9 @@
-const config = require('./config')
-const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const APP_CONFIG = config.APP_CONFIG
+const config = require('./config')
+const utils = require('./utils')
+
+const { APP_CONFIG } = config
 
 const baseWebpackConfig = require('./base')
 // 针对生产环境修改配置
@@ -13,7 +14,7 @@ let webpackConfig = merge(baseWebpackConfig, {
     path: config[process.env.PACKAGE].assetsRoot,
     filename: utils.assetsPath('js/[name].js'),
     chunkFilename: utils.assetsPath('js/[name].js'),
-    publicPath: config[process.env.PACKAGE].assetsPublicPath
+    publicPath: config[process.env.PACKAGE].assetsPublicPath,
   },
 
   plugins: [
@@ -21,8 +22,8 @@ let webpackConfig = merge(baseWebpackConfig, {
     // 热更新
     new webpack.HotModuleReplacementPlugin(),
 
-    new webpack.ProgressPlugin()
-  ]
+    new webpack.ProgressPlugin(),
+  ],
 })
 
 /**
@@ -31,7 +32,7 @@ let webpackConfig = merge(baseWebpackConfig, {
 
 if (APP_CONFIG.modify && typeof APP_CONFIG.modify === 'function') {
   webpackConfig = APP_CONFIG.modify(webpackConfig, {
-    packageEnv: process.env.PACKAGE
+    packageEnv: process.env.PACKAGE,
   })
 }
 

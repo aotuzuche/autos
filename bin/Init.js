@@ -1,7 +1,6 @@
 const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
-const execa = require('execa')
 const ora = require('ora')
 
 const { resolveProjectPath } = require('./lib/utils')
@@ -21,14 +20,15 @@ module.exports = async (params = {}) => {
         choices: [
           { name: '覆盖', value: 'overwrite' },
           { name: '合并', value: 'merge' },
-          { name: '取消', value: false }
-        ]
-      }
+          { name: '取消', value: false },
+        ],
+      },
     ])
 
     if (!result) {
       return
-    } else if (result === 'overwrite') {
+    }
+    if (result === 'overwrite') {
       console.log(`\n正在删除 ${chalk.red(targetDir)}...\n`)
       await fs.remove(targetDir)
     }
@@ -55,11 +55,7 @@ module.exports = async (params = {}) => {
   } else {
     console.log('')
     console.log('🍺  快速开始 🍺')
-    console.log(
-      `${chalk.green('$')} ${chalk.yellow('cd')} ${chalk.yellow(
-        params.dir
-      )}`
-    )
+    console.log(`${chalk.green('$')} ${chalk.yellow('cd')} ${chalk.yellow(params.dir)}`)
     console.log(`${chalk.green('$')} ${chalk.yellow('yarn dev')}`)
   }
 }

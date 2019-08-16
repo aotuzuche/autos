@@ -4,8 +4,8 @@ const chalk = require('chalk')
 const program = require('commander')
 const fs = require('fs-extra')
 const path = require('path')
-const version = require('../package').version
 const q = require('inquirer')
+const { version } = require('../package')
 const { init: initQ, create: createQ } = require('./lib/questions')
 const init = require('./Init')
 const compareVersion = require('./lib/compareVersion')
@@ -16,22 +16,23 @@ const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
 const major = semver[0]
 
+const Dev = require('./Dev')
+const Lint = require('./Lint')
+const Build = require('./Build')
+
 // 判断 node 版本
 if (major < 8) {
   console.error(
     chalk.red(
-      '你的 node 版本 ' +
-        currentNodeVersion +
-        '.\n' +
-        '该脚手架需要 node 8 以上版本，请更新你的 node 版本'
-    )
+      `你的 node 版本 ${currentNodeVersion}.\n该脚手架需要 node 8 以上版本，请更新你的 node 版本`,
+    ),
   )
   process.exit(1)
 }
 
 // 基本说明
 program
-  .version(version, '-v, --version')
+  .version(version, '-v, --version', '脚手架版本')
   .description(chalk.green('凹凸脚手架'))
   .usage('<command> [options]')
 
@@ -40,7 +41,7 @@ program
   .command('init')
   .alias('i')
   .description('初始化项目')
-  .action(async (dir, otherDirs) => {
+  .action(async () => {
     try {
       await compareVersion()
       const result = await q.prompt(initQ)
@@ -56,12 +57,10 @@ program
   .command('create')
   .alias('c')
   .description('创建组件或页面')
-  .action(async (dir, otherDirs) => {
+  .action(async () => {
     try {
       await compareVersion()
-      const isExist = await fs.pathExists(
-        path.join(process.cwd(), 'appConfig.js')
-      )
+      const isExist = await fs.pathExists(path.join(process.cwd(), 'appConfig.js'))
       if (!isExist) {
         console.log('')
         console.log('  请在项目根目录下执行')
@@ -71,7 +70,7 @@ program
       q.prompt(createQ).then(answer => {
         const options = {
           createName: 'demo',
-          createClass: 'component'
+          createClass: 'component',
         }
         Object.assign(options, answer)
         create(options)
@@ -85,14 +84,14 @@ program
 program
   .command('update')
   .description('升级脚手架')
-  .action(async (dir, otherDirs) => {
+  .action(async () => {
     try {
       const { result } = await q.prompt([
         {
           type: 'confirm',
           name: 'result',
-          message: '是否确定升级?'
-        }
+          message: '是否确定升级?',
+        },
       ])
       if (result) {
         await update()
@@ -106,11 +105,12 @@ program
 program
   .command('dev')
   .description('本地开发项目')
-  .action(async (dir, otherDirs) => {
+  .action(async () => {
     try {
       process.env.NODE_ENV = 'development'
       process.env.PACKAGE = 'development'
-      require('./Dev')()
+
+      Dev()
     } catch (error) {
       console.log('autos:dev--error', error)
     }
@@ -132,8 +132,8 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    require('./Build')({
-      analyzer
+    Build({
+      analyzer,
     })
   })
 
@@ -145,9 +145,8 @@ program
   .action(async options => {
     try {
       const { fix } = options
-      const lint = require('./Lint')
-      await lint({
-        fix: Boolean(fix)
+      await Lint({
+        fix: Boolean(fix),
       })
     } catch (error) {
       console.log('autos:lint--error', error)
@@ -166,10 +165,12 @@ program.on('--help', () => {
   console.log('')
 })
 
+program.helpOption('-h --help', '脚手架帮助')
+
 // 处理未知命令
 program.arguments('<command>').action(cmd => {
   program.outputHelp()
-  console.log(`  ` + chalk.red(`未知命令 ${chalk.yellow(cmd)}`))
+  console.log(`  ${chalk.red(`未知命令 ${chalk.yellow(cmd)}`)}`)
   console.log()
 })
 

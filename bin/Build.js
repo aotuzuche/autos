@@ -7,19 +7,18 @@ module.exports = options => {
   const rm = require('rimraf')
   const path = require('path')
   const merge = require('webpack-merge')
-  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-    .BundleAnalyzerPlugin
+  const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
   const formatStats = require('./lib/formatStats')
 
-  const APP_CONFIG = config.APP_CONFIG
+  const { APP_CONFIG } = config
 
   const setting = {
     test: '测试环境',
-    production: '生产环境'
+    production: '生产环境',
   }
   if (options.analyzer) {
     webpackConfig = merge(webpackConfig, {
-      plugins: [new BundleAnalyzerPlugin()]
+      plugins: [new BundleAnalyzerPlugin()],
     })
   }
 
@@ -42,14 +41,12 @@ module.exports = options => {
       }
 
       if (stats.hasErrors()) {
-        return console.log(`构建出现错误`)
+        return console.log('构建出现错误')
       }
 
       console.log()
       console.log(formatStats(stats, APP_CONFIG.prodPath))
-      console.log(
-        `  构建完成, 可以去构建目录 ${chalk.cyan(APP_CONFIG.prodPath)} 查看`
-      )
+      console.log(`  构建完成, 可以去构建目录 ${chalk.cyan(APP_CONFIG.prodPath)} 查看`)
     })
   })
 }

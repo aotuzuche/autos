@@ -1,21 +1,16 @@
 const Metalsmith = require('metalsmith')
 const path = require('path')
 const fs = require('fs-extra')
-const DownloadGitRepo = require('./downloadGitRepo')
 const ejs = require('ejs')
+const DownloadGitRepo = require('./downloadGitRepo')
 
 module.exports = async (params, targetDir) => {
-  const templateDir = path.join(
-    __dirname,
-    `../../lib/${params.mobile ? 'mobile' : 'backstage'}`
-  )
+  const templateDir = path.join(__dirname, `../../lib/${params.mobile ? 'mobile' : 'backstage'}`)
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
   await DownloadGitRepo(
-    params.mobile
-      ? 'aotuzuche/atzuche-mobile-template'
-      : 'aotuzuche/atzuche-backstage-template',
-    templateDir
+    params.mobile ? 'aotuzuche/atzuche-mobile-template' : 'aotuzuche/atzuche-backstage-template',
+    templateDir,
   )
 
   const metalsmith = Metalsmith(templateDir)
@@ -24,12 +19,12 @@ module.exports = async (params, targetDir) => {
       .metadata({
         destDirName: '/',
         inPlace: targetDir,
-        noEscape: true
+        noEscape: true,
       })
       .clean(false)
       .source('.')
       .destination(targetDir)
-      .use((files, metalsmith, done) => {
+      .use((files, ms, done) => {
         Object.keys(files).forEach(fileName => {
           if (/yarn\.lock$/.test(fileName)) {
             delete files[fileName]
@@ -45,7 +40,7 @@ module.exports = async (params, targetDir) => {
         })
         done()
       })
-      .build((err, files) => {
+      .build(err => {
         if (err) return reject(`\n Template build Error: ${err}`)
         resolve()
       })

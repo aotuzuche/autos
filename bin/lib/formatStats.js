@@ -1,14 +1,16 @@
+const fs = require('fs')
+const path = require('path')
+const zlib = require('zlib')
+const chalk = require('chalk')
+const ui = require('cliui')({ width: 80 })
+
 // https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli-service/lib/commands/build/formatStats.js
-module.exports = function formatStats(stats, dir, api) {
-  const fs = require('fs')
-  const path = require('path')
-  const zlib = require('zlib')
-  const chalk = require('chalk')
-  const ui = require('cliui')({ width: 80 })
+
+module.exports = function formatStats(stats, dir) {
   const json = stats.toJson({
     hash: false,
     modules: false,
-    chunks: false
+    chunks: false,
   })
 
   let assets = json.assets
@@ -36,7 +38,7 @@ module.exports = function formatStats(stats, dir, api) {
     })
 
   function formatSize(size) {
-    return (size / 1024).toFixed(2) + ' kb'
+    return `${(size / 1024).toFixed(2)} kb`
   }
 
   function getGzippedSize(asset) {
@@ -50,24 +52,18 @@ module.exports = function formatStats(stats, dir, api) {
   }
 
   ui.div(
-    makeRow(
-      chalk.cyan.bold(`File`),
-      chalk.cyan.bold(`Size`),
-      chalk.cyan.bold(`Gzipped`)
-    ) +
-      `\n\n` +
+    `${makeRow(chalk.cyan.bold('File'), chalk.cyan.bold('Size'), chalk.cyan.bold('Gzipped'))
+    }\n\n${
       assets
-        .map(asset =>
-          makeRow(
-            /js$/.test(asset.name)
-              ? chalk.green(path.join(dir, asset.name))
-              : chalk.blue(path.join(dir, asset.name)),
-            formatSize(asset.size),
-            getGzippedSize(asset)
-          )
-        )
-        .join(`\n`)
+        .map(asset => makeRow(
+          /js$/.test(asset.name)
+            ? chalk.green(path.join(dir, asset.name))
+            : chalk.blue(path.join(dir, asset.name)),
+          formatSize(asset.size),
+          getGzippedSize(asset),
+        ))
+        .join('\n')}`,
   )
 
-  return `${ui.toString()}\n\n  ${chalk.gray(`图片以及其他类型的资源不显示`)}\n`
+  return `${ui.toString()}\n\n  ${chalk.gray('图片以及其他类型的资源不显示')}\n`
 }

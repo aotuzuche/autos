@@ -1,3 +1,1 @@
-exports.getCacheIdentifier = () => {
-
-}
+exports.getCacheIdentifier = () => {}

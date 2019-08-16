@@ -10,21 +10,22 @@ module.exports = async () => {
   const chalk = require('chalk')
   const portfinder = require('portfinder')
 
-  const target = config.APP_CONFIG.target
+  const { target } = config.APP_CONFIG
   const host = '0.0.0.0'
 
   let {
     port = 3000,
+    // eslint-disable-next-line prefer-const
     proxy = {
       '/proxy/*': {
-        target: target,
+        target,
         pathRewrite: {
-          '^/proxy/': '/'
+          '^/proxy/': '/',
         },
         changeOrigin: true,
-        secure: false
-      }
-    }
+        secure: false,
+      },
+    },
   } = config.APP_CONFIG
 
   // dynamic get port
@@ -34,9 +35,7 @@ module.exports = async () => {
   // add hot update
   webpackDevConfig.entry.unshift(require.resolve('webpack/hot/dev-server'))
   webpackDevConfig.entry.unshift(
-    `${require.resolve(
-      'webpack-dev-server/client'
-    )}?http://${host}:${port}/sockjs-node`
+    `${require.resolve('webpack-dev-server/client')}?http://${host}:${port}/sockjs-node`,
   )
 
   const options = {
@@ -44,13 +43,13 @@ module.exports = async () => {
     // contentBase: config[process.env.PACKAGE].assetsRoot,
     // watchContentBase: true,
     hot: true,
-    host: host,
+    host,
     quiet: true,
     disableHostCheck: true,
     historyApiFallback: true,
-    port: port,
+    port,
     overlay: { warnings: false, errors: true },
-    proxy: proxy
+    proxy,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackDevConfig)
@@ -64,17 +63,11 @@ module.exports = async () => {
     }
 
     console.log()
-    console.log(`  App 运行:`)
-    console.log(
-      `  - 本地: ${chalk.magenta(`http://localhost:${chalk.cyan(port)}/`)}`
-    )
-    console.log(
-      `  - 局域网: ${chalk.magenta(
-        `http://${address.ip()}:${chalk.cyan(port)}/`
-      )}`
-    )
+    console.log('  App 运行:')
+    console.log(`  - 本地: ${chalk.magenta(`http://localhost:${chalk.cyan(port)}/`)}`)
+    console.log(`  - 局域网: ${chalk.magenta(`http://${address.ip()}:${chalk.cyan(port)}/`)}`)
     console.log()
-    console.log(`  当前环境为开发模式`)
+    console.log('  当前环境为开发模式')
 
     if (isFirstCompile) {
       isFirstCompile = false
