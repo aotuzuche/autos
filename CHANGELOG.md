@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/aotuzuche/autos/compare/v1.1.0...v1.1.1) (2019-08-20)
+
+
+### Performance Improvements
+
+* **package.json:** 升级 portfinder ([b9f43ef](https://github.com/aotuzuche/autos/commit/b9f43ef))
+
+
+
 # [1.1.0](https://github.com/aotuzuche/autos/compare/v1.0.16...v1.1.0) (2019-08-16)
 
 
