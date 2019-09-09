@@ -9,6 +9,7 @@
 - [x] 简化配置，所有的可配置项暴露到`appConfig.js`
 - [x] 支持自定义配置
 - [x] 支持 eslint 测试
+- [ ] 支持更新项目配置
 
 ```js
 // appConfig.js
