@@ -18,7 +18,7 @@
     "release": "sh scripts/release.sh",
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "eslint": "eslint bin --ext .js --fix",
+    "eslint": "eslint bin --ext .js",
     "prettier": "prettier -c --write '**/*'"
   },
   "husky": {
@@ -97,6 +97,7 @@
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "git-cz": "^3.2.1",
     "husky": "^1.0.1",
     "lint-staged": "^9.2.1",
