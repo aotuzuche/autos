@@ -293,7 +293,7 @@ let webpackConfig = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.scss', '.css', '.mass'],
+    extensions: ['tsx', 'ts', '.jsx', '.js', '.scss', '.css', '.mass'],
     alias: {
       src: resolveProjectPath('src'),
       '@': resolveProjectPath('src'),
@@ -327,7 +327,7 @@ if (fs.existsSync(tsconfigPath)) {
               options: getCacheConfig(
                 'ts-loader',
                 {
-                  typescript: require(`${resolveProjectPath()}/nodu_modules/typescript/package.json`)
+                  typescript: require(`${resolveProjectPath()}/node_modules/typescript/package.json`)
                     .version,
                   'ts-loader': require('ts-loader/package.json').version,
                 },
