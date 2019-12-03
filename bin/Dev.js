@@ -9,6 +9,18 @@ module.exports = async () => {
   const address = require('address')
   const chalk = require('chalk')
   const portfinder = require('portfinder')
+  const path = require('path')
+  const fs = require('fs')
+
+  function mayProxy(pathname) {
+    const maybePublicPath = path.resolve(
+      config[process.env.package].assetsPublicPath,
+      pathname.slice(1),
+    )
+    const isPublicFileRequest = fs.existsSync(maybePublicPath)
+    const isWdsEndpointRequest = pathname.startsWith('/sockjs-node') // used by webpackHotDevClient
+    return !(isPublicFileRequest || isWdsEndpointRequest)
+  }
 
   const { target } = config.APP_CONFIG
   const host = '0.0.0.0'
@@ -16,16 +28,27 @@ module.exports = async () => {
   let {
     port = 3000,
     // eslint-disable-next-line prefer-const
-    proxy = {
-      '/proxy/*': {
+    proxy = [
+      {
         target,
+        // 兼容下老的
         pathRewrite: {
           '^/proxy/': '/',
         },
-        changeOrigin: true,
         secure: false,
+        changeOrigin: true,
+        ws: true,
+        xfwd: true,
+        context: (pathname, req) => {
+          return (
+            req.method !== 'GET' ||
+            (mayProxy(pathname) &&
+              req.headers.accept &&
+              req.headers.accept.indexOf('text/html') === -1)
+          )
+        },
       },
-    },
+    ],
   } = config.APP_CONFIG
 
   // dynamic get port
