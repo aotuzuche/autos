@@ -14,7 +14,7 @@ module.exports = async () => {
 
   function mayProxy(pathname) {
     const maybePublicPath = path.resolve(
-      config[process.env.package].assetsPublicPath,
+      config[process.env.PACKAGE].assetsPublicPath,
       pathname.slice(1),
     )
     const isPublicFileRequest = fs.existsSync(maybePublicPath)
