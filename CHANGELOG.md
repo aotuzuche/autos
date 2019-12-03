@@ -1,3 +1,21 @@
+## [1.1.4](https://github.com/aotuzuche/autos/compare/v1.1.3...v1.1.4) (2019-12-03)
+
+
+### Bug Fixes
+
+* assetsPublicPath 报错 ([240f4a8](https://github.com/aotuzuche/autos/commit/240f4a881bf3bac8eb92747a864b1988fe58335b))
+
+
+
+## [1.1.3](https://github.com/aotuzuche/autos/compare/v1.1.2...v1.1.3) (2019-12-03)
+
+
+### Features
+
+* 优化 proxy 代理 ([a33488d](https://github.com/aotuzuche/autos/commit/a33488d7eaa2036a48621765659e8cb9b74752e3))
+
+
+
 ## [1.1.2](https://github.com/aotuzuche/autos/compare/v1.1.1...v1.1.2) (2019-11-12)
 
 
@@ -192,9 +210,9 @@
 
 ### Bug Fixes
 
-* 修复 lint 报错 ([41c4c30](https://github.com/aotuzuche/autos/commit/41c4c3080061b85ebdbc3f0bdeb90880444b41df))
 * **base.js:** 修复 loader 依赖查找路径 ([cd58fd3](https://github.com/aotuzuche/autos/commit/cd58fd3e040472299d796ffeac9016d472e731d1))
 * **Dev.js:** 修复热更新不生效 ([86fb6f6](https://github.com/aotuzuche/autos/commit/86fb6f6b73ede9847c1cb042711a20daf7eafe21))
+* 修复 lint 报错 ([41c4c30](https://github.com/aotuzuche/autos/commit/41c4c3080061b85ebdbc3f0bdeb90880444b41df))
 
 
 ### Features
@@ -204,11 +222,11 @@
 
 ### Performance Improvements
 
-* 优化 webpack 配置, 优化了 webpack 环境变量的设置 ([093910d](https://github.com/aotuzuche/autos/commit/093910dcf77766bdbe01676120fcc8942ea635b4))
-* 优化了 webpack 环境变量的设置 ([d48ef13](https://github.com/aotuzuche/autos/commit/d48ef1369a3c55ec3a7e5849b402037b61d58cbf))
 * **build.js:** 去掉 externals 参数 ([27222a6](https://github.com/aotuzuche/autos/commit/27222a6ac9b010b57d8f58ae2fa8d99bf1368a75))
 * **DEV:** 添加 openBrowser 方法，优化本地开发重复打开新的标签 ([ff7c389](https://github.com/aotuzuche/autos/commit/ff7c389049880b6e66bebdf207e311e1a8ec0c5c))
 * **package.json:** 去掉无用的依赖 ([55de8fe](https://github.com/aotuzuche/autos/commit/55de8feca07c9b9f94acfb7616b5adac34f2da6e))
+* 优化 webpack 配置, 优化了 webpack 环境变量的设置 ([093910d](https://github.com/aotuzuche/autos/commit/093910dcf77766bdbe01676120fcc8942ea635b4))
+* 优化了 webpack 环境变量的设置 ([d48ef13](https://github.com/aotuzuche/autos/commit/d48ef1369a3c55ec3a7e5849b402037b61d58cbf))
 
 
 
@@ -236,8 +254,8 @@
 
 ### Bug Fixes
 
-* **autos update:** 修复 deepmerge 的时候对数组没有做合并导致元素重复 ([c2fc165](https://github.com/aotuzuche/autos/commit/c2fc165e73ce516c8eae5350c0e126096a2c0b23))
 * 去掉 babel 中 import 配置的 style 引入，由组件引入 ([3f35421](https://github.com/aotuzuche/autos/commit/3f35421037dcb0384bff8c5a16fabe29bc86668b))
+* **autos update:** 修复 deepmerge 的时候对数组没有做合并导致元素重复 ([c2fc165](https://github.com/aotuzuche/autos/commit/c2fc165e73ce516c8eae5350c0e126096a2c0b23))
 
 
 
@@ -341,8 +359,8 @@
 
 ### Bug Fixes
 
-* fix WebpackDevServer host 修改为 0.0.0.0 ([884592a](https://github.com/aotuzuche/autos/commit/884592ad220c3201ff1a8e6082fb031929637c56))
 * **autos lint:** 去掉内置 eslintrc 文件, eslint 配置文件放在 package.json 里面, 修复了编辑器不实时检测 ([a451331](https://github.com/aotuzuche/autos/commit/a451331dd7dac518e1f4e743dd37db299ed80922))
+* fix WebpackDevServer host 修改为 0.0.0.0 ([884592a](https://github.com/aotuzuche/autos/commit/884592ad220c3201ff1a8e6082fb031929637c56))
 
 
 
@@ -401,8 +419,8 @@
 
 ### Bug Fixes
 
-* 删除无用的忽略规则 ([fd9df51](https://github.com/aotuzuche/autos/commit/fd9df5191cd3502d55ed600b43378afe1c240228))
 * **package.json:** 修复 scritps 中 changelog 命令错误不生成新的更新文档 ([91d3f19](https://github.com/aotuzuche/autos/commit/91d3f19cc03cec45e506afa9faa4edf0cc749e4f))
+* 删除无用的忽略规则 ([fd9df51](https://github.com/aotuzuche/autos/commit/fd9df5191cd3502d55ed600b43378afe1c240228))
 
 
 ### Features
@@ -424,19 +442,19 @@
 
 ### Bug Fixes
 
-* **package.json:** 修复 commit-msg ([9100005](https://github.com/aotuzuche/autos/commit/910000575c95cd98dcdbd8ac3c5e01b07bf581ed))
 * gitignore 忽略规则错误导致文件不提交 ([ee876b8](https://github.com/aotuzuche/autos/commit/ee876b8f867d11d727bc7b5cc4f026eb34b6b325))
 * 去除 tinyimg-loader, tinypng 对并发数做了限制 ([6d4462f](https://github.com/aotuzuche/autos/commit/6d4462feeb9487b5c8693c4a57b974b73cfe9720))
+* **package.json:** 修复 commit-msg ([9100005](https://github.com/aotuzuche/autos/commit/910000575c95cd98dcdbd8ac3c5e01b07bf581ed))
 
 
 ### Features
 
-* **package.json:** add ([8327380](https://github.com/aotuzuche/autos/commit/832738079706f42be3d4f4ef290ee0d3fa1e32a6))
-* **package.json:** 增加 changelog 命令 ([4061303](https://github.com/aotuzuche/autos/commit/406130314b7c22bca984b3cad2f95969c713c0d0))
-* **update:** 完善 autos update 命令 ([0a44d58](https://github.com/aotuzuche/autos/commit/0a44d585a2eefa0c1457c7b5b73c31581c39ecfc))
 * release 的时候增加 release:note ([2010339](https://github.com/aotuzuche/autos/commit/2010339e61926c3df3bb295c38707290dcc5abf0))
 * 添加 commitizen 和 cz-conventional-changelog ([acb49f2](https://github.com/aotuzuche/autos/commit/acb49f2b38875983667f31b3d24f51ff809e8469))
 * 添加 webpack-bundle-analyzer 帮助优化代码，通过参数 --analyzer 开启 ([31b8e62](https://github.com/aotuzuche/autos/commit/31b8e62060c5ffea7ce9a6ad504d3d776045c91f))
+* **package.json:** add ([8327380](https://github.com/aotuzuche/autos/commit/832738079706f42be3d4f4ef290ee0d3fa1e32a6))
+* **package.json:** 增加 changelog 命令 ([4061303](https://github.com/aotuzuche/autos/commit/406130314b7c22bca984b3cad2f95969c713c0d0))
+* **update:** 完善 autos update 命令 ([0a44d58](https://github.com/aotuzuche/autos/commit/0a44d585a2eefa0c1457c7b5b73c31581c39ecfc))
 
 
 
