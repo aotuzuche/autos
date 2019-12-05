@@ -1,3 +1,12 @@
+## [1.1.5](https://github.com/aotuzuche/autos/compare/v1.1.4...v1.1.5) (2019-12-05)
+
+
+### Features
+
+* **Init:** 管理后台模板过滤 .github* 文件 ([b330005](https://github.com/aotuzuche/autos/commit/b3300057c3c98e57da60ae003d3f2da788a73438))
+
+
+
 ## [1.1.4](https://github.com/aotuzuche/autos/compare/v1.1.3...v1.1.4) (2019-12-03)
 
 
