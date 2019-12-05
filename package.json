@@ -35,7 +35,7 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.4.3",
+    "@babel/core": "^7.7.4",
     "address": "^1.0.3",
     "autoprefixer": "^9.7.3",
     "babel-loader": "^8.0.0",
