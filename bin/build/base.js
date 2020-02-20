@@ -3,7 +3,6 @@ const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -269,21 +268,6 @@ let webpackConfig = {
       // chunkFilename: "css/[name].[hash:7].css",
       filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
       allChunks: true,
-    }),
-
-    // pwa support
-    new SWPrecacheWebpackPlugin({
-      // Not required but you should include this
-      // it will give your service worker cache a unique name.
-      // Defaults to "sw-precache-webpack-plugin".
-      cacheId: APP_CONFIG.basename,
-      dontCacheBustUrlsMatching: /\.\w{6}\./, // 我们指示插件把这些文件的文件名作为版本号
-      filename: './sw.js',
-      minify: true,
-      mergeStaticsConfig: true,
-      navigateFallback: `${APP_CONFIG.basename}/index.html`,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /\.html$/, /asset-manifest\.json$/],
-      // logger: stats => {},
     }),
 
     // 美化本地开发时的终端界面
