@@ -40,6 +40,9 @@ module.exports = async () => {
         ws: true,
         xfwd: true,
         context: (pathname, req) => {
+          if (/^\/system\/login\/?$/.test(pathname)) {
+            return true
+          }
           return (
             req.method !== 'GET' ||
             (mayProxy(pathname) &&
