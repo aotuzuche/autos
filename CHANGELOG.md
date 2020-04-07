@@ -1,3 +1,17 @@
+## [1.1.6](https://github.com/aotuzuche/autos/compare/v1.1.5...v1.1.6) (2020-04-07)
+
+
+### Features
+
+* 移除 SWPrecacheWebpackPlugin ([9399cdc](https://github.com/aotuzuche/autos/commit/9399cdc76a409fa89c910f50502a741217ffb94b))
+
+
+### Performance Improvements
+
+* proxy login page ([32ec1a3](https://github.com/aotuzuche/autos/commit/32ec1a303439eef581d4596ead93420181126347))
+
+
+
 ## [1.1.5](https://github.com/aotuzuche/autos/compare/v1.1.4...v1.1.5) (2019-12-05)
 
 
