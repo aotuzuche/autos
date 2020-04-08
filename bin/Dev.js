@@ -50,6 +50,7 @@ module.exports = async () => {
               req.headers.accept.indexOf('text/html') === -1)
           )
         },
+        logLevel: 'silent',
       },
     ],
   } = config.APP_CONFIG
@@ -65,7 +66,7 @@ module.exports = async () => {
   )
 
   const options = {
-    // clientLogLevel: 'none',
+    // clientLogLevel: 'silent',
     // contentBase: config[process.env.PACKAGE].assetsRoot,
     // watchContentBase: true,
     hot: true,

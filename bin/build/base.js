@@ -19,24 +19,6 @@ const { APP_CONFIG } = config
 const { isSystem } = config
 const { resolveProjectPath, resolveAutosPath, formatter, transformer } = require('../lib/utils')
 
-// 获取 eslint-loader 的缓存标识
-// const { cacheIdentifier } = getCacheConfig(
-//   'eslint-loader',
-//   {
-//     'eslint-loader': require('eslint-loader/package.json').version,
-//     eslint: require(resolveProjectPath('node_modules/eslint/package.json'))
-//       .version
-//   },
-//   [
-//     '.eslintrc.js',
-//     '.eslintrc.yaml',
-//     '.eslintrc.yml',
-//     '.eslintrc.json',
-//     '.eslintrc',
-//     'package.json'
-//   ]
-// )
-
 // 获取 webpack 入口路径，支持 typescript
 function resolveEntry() {
   const supportEntrySuffixs = ['js', 'jsx', 'ts', 'tsx']
@@ -57,21 +39,6 @@ let webpackConfig = {
 
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.(j|t)s[x]?$/,
-      //   include: [resolveProjectPath('src')],
-      //   use: [
-      //     {
-      //       loader: 'eslint-loader',
-      //       options: {
-      //         cache: true,
-      //         cacheIdentifier,
-      //         eslintPath: resolveProjectPath('node_modules/eslint')
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.js[x]?$/,
         use: [
@@ -275,6 +242,9 @@ let webpackConfig = {
       additionalTransformers: [transformer],
       additionalFormatters: [formatter],
     }),
+
+    // Ignore moment locale
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   resolve: {
     extensions: ['tsx', 'ts', '.jsx', '.js', '.scss', '.css', '.mass'],
