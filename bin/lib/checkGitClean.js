@@ -7,6 +7,6 @@ module.exports = function checkGitClean() {
   })
 
   if (result.stdout && result.stdout.trim()) {
-    logWithExit('⚠️ 本地有改动的文件未提交！！！')
+    logWithExit('本地有改动的文件未提交！！！')
   }
 }

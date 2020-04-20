@@ -1,7 +1,7 @@
-const chalk = require('chalk')
+const logger = require('./logger')
 
 module.exports = function logWithExit(message) {
-  console.log(chalk.red(message))
+  logger.error(message)
 
   process.exit(1)
 }
