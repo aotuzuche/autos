@@ -11,6 +11,8 @@ const init = require('./Init')
 const compareVersion = require('./lib/compareVersion')
 const create = require('./Create')
 const update = require('./Update')
+const checkGitClean = require('./lib/checkGitClean')
+const logWithExit = require('./lib/logWithExit')
 
 const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
@@ -22,12 +24,9 @@ const Build = require('./Build')
 
 // 判断 node 版本
 if (major < 8) {
-  console.error(
-    chalk.red(
-      `你的 node 版本 ${currentNodeVersion}.\n该脚手架需要 node 8 以上版本，请更新你的 node 版本`,
-    ),
+  logWithExit(
+    `你的 node 版本 ${currentNodeVersion}.\n该脚手架需要 node 8 以上版本，请更新你的 node 版本`,
   )
-  process.exit(1)
 }
 
 // 基本说明
@@ -41,6 +40,7 @@ program
   .command('init')
   .alias('i')
   .description('初始化项目')
+  .action(checkGitClean)
   .action(async () => {
     try {
       await compareVersion()
@@ -57,6 +57,7 @@ program
   .command('create')
   .alias('c')
   .description('创建组件或页面')
+  .action(checkGitClean)
   .action(async () => {
     try {
       await compareVersion()
@@ -84,6 +85,7 @@ program
 program
   .command('update')
   .description('升级脚手架')
+  .action(checkGitClean)
   .action(async () => {
     try {
       const { result } = await q.prompt([
