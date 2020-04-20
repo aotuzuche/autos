@@ -55,7 +55,12 @@ let webpackConfig = {
             ),
           },
           'thread-loader',
-          'babel-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean),
+            },
+          },
         ],
         exclude: filepath => {
           if (
@@ -258,10 +263,10 @@ let webpackConfig = {
       $views: resolveProjectPath('src/views'),
       $utils: resolveProjectPath('src/utils'),
     },
-    modules: [resolveAutosPath('node_modules'), resolveProjectPath('node_modules'), 'node_modules'],
+    modules: ['node_modules', resolveAutosPath('node_modules'), resolveProjectPath('node_modules')],
   },
   resolveLoader: {
-    modules: [resolveAutosPath('node_modules'), resolveProjectPath('node_modules'), 'node_modules'],
+    modules: ['node_modules', resolveAutosPath('node_modules'), resolveProjectPath('node_modules')],
   },
 }
 
