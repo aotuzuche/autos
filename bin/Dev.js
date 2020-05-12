@@ -22,7 +22,7 @@ module.exports = async () => {
     return !(isPublicFileRequest || isWdsEndpointRequest)
   }
 
-  const { target } = config.APP_CONFIG
+  const { target, autoLogin } = config.APP_CONFIG
   const host = '0.0.0.0'
 
   let {
@@ -40,7 +40,9 @@ module.exports = async () => {
         ws: true,
         xfwd: true,
         context: (pathname, req) => {
-          if (/^\/system\/login\/?$/.test(pathname)) {
+          console.log(pathname, /^\/system\/login\/?$/.test(pathname))
+
+          if (autoLogin && /^\/system\/login\/?$/.test(pathname)) {
             return true
           }
           return (
