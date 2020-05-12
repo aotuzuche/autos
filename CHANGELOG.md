@@ -1,3 +1,15 @@
+## [1.2.1](https://github.com/aotuzuche/autos/compare/v1.2.0...v1.2.1) (2020-05-12)
+
+
+### Features
+
+* add autoLogin flag ([13e64c1](https://github.com/aotuzuche/autos/commit/13e64c16d583da2b08a70044455d586b871a446a))
+* add git clean check ([00705a2](https://github.com/aotuzuche/autos/commit/00705a2aacf1868482f9a01f0a1a1d6d0d5a471c))
+* add git clean check ([336d31a](https://github.com/aotuzuche/autos/commit/336d31a6531f0216aa6e197b2e43c913ce80385f))
+* add logger ([8edb6b6](https://github.com/aotuzuche/autos/commit/8edb6b6c107c9b4b430b7ad785093e11a5aa3dfe))
+
+
+
 # [1.2.0](https://github.com/aotuzuche/autos/compare/v1.1.6...v1.2.0) (2020-04-20)
 
 
