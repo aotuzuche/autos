@@ -40,8 +40,6 @@ module.exports = async () => {
         ws: true,
         xfwd: true,
         context: (pathname, req) => {
-          console.log(pathname, /^\/system\/login\/?$/.test(pathname))
-
           if (autoLogin && /^\/system\/login\/?$/.test(pathname)) {
             return true
           }
