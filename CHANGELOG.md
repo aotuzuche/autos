@@ -1,3 +1,12 @@
+## [1.2.3](https://github.com/aotuzuche/autos/compare/v1.2.2...v1.2.3) (2020-05-20)
+
+
+### Bug Fixes
+
+* remove refresh overlay ([4e80fc8](https://github.com/aotuzuche/autos/commit/4e80fc85b64a7fd316e29bbc4b66d412a883a17e))
+
+
+
 ## [1.2.2](https://github.com/aotuzuche/autos/compare/v1.2.1...v1.2.2) (2020-05-12)
 
 
