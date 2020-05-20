@@ -25,7 +25,9 @@ let webpackConfig = merge(baseWebpackConfig, {
 
     new webpack.ProgressPlugin(),
 
-    new ReactRefreshWebpackPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
   ],
 })
 
