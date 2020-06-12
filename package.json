@@ -50,7 +50,7 @@
     "download-git-repo": "^1.1.0",
     "ejs": "^2.7.4",
     "eslint-loader": "^2.1.1",
-    "execa": "^1.0.0",
+    "execa": "^4.0.2",
     "file-loader": "^1.1.6",
     "fork-ts-checker-webpack-plugin": "^4.1.6",
     "friendly-errors-webpack-plugin": "^1.7.0",
