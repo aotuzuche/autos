@@ -299,6 +299,7 @@ if (fs.existsSync(tsconfigPath)) {
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
+                happyPackMode: true,
                 configFile: resolveProjectPath('tsconfig.json'),
               },
             },
@@ -320,6 +321,7 @@ if (fs.existsSync(tsconfigPath)) {
       new ForkTsCheckerWebpackPlugin({
         formatter: 'codeframe',
         tsconfig: resolveProjectPath('tsconfig.json'),
+        checkSyntacticErrors: true,
         typescript: require.resolve(resolveProjectPath('node_modules/typescript')),
       }),
     ],
