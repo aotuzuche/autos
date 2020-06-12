@@ -19,6 +19,11 @@ then
   git tag v$VERSION
   git commit -am "build: release $VERSION"
 
+  # docs
+  npm run changelog
+  git commit -am "docs: add $VERSION docs"
+  git push origin dev
+
   # publish
   git push origin master
   git push origin refs/tags/v$VERSION
@@ -27,9 +32,4 @@ then
   git push origin dev
 
   npm publish
-
-  # docs
-  npm run changelog
-  git commit -am "docs: add $VERSION docs"
-  git push origin dev
 fi
