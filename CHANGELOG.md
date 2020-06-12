@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/aotuzuche/autos/compare/v1.2.3...v2.0.0) (2020-06-12)
+
+
+### Bug Fixes
+
+* checkGitClean if not a git repository ([328f4b0](https://github.com/aotuzuche/autos/commit/328f4b092a49d328fd8c3c8abb32c5da4ef72b5f))
+* checkGitClean stdout undefined error ([a4740ab](https://github.com/aotuzuche/autos/commit/a4740abe7c0895ce628d66666a05c0138813bb38))
+* ts-loader enable thread-loader ([9556e0c](https://github.com/aotuzuche/autos/commit/9556e0c7d13cf7820983cddfcc9eb68309ca5172))
+* use typescript fail ([7909d0a](https://github.com/aotuzuche/autos/commit/7909d0afd78e37f48f71980b6421c68af84c9979))
+
+
+### Features
+
+* Min node version set >= 10 ([e232a20](https://github.com/aotuzuche/autos/commit/e232a2026ae669ec129102a8d56b3bcbfadd0e32))
+
+
+
 ## [1.2.3](https://github.com/aotuzuche/autos/compare/v1.2.2...v1.2.3) (2020-05-20)
 
 
