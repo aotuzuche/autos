@@ -23,9 +23,9 @@ const Lint = require('./Lint')
 const Build = require('./Build')
 
 // 判断 node 版本
-if (major < 8) {
+if (major < 10) {
   logWithExit(
-    `你的 node 版本 ${currentNodeVersion}.\n该脚手架需要 node 8 以上版本，请更新你的 node 版本`,
+    `你的 node 版本 ${currentNodeVersion}.\n该脚手架需要 node 10 以上版本，请更新你的 node 版本`,
   )
 }
 

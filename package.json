@@ -89,7 +89,7 @@
     "webpack-merge": "^4.1.4"
   },
   "engines": {
-    "node": ">=8.11.3"
+    "node": ">=10.17.0"
   },
   "devDependencies": {
     "commitizen": "^3.1.1",
