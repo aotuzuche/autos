@@ -8,13 +8,13 @@ module.exports = function checkGitClean() {
     result = execa.sync('git', ['status', '--porcelain'], {
       preferLocal: false,
     })
+
+    if (result.stdout && result.stdout.trim()) {
+      logWithExit('本地有改动的文件未提交！！！')
+    }
   } catch (error) {
     if (!/not a git repository/.test(error.message)) {
-      return logWithExit(error)
+      logWithExit(error)
     }
-  }
-
-  if (result.stdout && result.stdout.trim()) {
-    logWithExit('本地有改动的文件未提交！！！')
   }
 }
