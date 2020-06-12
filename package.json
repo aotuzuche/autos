@@ -17,9 +17,11 @@
   "scripts": {
     "release": "sh scripts/release.sh",
     "commit": "git-cz",
+    "version": "yarn changelog && git add",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "eslint": "eslint bin --ext .js",
-    "prettier": "prettier -c --write '**/*'"
+    "lint": "eslint . --ext .js",
+    "prettier": "prettier -c --write '**/*'",
+    "prepublishOnly": "yarn lint && np --no-cleanup --yolo --no-publish"
   },
   "husky": {
     "hooks": {
@@ -103,6 +105,7 @@
     "git-cz": "^4.3.1",
     "husky": "^4.2.5",
     "lint-staged": "^9.5.0",
+    "np": "^6.2.4",
     "prettier": "^2.0.4"
   },
   "config": {
