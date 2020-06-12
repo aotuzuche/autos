@@ -252,7 +252,7 @@ let webpackConfig = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   resolve: {
-    extensions: ['tsx', 'ts', '.jsx', '.js', '.scss', '.css', '.mass'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css', '.mass'],
     alias: {
       src: resolveProjectPath('src'),
       '@': resolveProjectPath('src'),
@@ -299,7 +299,6 @@ if (fs.existsSync(tsconfigPath)) {
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
-                happyPackMode: true,
                 configFile: resolveProjectPath('tsconfig.json'),
               },
             },
@@ -320,8 +319,8 @@ if (fs.existsSync(tsconfigPath)) {
     plugins: [
       new ForkTsCheckerWebpackPlugin({
         formatter: 'codeframe',
-        checkSyntacticErrors: true,
         tsconfig: resolveProjectPath('tsconfig.json'),
+        typescript: require.resolve(resolveProjectPath('node_modules/typescript')),
       }),
     ],
   })
