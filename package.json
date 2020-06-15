@@ -48,7 +48,7 @@
     "commander": "^3.0.0",
     "css-loader": "^2.1.1",
     "deepmerge": "^2.1.1",
-    "download-git-repo": "^1.1.0",
+    "download-git-repo": "^3.0.2",
     "ejs": "^2.7.4",
     "eslint-loader": "^2.1.1",
     "execa": "^4.0.2",
