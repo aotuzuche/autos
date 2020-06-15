@@ -44,7 +44,7 @@
     "cache-loader": "^4.1.0",
     "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "chalk": "^4.1.0",
-    "cliui": "^5.0.0",
+    "cliui": "^6.0.0",
     "commander": "^3.0.0",
     "css-loader": "^2.1.1",
     "deepmerge": "^2.1.1",
