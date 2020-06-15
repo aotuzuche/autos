@@ -1,11 +1,11 @@
 const fs = require('fs-extra')
 const q = require('inquirer')
 const chalk = require('chalk')
-const ora = require('ora')
 
 const { resolveProjectPath } = require('./lib/utils')
 const generate = require('./lib/generate')
 const installDeps = require('./lib/installDeps')
+const logger = require('./lib/logger')
 
 module.exports = async (params = {}) => {
   const inCurrentDir = !params.new
@@ -29,18 +29,20 @@ module.exports = async (params = {}) => {
       return
     }
     if (result === 'overwrite') {
-      console.log(`\n正在删除 ${chalk.red(targetDir)}...\n`)
+      logger.log()
+      logger.spin(`正在删除 ${chalk.red(targetDir)}`)
       await fs.remove(targetDir)
+      logger.succeed()
     }
   }
   await fs.ensureDir(targetDir)
 
   console.log('')
-  const spinner = ora('拉取模板生成项目中').start()
+  logger.spin('拉取模板生成项目中')
 
   await generate(params, targetDir)
 
-  spinner.succeed('项目生成啦！！！')
+  logger.succeed('项目生成啦！！！')
   console.log('')
 
   console.log(`🌈  ${chalk.white('yarn install')}`)

@@ -21,6 +21,7 @@ const major = semver[0]
 const Dev = require('./Dev')
 const Lint = require('./Lint')
 const Build = require('./Build')
+const logger = require('./lib/logger')
 
 // 判断 node 版本
 if (major < 10) {
@@ -48,7 +49,7 @@ program
 
       init(result)
     } catch (error) {
-      console.log(error)
+      logger.error(error)
     }
   })
 

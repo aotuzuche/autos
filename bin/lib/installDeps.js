@@ -22,35 +22,36 @@ function renderProgressBar(curr, total) {
   process.stderr.write(`[${complete}${incomplete}]${bar}`)
 }
 
+module.exports = targetDir =>
+  new Promise((resolve, reject) => {
+    const child = execa('yarn', [], {
+      cwd: targetDir,
+      stdio: ['inherit', 'inherit', 'pipe'],
+      shell: true,
+    })
 
-module.exports = targetDir => new Promise((resolve, reject) => {
-  const child = execa('yarn', [], {
-    cwd: targetDir,
-    stdio: ['inherit', 'inherit', 'pipe'],
+    child.stderr.on('data', buf => {
+      const str = buf.toString()
+      if (/warning/.test(str)) {
+        return
+      }
+
+      // progress bar
+      const progressBarMatch = str.match(/\[.*\] (\d+)\/(\d+)/)
+      if (progressBarMatch) {
+        renderProgressBar(progressBarMatch[1], progressBarMatch[2])
+        return
+      }
+
+      process.stderr.write(buf)
+    })
+
+    child.on('close', code => {
+      if (code) {
+        console.log('')
+        console.log('yarn install 失败')
+        reject()
+      }
+      resolve()
+    })
   })
-
-  child.stderr.on('data', buf => {
-    const str = buf.toString()
-    if (/warning/.test(str)) {
-      return
-    }
-
-    // progress bar
-    const progressBarMatch = str.match(/\[.*\] (\d+)\/(\d+)/)
-    if (progressBarMatch) {
-      renderProgressBar(progressBarMatch[1], progressBarMatch[2])
-      return
-    }
-
-    process.stderr.write(buf)
-  })
-
-  child.on('close', code => {
-    if (code) {
-      console.log('')
-      console.log('yarn install 失败')
-      reject()
-    }
-    resolve()
-  })
-})

@@ -1,12 +1,6 @@
 module.exports = {
   init: [
     {
-      type: 'list',
-      name: 'mobile',
-      message: '选择初始化移动端项目还是后台项目',
-      choices: [{ name: '移动端', value: true }, { name: '后台', value: false }],
-    },
-    {
       type: 'confirm',
       name: 'new',
       default: false,
@@ -31,12 +25,6 @@ module.exports = {
       default: '凹凸租车',
     },
     {
-      type: 'list',
-      name: 'projectType',
-      message: '请选择项目类型',
-      choices: ['m', 'act', 'system'],
-    },
-    {
       type: 'input',
       name: 'prodPath',
       message: '请输入项目构建的目标文件夹名',
@@ -54,7 +42,10 @@ module.exports = {
       name: 'createClass',
       message: '选择创建组件还是页面',
       default: 'component',
-      choices: [{ name: '组件', value: 'component' }, { name: '页面', value: 'view' }],
+      choices: [
+        { name: '组件', value: 'component' },
+        { name: '页面', value: 'view' },
+      ],
     },
     {
       type: 'input',
