@@ -16,7 +16,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "version": "yarn changelog && git add",
+    "version": "yarn changelog && git add CHANGELOG.md",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "lint": "eslint . --ext .js",
     "prettier": "prettier -c --write '**/*'",
