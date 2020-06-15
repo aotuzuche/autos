@@ -50,7 +50,7 @@
     "deepmerge": "^2.1.1",
     "download-git-repo": "^3.0.2",
     "ejs": "^2.7.4",
-    "eslint-loader": "^2.1.1",
+    "eslint-loader": "^4.0.2",
     "execa": "^4.0.2",
     "file-loader": "^1.1.6",
     "fork-ts-checker-webpack-plugin": "^4.1.6",
