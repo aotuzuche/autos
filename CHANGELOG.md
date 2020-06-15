@@ -1,3 +1,7 @@
+# [3.0.0](https://github.com/aotuzuche/autos/compare/v2.0.0...v3.0.0) (2020-06-15)
+
+
+
 # [2.0.0](https://github.com/aotuzuche/autos/compare/v1.2.3...v2.0.0) (2020-06-12)
 
 
