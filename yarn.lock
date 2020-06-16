@@ -211,9 +211,9 @@
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
 "@pmmmwh/react-refresh-webpack-plugin@^0.4.0-beta.4":
-  version "0.4.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.4.tgz#3f7585b3fb9deb11dae6300c30ada2ca55d89c80"
-  integrity sha512-3QfDv7NKYO8hfEg5ruMQfXs7+Ejp8iAjFobu1ta9P+ZsCLUc4Vq5/l/nxw3f+Ff6s36DXdW8C52aF9bSrj7fAw==
+  version "0.4.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.5.tgz#3c7c19f414b528d5664cac18324789ab3b66aed3"
+  integrity sha512-5GFz6Rz688mkAs4/JtwQ4vUD+fNFSvDWg5oPaSTzZ4cxN5zbE6hME0Wi95g2mAC8OGaMjgaxdoWUKAE/XLiTTQ==
   dependencies:
     ansi-html "^0.0.7"
     error-stack-parser "^2.0.6"
