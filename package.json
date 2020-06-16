@@ -81,7 +81,7 @@
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
     "thread-loader": "^2.1.2",
-    "ts-loader": "^6.0.0",
+    "ts-loader": "^7.0.5",
     "url-loader": "^4.1.0",
     "webpack": "^4.41.5",
     "webpack-bundle-analyzer": "^3.0.2",
