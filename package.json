@@ -46,7 +46,7 @@
     "chalk": "^4.1.0",
     "cliui": "^6.0.0",
     "commander": "^5.1.0",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.6.0",
     "deepmerge": "^4.2.2",
     "download-git-repo": "^3.0.2",
     "ejs": "^3.1.3",
