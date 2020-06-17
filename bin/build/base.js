@@ -222,18 +222,14 @@ let webpackConfig = {
       template: 'src/template.html',
       filename: 'index.html',
       title: APP_CONFIG.title || '凹凸租车',
-      inject: 'body', // 所有javascript资源将被注入至body底部
       minify: {
         removeComments: true, // 删除注释
         collapseWhitespace: true, // 压缩成一行
         removeAttributeQuotes: false, // 删除引号
       },
-      chunksSortMode: 'dependency', // 按照不同文件的依赖关系来排序
     }),
 
     new InlineScriptPlugin('runtime'),
-
-    new InlineScriptPlugin('flexible'),
 
     // 提取公共样式
     new MiniCssExtractPlugin({
@@ -319,10 +315,10 @@ if (fs.existsSync(tsconfigPath)) {
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
-        formatter: 'codeframe',
-        tsconfig: resolveProjectPath('tsconfig.json'),
-        checkSyntacticErrors: true,
-        typescript: require.resolve(resolveProjectPath('node_modules/typescript')),
+        typescript: {
+          context: resolveProjectPath(),
+          configFile: resolveProjectPath('tsconfig.json'),
+        },
       }),
     ],
   })

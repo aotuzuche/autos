@@ -1,4 +1,5 @@
 const sourceMappingURL = require('source-map-url')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 class InlineScriptPlugin {
   constructor(name) {
@@ -33,7 +34,7 @@ class InlineScriptPlugin {
     })
 
     compiler.hooks.compilation.tap(id, compilation => {
-      compilation.hooks.htmlWebpackPluginAlterAssetTags.tapAsync(id, (data, cb) => {
+      HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync(id, (data, cb) => {
         const manifestAssetName = getAssetName(compilation.chunks, name)
 
         if (manifestAssetName) {

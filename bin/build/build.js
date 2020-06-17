@@ -52,20 +52,6 @@ let webpackConfig = merge(baseWebpackConfig, {
           },
           enforce: true,
         },
-        auto: {
-          name: 'autoui',
-          chunks: 'all',
-          test(module) {
-            return module.resource && /(\/|@|\\)auto-ui(\/|\\)/.test(module.resource)
-          },
-          enforce: true,
-        },
-        flexible: {
-          name: 'flexible',
-          chunks: 'all',
-          test: /flexible\.js$/,
-          enforce: true,
-        },
       },
     },
     // 分割运行时代码
