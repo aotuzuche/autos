@@ -1,8 +1,6 @@
 module.exports = async () => {
   const WebpackDevServer = require('webpack-dev-server')
   const Webpack = require('webpack')
-  // const { resolveProjectPath } = require('./lib/utils')
-
   const webpackDevConfig = require('./build/dev')
   const config = require('./build/config')
   const { openBrowser } = require('./lib/openBrowser')
@@ -66,17 +64,15 @@ module.exports = async () => {
   )
 
   const options = {
-    // clientLogLevel: 'silent',
-    // contentBase: config[process.env.PACKAGE].assetsRoot,
-    // watchContentBase: true,
+    clientLogLevel: 'silent',
     hot: true,
     host,
-    quiet: true,
     disableHostCheck: true,
     historyApiFallback: true,
     port,
     overlay: { warnings: false, errors: true },
     proxy,
+    noInfo: true,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackDevConfig)

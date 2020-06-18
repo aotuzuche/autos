@@ -34,16 +34,16 @@ class InlineScriptPlugin {
     })
 
     compiler.hooks.compilation.tap(id, compilation => {
-      HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync(id, (data, cb) => {
+      HtmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync(id, (data, cb) => {
         const manifestAssetName = getAssetName(compilation.chunks, name)
 
         if (manifestAssetName) {
           // eslint-disable-next-line no-extra-semi
-          ;['head', 'body'].forEach(section => {
+          ;['headTags', 'bodyTags'].forEach(section => {
             data[section] = inlineWhenMatched(compilation, data[section], manifestAssetName)
           })
 
-          data.head.push({
+          data.headTags.push({
             tagName: 'script',
             closeTag: true,
             attributes: {

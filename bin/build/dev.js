@@ -5,9 +5,8 @@ const config = require('./config')
 const utils = require('./utils')
 
 const { APP_CONFIG } = config
-
 const baseWebpackConfig = require('./base')
-// 针对生产环境修改配置
+
 let webpackConfig = merge(baseWebpackConfig, {
   devtool: '#cheap-module-eval-source-map',
 
