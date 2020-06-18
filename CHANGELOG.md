@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/aotuzuche/autos/compare/v3.0.1...v3.0.2) (2020-06-18)
+
+
+### Bug Fixes
+
+* InlineScriptPlugin build fail ([9424ce9](https://github.com/aotuzuche/autos/commit/9424ce907bd20561e092d7a602b5ce343a1fac03))
+
+
+
 ## [3.0.1](https://github.com/aotuzuche/autos/compare/v3.0.0...v3.0.1) (2020-06-18)
 
 
