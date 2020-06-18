@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/aotuzuche/autos/compare/v3.0.0...v3.0.1) (2020-06-18)
+
+
+### Bug Fixes
+
+* html-webpack-plugin hook refactor ([f7bd3e2](https://github.com/aotuzuche/autos/commit/f7bd3e26781d9c5961f7e9c85114f93328820318))
+
+
+
 # [3.0.0](https://github.com/aotuzuche/autos/compare/v2.0.0...v3.0.0) (2020-06-15)
 
 
