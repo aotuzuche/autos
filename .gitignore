@@ -4,4 +4,4 @@ node_modules
 .vscode
 demo
 /lib
-src/
+/example/ts

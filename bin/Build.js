@@ -1,16 +1,18 @@
+const webpack = require('webpack')
+const ora = require('ora')
+const chalk = require('chalk')
+const rm = require('rimraf')
+const path = require('path')
+const merge = require('webpack-merge')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 module.exports = options => {
-  const webpack = require('webpack')
   const config = require('./build/config')
-  let webpackConfig = require('./build/build')
-  const ora = require('ora')
-  const chalk = require('chalk')
-  const rm = require('rimraf')
-  const path = require('path')
-  const merge = require('webpack-merge')
-  const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
-  const formatStats = require('./lib/formatStats')
 
   const { APP_CONFIG } = config
+  const formatStats = require('./lib/formatStats')
+  const logWithExit = require('./lib/logWithExit')
+  let webpackConfig = require('./build/build')
 
   const setting = {
     test: '测试环境',
@@ -41,7 +43,7 @@ module.exports = options => {
       }
 
       if (stats.hasErrors()) {
-        return console.log('构建出现错误')
+        return logWithExit('构建出现错误')
       }
 
       console.log()

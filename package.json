@@ -18,9 +18,10 @@
     "commit": "git-cz",
     "version": "yarn changelog && git add CHANGELOG.md",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "test": "cd ./example && yarn && node ../bin/index.js build",
     "lint": "eslint . --ext .js",
     "prettier": "prettier -c --write '**/*'",
-    "prepublishOnly": "yarn lint && np --no-cleanup --yolo --no-publish"
+    "prepublishOnly": "yarn lint && yarn test && np --no-cleanup --yolo --no-publish"
   },
   "husky": {
     "hooks": {
@@ -38,6 +39,9 @@
   "files": [
     "bin"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "@babel/core": "^7.8.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.0-beta.4",
