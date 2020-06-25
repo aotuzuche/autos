@@ -218,9 +218,9 @@
     mkdirp "^1.0.4"
 
 "@pmmmwh/react-refresh-webpack-plugin@^0.4.0-beta.4":
-  version "0.4.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.5.tgz#3c7c19f414b528d5664cac18324789ab3b66aed3"
-  integrity sha512-5GFz6Rz688mkAs4/JtwQ4vUD+fNFSvDWg5oPaSTzZ4cxN5zbE6hME0Wi95g2mAC8OGaMjgaxdoWUKAE/XLiTTQ==
+  version "0.4.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.6.tgz#79e39fa91eccd1b63ddb1fb54b515e505fc36c2b"
+  integrity sha512-mKEO3LrodXJ/D0vQT4QLv/bExV1ounCwDUDeZH9x5KHqQ4PvMkQ6oNBpTJi+LHFdXcB4Bql00a0Htb3tDpifPQ==
   dependencies:
     ansi-html "^0.0.7"
     error-stack-parser "^2.0.6"
