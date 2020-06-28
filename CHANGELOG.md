@@ -1,3 +1,12 @@
+## [3.0.4](https://github.com/aotuzuche/autos/compare/v3.0.3...v3.0.4) (2020-06-28)
+
+
+### Bug Fixes
+
+* fork-ts-checker-webpack-plugin init fail when if not ts project ([a0c7c0a](https://github.com/aotuzuche/autos/commit/a0c7c0af6ec067cbd5ef15857423d36304d3c1b7))
+
+
+
 ## [3.0.3](https://github.com/aotuzuche/autos/compare/v3.0.2...v3.0.3) (2020-06-19)
 
 
