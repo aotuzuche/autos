@@ -7,7 +7,6 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const webpack = require('webpack')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const merge = require('webpack-merge')
 const getCacheConfig = require('./lib/getCacheConfig')
 const InlineScriptPlugin = require('./inline-script-plugin')
@@ -271,6 +270,7 @@ let webpackConfig = {
  */
 const tsconfigPath = resolveProjectPath(APP_CONFIG.tsConfigPath || 'tsconfig.json')
 if (fs.existsSync(tsconfigPath)) {
+  const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
   webpackConfig = merge(webpackConfig, {
     module: {
       rules: [
