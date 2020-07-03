@@ -235,6 +235,7 @@ let webpackConfig = {
       // chunkFilename: "css/[name].[hash:7].css",
       filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
       allChunks: true,
+      ignoreOrder: true,
     }),
 
     // 美化本地开发时的终端界面
