@@ -138,8 +138,9 @@ let webpackConfig = {
                 loader: 'css-loader',
                 options: {
                   importLoaders: 2,
-                  modules: true,
-                  localIdentName: '[local]_[hash:base64:6]',
+                  modules: {
+                    localIdentName: '[local]_[hash:base64:6]',
+                  },
                 },
               },
               {
@@ -156,8 +157,9 @@ let webpackConfig = {
                 loader: 'css-loader',
                 options: {
                   importLoaders: 3,
-                  modules: true,
-                  localIdentName: '[local]_[hash:base64:6]',
+                  modules: {
+                    localIdentName: '[local]_[hash:base64:6]',
+                  },
                 },
               },
               'px2rem-loader?remUnit=100',
