@@ -1,3 +1,12 @@
+## [3.0.6](https://github.com/aotuzuche/autos/compare/v3.0.5...v3.0.6) (2020-07-06)
+
+
+### Bug Fixes
+
+* css-loader modules option ([a8b0d2d](https://github.com/aotuzuche/autos/commit/a8b0d2df819722c50f54cf8ffc819af7f491273c))
+
+
+
 ## [3.0.5](https://github.com/aotuzuche/autos/compare/v3.0.4...v3.0.5) (2020-07-03)
 
 
