@@ -93,7 +93,7 @@
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^5.0.8"
   },
   "engines": {
     "node": ">=10.17.0"

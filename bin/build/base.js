@@ -7,7 +7,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const webpack = require('webpack')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const getCacheConfig = require('./lib/getCacheConfig')
 const InlineScriptPlugin = require('./inline-script-plugin')
 const utils = require('./utils')

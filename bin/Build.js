@@ -3,7 +3,7 @@ const ora = require('ora')
 const chalk = require('chalk')
 const rm = require('rimraf')
 const path = require('path')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = options => {
