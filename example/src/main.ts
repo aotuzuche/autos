@@ -1,3 +1,6 @@
+
+import './style.scss'
+
 interface People {
   name: string
 }
