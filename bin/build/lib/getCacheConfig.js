@@ -5,7 +5,6 @@ const { resolveProjectPath } = require('../../lib/utils')
 module.exports = (id, partialIdentifier, configFiles) => {
   const cacheDirectory = resolveProjectPath(`node_modules/.cache/${id}`)
 
-
   const variables = {
     partialIdentifier,
   }
@@ -16,7 +15,6 @@ module.exports = (id, partialIdentifier, configFiles) => {
       if (fs.existsSync(absolutePath)) {
         if (absolutePath.endsWith('.js')) {
           try {
-            // eslint-disable-next-line global-require, import/no-dynamic-require
             return JSON.stringify(require(absolutePath))
           } catch (e) {
             return fs.readFileSync(absolutePath, 'utf-8')
@@ -33,8 +31,7 @@ module.exports = (id, partialIdentifier, configFiles) => {
     for (const file of configFiles) {
       const content = readConfig(file)
       if (content) {
-        variables.configFiles = content.replace(/\r\n?/g, '\n')
-        break
+        variables.configFiles = (variables.configFiles || '') + content.replace(/\r\n?/g, '\n')
       }
     }
   }

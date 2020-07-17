@@ -1,35 +1,20 @@
 const fs = require('fs')
-
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
-
-const isDev = process.env.NODE_ENV === 'development'
-const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const { resolveProjectPath, resolveAutosPath, formatter, transformer } = require('../lib/utils')
+const utils = require('./utils')
 const getCacheConfig = require('./lib/getCacheConfig')
 const InlineScriptPlugin = require('./inline-script-plugin')
-const utils = require('./utils')
 const getEnvs = require('./lib/getEnvs')
 const config = require('./config')
+const resolveEntry = require('./lib/resolveEntry')
 
+const isDev = process.env.NODE_ENV === 'development'
 const { APP_CONFIG } = config
-const { isSystem } = config
-const { resolveProjectPath, resolveAutosPath, formatter, transformer } = require('../lib/utils')
-
-// 获取 webpack 入口路径，支持 typescript
-function resolveEntry() {
-  const supportEntrySuffixs = ['js', 'jsx', 'ts', 'tsx']
-
-  // eslint-disable-next-line no-restricted-syntax
-  for (const suffix of supportEntrySuffixs) {
-    const path = resolveProjectPath(`src/main.${suffix}`)
-    if (fs.existsSync(path)) {
-      return path
-    }
-  }
-}
 
 let webpackConfig = {
   mode: process.env.NODE_ENV,
@@ -96,118 +81,62 @@ let webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: isSystem
-          ? [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-            ]
-          : [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 2,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-              'px2rem-loader?remUnit=100',
-            ],
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')()],
+            },
+          },
+        ],
       },
       {
         test: /\.mcss$/,
-        use: isSystem
-          ? [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 2,
-                  modules: {
-                    localIdentName: '[local]_[hash:base64:6]',
-                  },
-                },
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: {
+                localIdentName: '[local]_[hash:base64:6]',
               },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-              'sass-loader',
-            ]
-          : [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 3,
-                  modules: {
-                    localIdentName: '[local]_[hash:base64:6]',
-                  },
-                },
-              },
-              'px2rem-loader?remUnit=100',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-              'sass-loader',
-            ],
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')()],
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.scss$/,
-        use: isSystem
-          ? [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 2,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-              'sass-loader',
-            ]
-          : [
-              isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 3,
-                },
-              },
-              'px2rem-loader?remUnit=100',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  plugins: [require('autoprefixer')()],
-                },
-              },
-              'sass-loader',
-            ],
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [require('autoprefixer')()],
+            },
+          },
+          'sass-loader',
+        ],
       },
     ],
   },
