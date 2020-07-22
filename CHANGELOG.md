@@ -1,3 +1,12 @@
+## [3.0.7](https://github.com/aotuzuche/autos/compare/v3.0.6...v3.0.7) (2020-07-22)
+
+
+### Bug Fixes
+
+* disable url-loader esModule ([d5c9fa3](https://github.com/aotuzuche/autos/commit/d5c9fa3881cfaa35b1e2b53374a27ccb3399cc73))
+
+
+
 ## [3.0.6](https://github.com/aotuzuche/autos/compare/v3.0.5...v3.0.6) (2020-07-06)
 
 
