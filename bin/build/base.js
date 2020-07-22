@@ -75,6 +75,7 @@ let webpackConfig = {
               limit: 10000,
               name: utils.assetsPath('img/[name].[hash:7].[ext]'),
               publicPath: config[process.env.PACKAGE].cssAssetsPath,
+              esModule: false,
             },
           },
         ],
