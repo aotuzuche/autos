@@ -1,3 +1,12 @@
+## [3.0.9](https://github.com/aotuzuche/autos/compare/v3.0.8...v3.0.9) (2020-07-23)
+
+
+### Bug Fixes
+
+* generate with yarn.lock and improve autos update ([88691e2](https://github.com/aotuzuche/autos/commit/88691e2890e56335d42fac310133420069ca26ad))
+
+
+
 ## [3.0.8](https://github.com/aotuzuche/autos/compare/v3.0.7...v3.0.8) (2020-07-23)
 
 
