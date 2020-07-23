@@ -10,7 +10,7 @@ module.exports = function checkGitClean() {
     })
 
     if (result.stdout && result.stdout.trim()) {
-      logWithExit('本地有改动的文件未提交！！！')
+      logWithExit('本地 GIT 有未提交的改动文件，请提交后再试！')
     }
   } catch (error) {
     if (!/not a git repository/.test(error.message)) {

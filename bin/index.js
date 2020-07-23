@@ -41,9 +41,9 @@ program
   .command('init')
   .alias('i')
   .description('初始化项目')
-  .action(checkGitClean)
   .action(async () => {
     try {
+      checkGitClean()
       await compareVersion()
       const result = await q.prompt(initQ)
 
@@ -58,9 +58,9 @@ program
   .command('create')
   .alias('c')
   .description('创建组件或页面')
-  .action(checkGitClean)
   .action(async () => {
     try {
+      checkGitClean()
       await compareVersion()
       const isExist = await fs.pathExists(path.join(process.cwd(), 'appConfig.js'))
       if (!isExist) {
@@ -86,9 +86,9 @@ program
 program
   .command('update')
   .description('升级脚手架')
-  .action(checkGitClean)
   .action(async () => {
     try {
+      checkGitClean()
       const { result } = await q.prompt([
         {
           type: 'confirm',
