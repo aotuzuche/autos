@@ -1,22 +1,22 @@
 const fs = require('fs-extra')
-const ora = require('ora')
 const DownloadGitRepo = require('./lib/downloadGitRepo')
 const deepMerge = require('./lib/deepMerge')
 const { resolveAutosPath, resolveProjectPath } = require('./lib/utils')
+const installDeps = require('./lib/installDeps')
+const logger = require('./lib/logger')
 
 module.exports = async () => {
-  const templateDir = resolveAutosPath('lib/mobile')
+  const templateDir = resolveAutosPath('lib/backstage')
 
-  const spinner = ora('更新模板').start()
+  logger.spin('更新模板')
 
   await fs.remove(templateDir)
   await fs.ensureDir(templateDir)
-  await DownloadGitRepo('aotuzuche/atzuche-mobile-template', templateDir)
+  await DownloadGitRepo('aotuzuche/atzuche-backstage-template', templateDir)
 
-  spinner.color = 'yellow'
-  spinner.text = '合并 package.json'
+  logger.spin('合并 package.json')
 
-  const newPackageJson = require(resolveAutosPath('lib/mobile/package.json'))
+  const newPackageJson = require(resolveAutosPath('lib/backstage/package.json'))
   const oldPackageJson = require(resolveProjectPath('package.json'))
 
   // 删除一些不需要 merge 的配置
@@ -32,5 +32,7 @@ module.exports = async () => {
     spaces: 2,
   })
 
-  spinner.succeed('升级完成')
+  await installDeps()
+
+  logger.succeed('升级完成')
 }

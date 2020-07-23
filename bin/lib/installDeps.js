@@ -1,6 +1,7 @@
 const execa = require('execa')
 const readline = require('readline')
 const chalk = require('chalk')
+const { resolveProjectPath } = require('./utils')
 
 function toStartOfLine(stream) {
   if (!chalk.supportsColor) {
@@ -25,7 +26,7 @@ function renderProgressBar(curr, total) {
 module.exports = targetDir =>
   new Promise((resolve, reject) => {
     const child = execa('yarn', [], {
-      cwd: targetDir,
+      cwd: targetDir || resolveProjectPath(),
       stdio: ['inherit', 'inherit', 'pipe'],
       shell: true,
     })

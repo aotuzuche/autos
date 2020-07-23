@@ -23,7 +23,7 @@ module.exports = async (params, targetDir) => {
       .destination(targetDir)
       .use((files, ms, done) => {
         Object.keys(files).forEach(fileName => {
-          if (/(yarn\.lock|\.github)/.test(fileName)) {
+          if (/\.github/.test(fileName)) {
             delete files[fileName]
           }
           try {
