@@ -1,3 +1,12 @@
+## [3.0.8](https://github.com/aotuzuche/autos/compare/v3.0.7...v3.0.8) (2020-07-23)
+
+
+### Bug Fixes
+
+* checkGitClean not trigger ([b48be19](https://github.com/aotuzuche/autos/commit/b48be1961db2bd03710cb701dd732eec16dfa9ba))
+
+
+
 ## [3.0.7](https://github.com/aotuzuche/autos/compare/v3.0.6...v3.0.7) (2020-07-22)
 
 
