@@ -47,11 +47,11 @@ module.exports = targetDir =>
       process.stderr.write(buf)
     })
 
-    child.on('close', code => {
-      if (code) {
+    child.on('exit', (code, signal) => {
+      if (code || signal) {
         console.log('')
         console.log('yarn install 失败')
-        reject()
+        reject(code || signal)
       }
       resolve()
     })
