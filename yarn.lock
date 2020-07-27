@@ -217,14 +217,13 @@
     mkdirp "^1.0.4"
 
 "@pmmmwh/react-refresh-webpack-plugin@^0.4.0-beta.4":
-  version "0.4.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.9.tgz#282d9cabd51da26ccc73a7bed648c3d6558ddcef"
-  integrity sha512-lh/kj+4/RjDraVZKFNwYekliYNyIPERVdm4FzC7KI3QkvgiVW3DoPDMCN20roZXxpjZktNVtgki6ErAlomj0ng==
+  version "0.4.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.0-beta.10.tgz#7e904329afa9867d2b19617d83ef20edef58a619"
+  integrity sha512-yhshasySVdNNPJOLUd0CR+4dCQCIpdGDRNDipJSmD/ioJcEUln5ghSfTTpe1+PvpOuQc5w3bOOObo1hcQaoCkg==
   dependencies:
     ansi-html "^0.0.7"
     error-stack-parser "^2.0.6"
     html-entities "^1.2.1"
-    lodash.debounce "^4.0.8"
     native-url "^0.2.6"
     schema-utils "^2.6.5"
     source-map "^0.7.3"
@@ -5721,11 +5720,6 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
-
-lodash.debounce@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
-  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash.ismatch@^4.4.0:
   version "4.4.0"
