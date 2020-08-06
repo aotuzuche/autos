@@ -3,7 +3,9 @@ module.exports = async () => {
   const Webpack = require('webpack')
   const webpackDevConfig = require('./build/dev')
   const config = require('./build/config')
-  const { openBrowser } = require('./lib/openBrowser')
+  const openBrowser = require('react-dev-utils/openBrowser')
+  const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware')
+  const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
   const address = require('address')
   const chalk = require('chalk')
   const portfinder = require('portfinder')
@@ -24,7 +26,7 @@ module.exports = async () => {
   const host = '0.0.0.0'
 
   let {
-    port = 3000,
+    port = '3000',
     // eslint-disable-next-line prefer-const
     proxy = [
       {
@@ -58,21 +60,28 @@ module.exports = async () => {
   port = await portfinder.getPortPromise()
 
   // add hot update
-  webpackDevConfig.entry.unshift(require.resolve('webpack/hot/dev-server'))
-  webpackDevConfig.entry.unshift(
-    `${require.resolve('webpack-dev-server/client')}?http://${host}:${port}/sockjs-node`,
-  )
+  webpackDevConfig.entry.unshift(require.resolve('react-dev-utils/webpackHotDevClient'))
 
   const options = {
-    clientLogLevel: 'silent',
+    clientLogLevel: 'none',
     hot: true,
     host,
     disableHostCheck: true,
     historyApiFallback: true,
     port,
-    overlay: { warnings: false, errors: true },
+    overlay: false,
     proxy,
-    noInfo: true,
+    sockHost: host,
+    sockPath: '/sockjs-node',
+    sockPort: port,
+    transportMode: 'ws',
+    injectClient: false,
+    compress: true,
+    quiet: true,
+    before(app, server) {
+      app.use(evalSourceMapMiddleware(server))
+      app.use(errorOverlayMiddleware())
+    },
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackDevConfig)

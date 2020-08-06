@@ -25,7 +25,11 @@ let webpackConfig = merge(baseWebpackConfig, {
     new webpack.ProgressPlugin(),
 
     new ReactRefreshWebpackPlugin({
-      overlay: false,
+      overlay: {
+        entry: require.resolve('react-dev-utils/webpackHotDevClient'),
+        module: require.resolve('./lib/refreshOverlayInterop'),
+        sockIntegration: false,
+      },
     }),
   ],
 })
