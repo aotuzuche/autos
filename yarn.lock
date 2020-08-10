@@ -6788,9 +6788,9 @@ normalize-url@^4.1.0:
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
 np@^6.2.4:
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/np/-/np-6.3.2.tgz#1d7793274ee4cd466af376331a1f3154bf02f6f1"
-  integrity sha512-8+w+cHLGHM01BfTvIqw2Q61geLPA7HEOeN54jJPQrH/cXHaUWdugKSNV6JiXhpbFKg+fj3JWNKq0d7a/gU0WeQ==
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/np/-/np-6.4.0.tgz#f0923605d0decf16d314c7ae0019c9de86b828d8"
+  integrity sha512-SfE5UKF77E4Ydjt4RHBpD0Lbrxnud9pVZijD51gb0pPV2CtWKTzbNYugrqxkPNWx0j2ptVacN9255/wBhCWTHg==
   dependencies:
     "@samverschueren/stream-to-observable" "^0.3.0"
     any-observable "^0.5.0"
@@ -7028,15 +7028,7 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
-open@^7.0.0:
-  version "7.0.4"
-  resolved "https://registry.yarnpkg.com/open/-/open-7.0.4.tgz#c28a9d315e5c98340bf979fdcb2e58664aa10d83"
-  integrity sha512-brSA+/yq+b08Hsr4c8fsEW2CRzk1BmfN3SAK/5VCHQ9bdoZJ4qa/+AfR0xHjlbbZUyPkUHs1b8x1RqdyZdkVqQ==
-  dependencies:
-    is-docker "^2.0.0"
-    is-wsl "^2.1.1"
-
-open@^7.0.2:
+open@^7.0.0, open@^7.0.2:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/open/-/open-7.1.0.tgz#68865f7d3cb238520fa1225a63cf28bcf8368a1c"
   integrity sha512-lLPI5KgOwEYCDKXf4np7y1PBEkj7HYIyP2DY8mVDRnx0VIIu6bNrRB0R66TuO7Mack6EnTNLm4uvcl1UoklTpA==
