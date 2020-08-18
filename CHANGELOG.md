@@ -1,3 +1,13 @@
+## [3.0.10](https://github.com/aotuzuche/autos/compare/v3.0.9...v3.0.10) (2020-08-18)
+
+
+### Bug Fixes
+
+* installDeps stream exit ([602d9e9](https://github.com/aotuzuche/autos/commit/602d9e901678e0238d0471ce3cda38bd1d9bc931))
+* test "not a git repository" reg ([8bafed8](https://github.com/aotuzuche/autos/commit/8bafed857584db1edfb53ccc4d0252a4670e1a9f))
+
+
+
 ## [3.0.9](https://github.com/aotuzuche/autos/compare/v3.0.8...v3.0.9) (2020-07-23)
 
 
