@@ -18,10 +18,9 @@ const currentNodeVersion = process.versions.node
 const semver = currentNodeVersion.split('.')
 const major = semver[0]
 
-const Dev = require('./Dev')
 const Lint = require('./Lint')
-const Build = require('./Build')
 const logger = require('./lib/logger')
+const bundle = require('./bundle')
 
 // 判断 node 版本
 if (major < 10) {
@@ -113,7 +112,7 @@ program
       process.env.NODE_ENV = 'development'
       process.env.PACKAGE = 'development'
 
-      Dev()
+      bundle()
     } catch (error) {
       console.log('autos:dev--error', error)
     }
@@ -135,7 +134,7 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    Build({
+    bundle({
       analyzer,
     })
   })

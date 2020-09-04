@@ -1,17 +1,14 @@
-module.exports = async () => {
-  const WebpackDevServer = require('webpack-dev-server')
-  const Webpack = require('webpack')
-  const webpackDevConfig = require('./build/dev')
-  const config = require('./build/config')
-  const openBrowser = require('react-dev-utils/openBrowser')
-  const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware')
-  const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
-  const address = require('address')
-  const chalk = require('chalk')
-  const portfinder = require('portfinder')
-  const path = require('path')
-  const fs = require('fs')
+const WebpackDevServer = require('webpack-dev-server')
+const Webpack = require('webpack')
+const openBrowser = require('react-dev-utils/openBrowser')
+const address = require('address')
+const chalk = require('chalk')
+const path = require('path')
+const fs = require('fs')
 
+const config = require('./config')
+
+module.exports = async (webpackConfig, { port }) => {
   function mayProxy(pathname) {
     const maybePublicPath = path.resolve(
       config[process.env.PACKAGE].assetsPublicPath,
@@ -26,7 +23,6 @@ module.exports = async () => {
   const host = '0.0.0.0'
 
   let {
-    port = '3000',
     // eslint-disable-next-line prefer-const
     proxy = [
       {
@@ -55,36 +51,25 @@ module.exports = async () => {
     ],
   } = config.APP_CONFIG
 
-  // dynamic get port
-  portfinder.basePort = port
-  port = await portfinder.getPortPromise()
-
   // add hot update
-  webpackDevConfig.entry.unshift(require.resolve('react-dev-utils/webpackHotDevClient'))
+  webpackConfig.entry.unshift(require.resolve('webpack/hot/dev-server'))
+  webpackConfig.entry.unshift(
+    `${require.resolve('webpack-dev-server/client')}?http://${host}:${port}/sockjs-node`,
+  )
 
   const options = {
-    clientLogLevel: 'none',
+    clientLogLevel: 'silent',
     hot: true,
     host,
     disableHostCheck: true,
     historyApiFallback: true,
     port,
-    overlay: false,
+    overlay: { warnings: false, errors: true },
     proxy,
-    sockHost: host,
-    sockPath: '/sockjs-node',
-    sockPort: port,
-    transportMode: 'ws',
-    injectClient: false,
-    compress: true,
-    quiet: true,
-    before(app, server) {
-      app.use(evalSourceMapMiddleware(server))
-      app.use(errorOverlayMiddleware())
-    },
+    noInfo: true,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
-  const compiler = Webpack(webpackDevConfig)
+  const compiler = Webpack(webpackConfig)
   const server = new WebpackDevServer(compiler, options)
 
   let isFirstCompile = true

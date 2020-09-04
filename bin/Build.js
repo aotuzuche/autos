@@ -6,13 +6,12 @@ const path = require('path')
 const { merge } = require('webpack-merge')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-module.exports = options => {
-  const config = require('./build/config')
+const config = require('./config')
+const formatStats = require('./lib/formatStats')
+const logWithExit = require('./lib/logWithExit')
 
+module.exports = (webpackConfig, options) => {
   const { APP_CONFIG } = config
-  const formatStats = require('./lib/formatStats')
-  const logWithExit = require('./lib/logWithExit')
-  let webpackConfig = require('./build/build')
 
   const setting = {
     test: '测试环境',
