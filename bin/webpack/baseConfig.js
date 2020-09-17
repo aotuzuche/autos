@@ -265,6 +265,7 @@ const getBaseConfig = async () => {
           typescript: {
             context: resolveProjectPath(),
             configFile: resolveProjectPath('tsconfig.json'),
+            typescriptPath: resolveProjectPath('node_modules/typescript'),
           },
         }),
       ],
