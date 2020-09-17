@@ -8,8 +8,6 @@ const { merge } = require('webpack-merge')
 const { ModuleFederationPlugin } = require('webpack').container
 const { resolveProjectPath, resolveAutosPath, formatter, transformer } = require('../lib/utils')
 const utils = require('../utils')
-const getCacheConfig = require('../lib/getCacheConfig')
-const InlineScriptPlugin = require('../plugins/inline-script-plugin')
 const getEnvs = require('../lib/getEnvs')
 const config = require('../config')
 const resolveEntry = require('../lib/resolveEntry')
@@ -29,18 +27,6 @@ const getBaseConfig = async () => {
         {
           test: /\.js[x]?$/,
           use: [
-            {
-              loader: 'cache-loader',
-              options: getCacheConfig(
-                'babel-loader',
-                {
-                  '@babel/core': require('@babel/core/package.json').version,
-                  'babel-loader': require('babel-loader/package.json').version,
-                  browserslist: require(resolveProjectPath('package.json')).browserslist,
-                },
-                ['babel.config.js', '.browserslistrc'],
-              ),
-            },
             'thread-loader',
             {
               loader: 'babel-loader',
@@ -163,11 +149,8 @@ const getBaseConfig = async () => {
         },
       }),
 
-      new InlineScriptPlugin('runtime'),
-
       // 提取公共样式
       new MiniCssExtractPlugin({
-        // chunkFilename: "css/[name].[hash:7].css",
         filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
         allChunks: true,
         ignoreOrder: true,
@@ -230,6 +213,10 @@ const getBaseConfig = async () => {
         resolveProjectPath('node_modules'),
       ],
     },
+    cache: {
+      type: 'filesystem',
+      buildDependencies: { config: [__filename] },
+    },
   }
 
   /**
@@ -244,20 +231,13 @@ const getBaseConfig = async () => {
           {
             test: /\.ts[x]?$/,
             use: [
-              {
-                loader: 'cache-loader',
-                options: getCacheConfig(
-                  'ts-loader',
-                  {
-                    typescript: require(`${resolveProjectPath()}/node_modules/typescript/package.json`)
-                      .version,
-                    'ts-loader': require('ts-loader/package.json').version,
-                  },
-                  'tsconfig.json',
-                ),
-              },
               'thread-loader',
-              'babel-loader',
+              {
+                loader: 'babel-loader',
+                options: {
+                  plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean),
+                },
+              },
               {
                 loader: 'ts-loader',
                 options: {

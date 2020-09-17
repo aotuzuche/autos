@@ -72,29 +72,44 @@ module.exports = async (webpackConfig, { port }) => {
   const compiler = Webpack(webpackConfig)
   const server = new WebpackDevServer(compiler, options)
 
-  let isFirstCompile = true
-
-  compiler.hooks.done.tap('autos dev', stats => {
-    if (stats.hasErrors()) {
-      return
-    }
-
-    console.log()
-    console.log('  App 运行:')
-    console.log(`  - 本地: ${chalk.magenta(`http://localhost:${chalk.cyan(port)}/`)}`)
-    console.log(`  - 局域网: ${chalk.magenta(`http://${address.ip()}:${chalk.cyan(port)}/`)}`)
-    console.log()
-    console.log('  当前环境为开发模式')
-
-    if (isFirstCompile) {
-      isFirstCompile = false
-      openBrowser(`http://localhost:${port}`)
-    }
+  ;['SIGINT', 'SIGTERM'].forEach(signal => {
+    process.on(signal, () => {
+      server.close(() => {
+        compiler.close(() => {
+          process.exit(0)
+        })
+      })
+    })
   })
 
-  server.listen(port, host, err => {
-    if (err) {
-      console.error(err)
-    }
+  return new Promise((resolve, reject) => {
+    let isFirstCompile = true
+
+    compiler.hooks.done.tap('autos dev', stats => {
+      if (stats.hasErrors()) {
+        return
+      }
+
+      console.log()
+      console.log('  App 运行:')
+      console.log(`  - 本地: ${chalk.magenta(`http://localhost:${chalk.cyan(port)}/`)}`)
+      console.log(`  - 局域网: ${chalk.magenta(`http://${address.ip()}:${chalk.cyan(port)}/`)}`)
+      console.log()
+      console.log('  当前环境为开发模式')
+
+      if (isFirstCompile) {
+        isFirstCompile = false
+        openBrowser(`http://localhost:${port}`)
+      }
+
+      resolve(server)
+    })
+
+    server.listen(port, host, err => {
+      if (err) {
+        console.error(err)
+        reject(err)
+      }
+    })
   })
 }

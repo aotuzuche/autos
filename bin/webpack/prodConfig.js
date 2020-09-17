@@ -72,5 +72,10 @@ module.exports = async function getProdConfig(options) {
       chunkFilename: assetsPath('js/[name].[chunkhash].js'),
       publicPath: 'http://127.0.0.1:8080/',
     },
+
+    stats: {
+      cached: false,
+      cachedAssets: false,
+    },
   })
 }

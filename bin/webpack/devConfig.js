@@ -9,6 +9,7 @@ module.exports = async function getDevConfig(options) {
   const baseConfig = await getBaseConfig(options)
 
   return merge(baseConfig, {
+    devtool: 'eval-cheap-module-source-map',
     output: {
       path: config[process.env.PACKAGE].assetsRoot,
       filename: assetsPath('js/[name].js'),
