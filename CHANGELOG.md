@@ -1,3 +1,12 @@
+# [4.0.0-2](https://github.com/aotuzuche/autos/compare/v4.0.0-1...v4.0.0-2) (2020-09-23)
+
+
+### Bug Fixes
+
+* export library ([b8e657a](https://github.com/aotuzuche/autos/commit/b8e657af36bff1b59e8840e5de2f2cc4b55cb8c3))
+
+
+
 # [4.0.0-1](https://github.com/aotuzuche/autos/compare/v4.0.0-0...v4.0.0-1) (2020-09-23)
 
 
