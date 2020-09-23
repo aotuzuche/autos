@@ -10,7 +10,7 @@ module.exports = async function getProdConfig(options) {
   const baseConfig = await getBaseConfig(options)
 
   return merge(baseConfig, {
-    devtool: config[process.env.PACKAGE].productionSourceMap ? '#source-map' : false,
+    devtool: config[process.env.PACKAGE].productionSourceMap ? 'source-map' : false,
     optimization: {
       minimizer: [
         new OptimizeCSSAssetsPlugin({
@@ -70,7 +70,7 @@ module.exports = async function getProdConfig(options) {
       path: config[process.env.PACKAGE].assetsRoot,
       filename: assetsPath('js/[name].[chunkhash].js'),
       chunkFilename: assetsPath('js/[name].[chunkhash].js'),
-      publicPath: 'http://127.0.0.1:8080/',
+      publicPath: config[process.env.PACKAGE].assetsPublicPath,
     },
 
     stats: {
