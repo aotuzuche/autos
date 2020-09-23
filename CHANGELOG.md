@@ -1,3 +1,13 @@
+# [4.0.0-1](https://github.com/aotuzuche/autos/compare/v4.0.0-0...v4.0.0-1) (2020-09-23)
+
+
+### Bug Fixes
+
+* build source map and public path ([fc7951b](https://github.com/aotuzuche/autos/commit/fc7951b5dadb2b6c37ee5c6552bd0c229858cc27))
+* source map cause build fail ([41f1564](https://github.com/aotuzuche/autos/commit/41f15641cf2a866106edbc7592f36d8eb6fc310c))
+
+
+
 # [4.0.0-0](https://github.com/aotuzuche/autos/compare/v3.0.11...v4.0.0-0) (2020-09-23)
 
 
