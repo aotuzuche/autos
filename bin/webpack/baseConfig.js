@@ -173,8 +173,7 @@ const getBaseConfig = async () => {
       // 注册服务
       new ModuleFederationPlugin({
         name: APP_CONFIG.syscode,
-        library:
-          APP_CONFIG.syscode === 'layout' ? undefined : { type: 'var', name: APP_CONFIG.syscode },
+        library: { type: 'var', name: APP_CONFIG.syscode },
         remotes: {
           layout: `layout@/${APP_CONFIG.target}system/layout/remoteEntry.js`,
         },
