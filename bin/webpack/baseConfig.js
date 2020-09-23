@@ -25,6 +25,12 @@ const getBaseConfig = async () => {
     module: {
       rules: [
         {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
+        {
           test: /\.js[x]?$/,
           use: [
             'thread-loader',
@@ -82,7 +88,7 @@ const getBaseConfig = async () => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')()],
+                postcssOptions: { plugins: [require('autoprefixer')()] },
               },
             },
           ],
@@ -103,7 +109,7 @@ const getBaseConfig = async () => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')()],
+                postcssOptions: { plugins: [require('autoprefixer')()] },
               },
             },
             'sass-loader',
@@ -122,7 +128,7 @@ const getBaseConfig = async () => {
             {
               loader: 'postcss-loader',
               options: {
-                plugins: [require('autoprefixer')()],
+                postcssOptions: { plugins: [require('autoprefixer')()] },
               },
             },
             'sass-loader',
@@ -168,10 +174,15 @@ const getBaseConfig = async () => {
       // 注册服务
       new ModuleFederationPlugin({
         name: APP_CONFIG.syscode,
-        library: { type: 'var', name: APP_CONFIG.syscode },
+        library:
+          APP_CONFIG.syscode === 'layout' ? undefined : { type: 'var', name: APP_CONFIG.syscode },
+        remotes: {
+          layout: `layout@/${APP_CONFIG.target}system/layout/remoteEntry.js`,
+        },
         filename: 'remoteEntry.js',
         exposes: {
           Routes: './src/routes',
+          './bootstrap': './src/bootstrap',
         },
         shared: {
           ...deps,
@@ -209,14 +220,14 @@ const getBaseConfig = async () => {
     resolveLoader: {
       modules: [
         'node_modules',
-        resolveAutosPath('node_modules'),
         resolveProjectPath('node_modules'),
+        resolveAutosPath('node_modules'),
       ],
     },
-    cache: {
-      type: 'filesystem',
-      buildDependencies: { config: [__filename] },
-    },
+    // cache: {
+    //   type: 'filesystem',
+    //   buildDependencies: { config: [__filename] },
+    // },
   }
 
   /**
@@ -265,7 +276,6 @@ const getBaseConfig = async () => {
           typescript: {
             context: resolveProjectPath(),
             configFile: resolveProjectPath('tsconfig.json'),
-            typescriptPath: resolveProjectPath('node_modules/typescript'),
           },
         }),
       ],
