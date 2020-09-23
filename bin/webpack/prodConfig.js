@@ -10,7 +10,7 @@ module.exports = async function getProdConfig(options) {
   const baseConfig = await getBaseConfig(options)
 
   return merge(baseConfig, {
-    devtool: config[process.env.PACKAGE].productionSourceMap ? 'source-map' : false,
+    devtool: config[process.env.PACKAGE].productionSourceMap ? 'cheap-module-source-map' : false,
     optimization: {
       minimizer: [
         new OptimizeCSSAssetsPlugin({

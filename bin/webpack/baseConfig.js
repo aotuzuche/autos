@@ -158,7 +158,6 @@ const getBaseConfig = async () => {
       // 提取公共样式
       new MiniCssExtractPlugin({
         filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
-        allChunks: true,
         ignoreOrder: true,
       }),
 
