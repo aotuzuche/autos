@@ -1,3 +1,18 @@
+# [4.0.0-0](https://github.com/aotuzuche/autos/compare/v3.0.11...v4.0.0-0) (2020-09-23)
+
+
+### Bug Fixes
+
+* module federation layout ([12aa7f2](https://github.com/aotuzuche/autos/commit/12aa7f2a37c0868ccddf6244b006de0becb8738f))
+* use new webpack cache ([f03273f](https://github.com/aotuzuche/autos/commit/f03273fcdd289ef2a033e8b0ea74ac3f850e6f8a))
+
+
+### Features
+
+* webpack 5 beta ([115fe7a](https://github.com/aotuzuche/autos/commit/115fe7a35b235ee5527a7693bce2f7b80813e89f))
+
+
+
 ## [3.0.11](https://github.com/aotuzuche/autos/compare/v3.0.10...v3.0.11) (2020-08-18)
 
 
