@@ -1,4 +1,4 @@
-module.exports = () => {
+module.exports = (config = {}) => {
   const raw = Object.keys(process.env)
     .filter(key => /^AT_/i.test(key))
     .reduce(
@@ -15,7 +15,7 @@ module.exports = () => {
   const stringified = Object.keys(raw).reduce((env, key) => {
     env[`process.env.${key}`] = JSON.stringify(raw[key])
     return env
-  }, {})
+  }, config)
 
   return stringified
 }

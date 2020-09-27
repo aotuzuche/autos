@@ -12,11 +12,29 @@ const getEnvs = require('../lib/getEnvs')
 const config = require('../config')
 const resolveEntry = require('../lib/resolveEntry')
 
-const isDev = process.env.NODE_ENV === 'development'
-const { APP_CONFIG } = config
-const deps = require(resolveProjectPath('package.json')).dependencies
-
 const getBaseConfig = async () => {
+  const isDev = process.env.NODE_ENV === 'development'
+  const { APP_CONFIG } = config
+  const deps = require(resolveProjectPath('package.json')).dependencies
+
+  const styleRules = [
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: isDev,
+      },
+    },
+    {
+      loader: 'css-loader',
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        postcssOptions: { plugins: [require('autoprefixer')()] },
+      },
+    },
+  ]
+
   let webpackConfig = {
     mode: process.env.NODE_ENV,
 
@@ -77,62 +95,15 @@ const getBaseConfig = async () => {
         },
         {
           test: /\.css$/,
-          use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: { plugins: [require('autoprefixer')()] },
-              },
-            },
-          ],
+          use: styleRules,
         },
         {
           test: /\.mcss$/,
-          use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                modules: {
-                  localIdentName: '[local]_[hash:base64:6]',
-                },
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: { plugins: [require('autoprefixer')()] },
-              },
-            },
-            'sass-loader',
-          ],
+          use: [...styleRules, 'sass-loader'],
         },
         {
           test: /\.scss$/,
-          use: [
-            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-              },
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: { plugins: [require('autoprefixer')()] },
-              },
-            },
-            'sass-loader',
-          ],
+          use: [...styleRules, 'sass-loader'],
         },
       ],
     },
@@ -158,6 +129,7 @@ const getBaseConfig = async () => {
       // 提取公共样式
       new MiniCssExtractPlugin({
         filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
+        chunkFilename: isDev ? 'css/[id].css' : 'css/[id].[contenthash:7].css',
         ignoreOrder: true,
       }),
 
@@ -173,9 +145,9 @@ const getBaseConfig = async () => {
       // 注册服务
       new ModuleFederationPlugin({
         name: APP_CONFIG.syscode,
-        library: { type: 'var', name: APP_CONFIG.syscode },
+        // library: { type: 'var', name: APP_CONFIG.syscode },
         remotes: {
-          layout: `layout@/${APP_CONFIG.target}system/layout/remoteEntry.js`,
+          layout: `layout@${isDev ? APP_CONFIG.target : '/'}system/layout/remoteEntry.js`,
         },
         filename: 'remoteEntry.js',
         exposes: {
@@ -218,8 +190,8 @@ const getBaseConfig = async () => {
     resolveLoader: {
       modules: [
         'node_modules',
-        resolveProjectPath('node_modules'),
         resolveAutosPath('node_modules'),
+        resolveProjectPath('node_modules'),
       ],
     },
     // cache: {

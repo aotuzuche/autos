@@ -12,6 +12,7 @@ module.exports = async function getProdConfig(options) {
   return merge(baseConfig, {
     devtool: config[process.env.PACKAGE].productionSourceMap ? 'cheap-module-source-map' : false,
     optimization: {
+      realContentHash: true,
       minimizer: [
         new OptimizeCSSAssetsPlugin({
           cssProcessorOptions: {
@@ -62,13 +63,16 @@ module.exports = async function getProdConfig(options) {
       ],
     },
     plugins: [
-      // 启用范围提升，用于改进包的体积
       new webpack.optimize.ModuleConcatenationPlugin(),
+
+      new webpack.optimize.MinChunkSizePlugin({
+        minChunkSize: 10000, // Minimum number of characters
+      }),
     ],
 
     output: {
       path: config[process.env.PACKAGE].assetsRoot,
-      filename: assetsPath('js/[name].[chunkhash].js'),
+      filename: assetsPath('js/[name].[contenthash].js'),
       chunkFilename: assetsPath('js/[name].[chunkhash].js'),
       publicPath: config[process.env.PACKAGE].assetsPublicPath,
     },
