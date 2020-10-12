@@ -14,7 +14,7 @@ module.exports = async function getDevConfig(options) {
       path: config[process.env.PACKAGE].assetsRoot,
       filename: assetsPath('js/[name].js'),
       chunkFilename: assetsPath('js/[name].js'),
-      publicPath: config[process.env.PACKAGE].assetsPublicPath,
+      publicPath: `http://localhost:${options.port}/`,
     },
 
     plugins: [

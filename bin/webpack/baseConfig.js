@@ -16,12 +16,11 @@ const getBaseConfig = async () => {
   const isDev = process.env.NODE_ENV === 'development'
   const { APP_CONFIG } = config
   const deps = require(resolveProjectPath('package.json')).dependencies
-
   const styleRules = [
     {
       loader: MiniCssExtractPlugin.loader,
       options: {
-        hmr: isDev,
+        esModule: false,
       },
     },
     {
@@ -147,7 +146,7 @@ const getBaseConfig = async () => {
         name: APP_CONFIG.syscode,
         // library: { type: 'var', name: APP_CONFIG.syscode },
         remotes: {
-          layout: `layout@${isDev ? APP_CONFIG.target : '/'}system/layout/remoteEntry.js`,
+          layout: `layout@${APP_CONFIG.layout || '/'}system/layout/remoteEntry.js`,
         },
         filename: 'remoteEntry.js',
         exposes: {
