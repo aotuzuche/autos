@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/aotuzuche/autos/compare/v4.0.0...v4.0.1) (2020-10-12)
+
+
+### Features
+
+* add mfe config ([b9658ac](https://github.com/aotuzuche/autos/commit/b9658ac50bbb135e5ec844d303e1fbc538bbb741))
+
+
+
 # [4.0.0](https://github.com/aotuzuche/autos/compare/v4.0.0-3...v4.0.0) (2020-10-12)
 
 
