@@ -141,33 +141,34 @@ const getBaseConfig = async () => {
       // Ignore moment locale
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
-      // 注册服务
-      new ModuleFederationPlugin({
-        name: APP_CONFIG.syscode,
-        // library: { type: 'var', name: APP_CONFIG.syscode },
-        remotes: {
-          layout: `layout@${APP_CONFIG.layout || '/'}system/layout/remoteEntry.js`,
-        },
-        filename: 'remoteEntry.js',
-        exposes: {
-          Routes: './src/routes',
-          './bootstrap': './src/bootstrap',
-        },
-        shared: {
-          ...deps,
-          react: {
-            eager: true,
-            singleton: true,
-            requiredVersion: deps.react,
+      // 注册微前端服务
+      APP_CONFIG.mfe &&
+        new ModuleFederationPlugin({
+          name: APP_CONFIG.syscode,
+          // library: { type: 'var', name: APP_CONFIG.syscode },
+          remotes: {
+            layout: `layout@${APP_CONFIG.layout || '/'}system/layout/remoteEntry.js`,
           },
-          'react-dom': {
-            eager: true,
-            singleton: true,
-            requiredVersion: deps['react-dom'],
+          filename: 'remoteEntry.js',
+          exposes: {
+            Routes: './src/routes',
+            './bootstrap': './src/bootstrap',
           },
-        },
-      }),
-    ],
+          shared: {
+            ...deps,
+            react: {
+              eager: true,
+              singleton: true,
+              requiredVersion: deps.react,
+            },
+            'react-dom': {
+              eager: true,
+              singleton: true,
+              requiredVersion: deps['react-dom'],
+            },
+          },
+        }),
+    ].filter(Boolean),
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js', '.scss', '.css', '.mass'],
       alias: {
