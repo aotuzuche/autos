@@ -1,3 +1,13 @@
+## [4.0.2](https://github.com/aotuzuche/autos/compare/v4.0.1...v4.0.2) (2020-10-13)
+
+
+### Bug Fixes
+
+* init fail ([7b5d15d](https://github.com/aotuzuche/autos/commit/7b5d15d73bd3afd8d424bedf5b4abdf5b438b578))
+* lint fail ([e3bfa69](https://github.com/aotuzuche/autos/commit/e3bfa69d9f2914d4bdb0fc0a6a249f7b0f412150))
+
+
+
 ## [4.0.1](https://github.com/aotuzuche/autos/compare/v4.0.0...v4.0.1) (2020-10-12)
 
 
