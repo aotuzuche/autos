@@ -133,7 +133,7 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    require('./bundle')()({
+    require('./bundle')({
       analyzer,
     })
   })
