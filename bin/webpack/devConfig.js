@@ -18,7 +18,7 @@ module.exports = async function getDevConfig(options) {
     },
 
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
+      // new webpack.HotModuleReplacementPlugin(),
 
       new webpack.ProgressPlugin(),
 

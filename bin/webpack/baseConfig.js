@@ -127,8 +127,12 @@ const getBaseConfig = async () => {
 
       // 提取公共样式
       new MiniCssExtractPlugin({
-        filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash:7].css',
-        chunkFilename: isDev ? 'css/[id].css' : 'css/[id].[contenthash:7].css',
+        filename: isDev
+          ? `css/${APP_CONFIG.syscode}.[name].css`
+          : `css/${APP_CONFIG.syscode}.[name].[contenthash:7].css`,
+        chunkFilename: isDev
+          ? `css/${APP_CONFIG.syscode}.[id].css`
+          : `css/${APP_CONFIG.syscode}.[id].[contenthash:7].css`,
         ignoreOrder: true,
       }),
 

@@ -20,7 +20,6 @@ const major = semver[0]
 
 const Lint = require('./Lint')
 const logger = require('./lib/logger')
-const bundle = require('./bundle')
 
 // 判断 node 版本
 if (major < 10) {
@@ -112,7 +111,7 @@ program
       process.env.NODE_ENV = 'development'
       process.env.PACKAGE = 'development'
 
-      bundle()
+      require('./bundle')()
     } catch (error) {
       console.log('autos:dev--error', error)
     }
@@ -134,7 +133,7 @@ program
       process.env.PACKAGE = 'production'
     }
 
-    bundle({
+    require('./bundle')()({
       analyzer,
     })
   })
