@@ -55,6 +55,12 @@ module.exports = {
 
   // 增加转译路径，因为默认不包含 nodu_modules
   includeFiles: ['nodu_modules/some_module'],
+
+  // 是否代理登录页(默认关闭)
+  autoLogin: true,
+
+  // 开启微前端(默认关闭)
+  mfe: true,
 }
 ```
 
