@@ -2,7 +2,7 @@ const fs = require('fs')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const { merge } = require('webpack-merge')
 const { ModuleFederationPlugin } = require('webpack').container
@@ -18,9 +18,11 @@ const getBaseConfig = async () => {
   const deps = require(resolveProjectPath('package.json')).dependencies
   const styleRules = [
     {
-      loader: MiniCssExtractPlugin.loader,
+      loader: 'style-loader',
       options: {
         esModule: false,
+        injectType: 'singletonStyleTag',
+        attributes: { id: `${APP_CONFIG.syscode}Style` },
       },
     },
     {
@@ -126,15 +128,15 @@ const getBaseConfig = async () => {
       }),
 
       // 提取公共样式
-      new MiniCssExtractPlugin({
-        filename: isDev
-          ? `css/${APP_CONFIG.syscode}.[name].css`
-          : `css/${APP_CONFIG.syscode}.[name].[contenthash:7].css`,
-        chunkFilename: isDev
-          ? `css/${APP_CONFIG.syscode}.[id].css`
-          : `css/${APP_CONFIG.syscode}.[id].[contenthash:7].css`,
-        ignoreOrder: true,
-      }),
+      // new MiniCssExtractPlugin({
+      //   filename: isDev
+      //     ? `css/${APP_CONFIG.syscode}.[name].css`
+      //     : `css/${APP_CONFIG.syscode}.[name].[contenthash:7].css`,
+      //   chunkFilename: isDev
+      //     ? `css/${APP_CONFIG.syscode}.[id].css`
+      //     : `css/${APP_CONFIG.syscode}.[id].[contenthash:7].css`,
+      //   ignoreOrder: true,
+      // }),
 
       // 美化本地开发时的终端界面
       new FriendlyErrorsWebpackPlugin({
@@ -151,7 +153,7 @@ const getBaseConfig = async () => {
           name: APP_CONFIG.syscode,
           // library: { type: 'var', name: APP_CONFIG.syscode },
           remotes: {
-            layout: `layout@${APP_CONFIG.layout || '/'}system/layout/remoteEntry.js`,
+            layout: `layout@${APP_CONFIG.layout || '/system/layout/'}remoteEntry.js`,
           },
           filename: 'remoteEntry.js',
           exposes: {
