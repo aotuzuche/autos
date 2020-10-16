@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/aotuzuche/autos/compare/v4.1.0...v4.2.0) (2020-10-16)
+
+
+### Features
+
+* enable cache, and set default style handle ([32bea05](https://github.com/aotuzuche/autos/commit/32bea057c14d3a3e42e86f4933bfb5dca0542260))
+
+
+
 # [4.1.0](https://github.com/aotuzuche/autos/compare/v4.0.2...v4.1.0) (2020-10-15)
 
 
