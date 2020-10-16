@@ -1,3 +1,12 @@
+## [4.2.1](https://github.com/aotuzuche/autos/compare/v4.2.0...v4.2.1) (2020-10-16)
+
+
+### Bug Fixes
+
+* dev style hot ([55be123](https://github.com/aotuzuche/autos/commit/55be123be07a7f05f9607b8fee49d7edc4268a3f))
+
+
+
 # [4.2.0](https://github.com/aotuzuche/autos/compare/v4.1.0...v4.2.0) (2020-10-16)
 
 
