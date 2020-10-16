@@ -65,8 +65,6 @@ module.exports = async function getProdConfig(options) {
               safari10: true,
             },
           },
-          sourceMap: true,
-          cache: true,
           parallel: true,
         }),
       ],

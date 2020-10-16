@@ -2,7 +2,7 @@ const fs = require('fs')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 const { merge } = require('webpack-merge')
 const { ModuleFederationPlugin } = require('webpack').container
@@ -16,15 +16,24 @@ const getBaseConfig = async () => {
   const isDev = process.env.NODE_ENV === 'development'
   const { APP_CONFIG } = config
   const deps = require(resolveProjectPath('package.json')).dependencies
+  const isMfe = !!APP_CONFIG.mfe
+
   const styleRules = [
-    {
-      loader: 'style-loader',
-      options: {
-        esModule: false,
-        injectType: 'singletonStyleTag',
-        attributes: { id: `${APP_CONFIG.syscode}Style` },
-      },
-    },
+    isMfe
+      ? {
+          loader: 'style-loader',
+          options: {
+            esModule: false,
+            injectType: 'singletonStyleTag',
+            attributes: { id: `${APP_CONFIG.syscode}Style` },
+          },
+        }
+      : {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            esModule: false,
+          },
+        },
     {
       loader: 'css-loader',
     },
@@ -128,15 +137,16 @@ const getBaseConfig = async () => {
       }),
 
       // 提取公共样式
-      // new MiniCssExtractPlugin({
-      //   filename: isDev
-      //     ? `css/${APP_CONFIG.syscode}.[name].css`
-      //     : `css/${APP_CONFIG.syscode}.[name].[contenthash:7].css`,
-      //   chunkFilename: isDev
-      //     ? `css/${APP_CONFIG.syscode}.[id].css`
-      //     : `css/${APP_CONFIG.syscode}.[id].[contenthash:7].css`,
-      //   ignoreOrder: true,
-      // }),
+      isMfe &&
+        new MiniCssExtractPlugin({
+          filename: isDev
+            ? `css/${APP_CONFIG.syscode}.[name].css`
+            : `css/${APP_CONFIG.syscode}.[name].[contenthash:7].css`,
+          chunkFilename: isDev
+            ? `css/${APP_CONFIG.syscode}.[id].css`
+            : `css/${APP_CONFIG.syscode}.[id].[contenthash:7].css`,
+          ignoreOrder: true,
+        }),
 
       // 美化本地开发时的终端界面
       new FriendlyErrorsWebpackPlugin({
@@ -148,7 +158,7 @@ const getBaseConfig = async () => {
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 
       // 注册微前端服务
-      APP_CONFIG.mfe &&
+      isMfe &&
         new ModuleFederationPlugin({
           name: APP_CONFIG.syscode,
           // library: { type: 'var', name: APP_CONFIG.syscode },
@@ -200,10 +210,12 @@ const getBaseConfig = async () => {
         resolveProjectPath('node_modules'),
       ],
     },
-    // cache: {
-    //   type: 'filesystem',
-    //   buildDependencies: { config: [__filename] },
-    // },
+    cache: isDev
+      ? {
+          type: 'filesystem',
+          buildDependencies: { config: [__filename] },
+        }
+      : false,
   }
 
   /**
