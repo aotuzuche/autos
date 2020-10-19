@@ -66,61 +66,57 @@ module.exports = {
 
 ## 快速开始
 
-```bash
-$ npm i autos -g
-```
-
-## 创建新项目
+### 创建新项目
 
 ```bash
-$ autos init
+$ npx autos init
 ```
 
 或者
 
 ```bash
-$ autos i
+$ npx autos i
 ```
 
-## 创建组件或者页面
+### 创建组件或者页面
 
 ```bash
-$ autos create
+$ npx autos create
 ```
 
 或者
 
 ```bash
-$ autos c
+$ npx autos c
 ```
 
-## 开发项目
+### 开发项目
 
 ```bash
-$ autos dev
+$ npx autos dev
 ```
 
-## 发布项目
+### 发布项目
 
-### 测试环境发布项目
+#### 测试环境发布项目
 
 ```bash
-$ autos build -t
+$ npx autos build -t
 ```
 
 或者
 
 ```bash
-$ autos build --test
+$ npx autos build --test
 ```
 
-### 正式环境发布项目
+#### 正式环境发布项目
 
 ```bash
 $ autos build
 ```
 
-## 实际项目中使用
+### 实际项目中使用
 
 ```bash
 $ yarn dev
@@ -136,20 +132,20 @@ $ npm run test
 $ npm run prod
 ```
 
-## 升级项目
+### 升级项目
 
 升级项目配置
 
 ```bash
-$ autos update
+$ npx autos update
 ```
 
 ![update.gif](./assets/images/update.gif)
 
-## 开启分析仪
+### 开启分析页面
 
 查看构建完成后包含的依赖关系
 
 ```bash
-$ autos build -t --analyzer
+$ npx autos build --analyzer
 ```
