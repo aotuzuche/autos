@@ -1,3 +1,12 @@
+## [4.2.3](https://github.com/aotuzuche/autos/compare/v4.2.2...v4.2.3) (2020-10-20)
+
+
+### Bug Fixes
+
+* if not a git repository when check clean ([69cfa6c](https://github.com/aotuzuche/autos/commit/69cfa6c067731a95a9f50e14457ff8f776c06a21))
+
+
+
 ## [4.2.2](https://github.com/aotuzuche/autos/compare/v4.2.1...v4.2.2) (2020-10-19)
 
 
