@@ -1,3 +1,7 @@
+## [4.2.4](https://github.com/aotuzuche/autos/compare/v4.2.3...v4.2.4) (2020-10-28)
+
+
+
 ## [4.2.3](https://github.com/aotuzuche/autos/compare/v4.2.2...v4.2.3) (2020-10-20)
 
 
