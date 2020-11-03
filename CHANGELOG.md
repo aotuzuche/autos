@@ -1,3 +1,12 @@
+## [4.2.6](https://github.com/aotuzuche/autos/compare/v4.2.5...v4.2.6) (2020-11-03)
+
+
+### Bug Fixes
+
+* mfe layout prefix ([c9f19b9](https://github.com/aotuzuche/autos/commit/c9f19b95e966aadeda3b4e0154b9ab1d68eaa2c8))
+
+
+
 ## [4.2.5](https://github.com/aotuzuche/autos/compare/v4.2.4...v4.2.5) (2020-11-02)
 
 
