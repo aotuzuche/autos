@@ -1,3 +1,12 @@
+## [4.2.7](https://github.com/aotuzuche/autos/compare/v4.2.6...v4.2.7) (2020-11-13)
+
+
+### Bug Fixes
+
+* layout remote addr ([16a6ba2](https://github.com/aotuzuche/autos/commit/16a6ba20d04a65c4cd2f05250cc7c8a562b084b1))
+
+
+
 ## [4.2.6](https://github.com/aotuzuche/autos/compare/v4.2.5...v4.2.6) (2020-11-03)
 
 
