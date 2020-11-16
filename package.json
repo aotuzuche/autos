@@ -58,7 +58,7 @@
     "eslint-loader": "^4.0.2",
     "execa": "^4.1.0",
     "file-loader": "^6.2.0",
-    "fork-ts-checker-webpack-plugin": "^5.2.1",
+    "fork-ts-checker-webpack-plugin": "^6.0.2",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "fs-extra": "^9.0.1",
     "hash-sum": "^2.0.0",
