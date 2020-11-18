@@ -1,3 +1,13 @@
+## [4.2.9](https://github.com/aotuzuche/autos/compare/v4.2.8...v4.2.9) (2020-11-18)
+
+
+### Bug Fixes
+
+* css module options ([073b4a5](https://github.com/aotuzuche/autos/commit/073b4a575ab3dc74d01fcc61776c5fac377fc034))
+* resolve invalid css module ([5c59a39](https://github.com/aotuzuche/autos/commit/5c59a3940436080d27f5eb8f5231f45707f8983b))
+
+
+
 ## [4.2.8](https://github.com/aotuzuche/autos/compare/v4.2.7...v4.2.8) (2020-11-17)
 
 
