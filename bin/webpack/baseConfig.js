@@ -37,8 +37,10 @@ const getBaseConfig = async () => {
     {
       loader: 'css-loader',
       options: {
-        auto: /\.mcss$/,
-        localIdentName: '[local]_[hash:base64:6]',
+        modules: {
+          auto: /\.mcss$/,
+          localIdentName: '[local]_[hash:base64:6]',
+        },
       },
     },
     {
