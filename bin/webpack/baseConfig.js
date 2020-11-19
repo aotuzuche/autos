@@ -165,7 +165,7 @@ const getBaseConfig = async () => {
           name: APP_CONFIG.syscode,
           // library: { type: 'var', name: APP_CONFIG.syscode },
           remotes: {
-            layout: `layout@${APP_CONFIG.layout || '/system/layout/'}remoteEntry.js`,
+            layout: `layout@${APP_CONFIG.layout || '/system/layout/'}remoteEntry.js?${Date.now()}`,
           },
           filename: 'remoteEntry.js',
           exposes: {
