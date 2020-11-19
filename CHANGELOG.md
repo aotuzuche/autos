@@ -1,3 +1,12 @@
+## [4.2.10](https://github.com/aotuzuche/autos/compare/v4.2.9...v4.2.10) (2020-11-19)
+
+
+### Bug Fixes
+
+* add layout remoteEntry hash ([49a221a](https://github.com/aotuzuche/autos/commit/49a221ad6e9b6fd690b7396a1c8a8fd1dbf8a17e))
+
+
+
 ## [4.2.9](https://github.com/aotuzuche/autos/compare/v4.2.8...v4.2.9) (2020-11-18)
 
 
