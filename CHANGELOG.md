@@ -1,3 +1,12 @@
+## [4.2.11](https://github.com/aotuzuche/autos/compare/v4.2.10...v4.2.11) (2020-12-03)
+
+
+### Bug Fixes
+
+* improve question and template clone ([8874e91](https://github.com/aotuzuche/autos/commit/8874e915385f66d92f047ce42dc356ba30dccbf8))
+
+
+
 ## [4.2.10](https://github.com/aotuzuche/autos/compare/v4.2.9...v4.2.10) (2020-11-19)
 
 
