@@ -18,7 +18,7 @@ yarn-error.log
 .env
 .keep
 CHANGELOG.md
-lib
+/lib
 openChrome.applescript
 .npmrc
 LICENSE

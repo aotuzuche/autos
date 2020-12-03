@@ -20,14 +20,8 @@ module.exports = {
     },
     {
       type: 'input',
-      name: 'projectName',
-      message: '请输入项目名称',
-      default: '凹凸租车',
-    },
-    {
-      type: 'input',
       name: 'prodPath',
-      message: '请输入项目构建的目标文件夹名',
+      message: '请输入项目名称（system code）',
       validate: input => {
         if (input === '') {
           return '请输入有效的文件名'
