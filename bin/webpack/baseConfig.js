@@ -140,6 +140,7 @@ const getBaseConfig = async () => {
           collapseWhitespace: true, // 压缩成一行
           removeAttributeQuotes: false, // 删除引号
         },
+        hash: true,
       }),
 
       // 提取公共样式
