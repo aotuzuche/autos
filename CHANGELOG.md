@@ -1,3 +1,12 @@
+## [4.2.12](https://github.com/aotuzuche/autos/compare/v4.2.11...v4.2.12) (2020-12-16)
+
+
+### Bug Fixes
+
+* add output assets hash ([df6e980](https://github.com/aotuzuche/autos/commit/df6e980b665e8e2c4c546a123eea7a1dde0dbae1))
+
+
+
 ## [4.2.11](https://github.com/aotuzuche/autos/compare/v4.2.10...v4.2.11) (2020-12-03)
 
 
