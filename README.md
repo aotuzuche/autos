@@ -61,6 +61,9 @@ module.exports = {
 
   // 开启微前端(默认关闭)
   mfe: true,
+
+  // 微前端导出模块
+  exposes: {},
 }
 ```
 

@@ -16,7 +16,8 @@ const getBaseConfig = async () => {
   const isDev = process.env.NODE_ENV === 'development'
   const { APP_CONFIG } = config
   const deps = require(resolveProjectPath('package.json')).dependencies
-  const isMfe = !!APP_CONFIG.mfe
+  const { mfe, syscode, exposes = {} } = APP_CONFIG
+  const isMfe = !!mfe
 
   const styleRules = [
     isMfe || isDev
@@ -25,7 +26,7 @@ const getBaseConfig = async () => {
           options: {
             esModule: false,
             injectType: 'singletonStyleTag',
-            attributes: { id: `${APP_CONFIG.syscode}Style` },
+            attributes: { id: `${syscode}Style` },
           },
         }
       : {
@@ -169,10 +170,11 @@ const getBaseConfig = async () => {
             layout: `layout@${APP_CONFIG.layout || '/system/layout/'}remoteEntry.js?${Date.now()}`,
           },
           filename: 'remoteEntry.js',
-          exposes: {
+          // eslint-disable-next-line prefer-object-spread
+          exposes: Object.assign({}, exposes, {
             Routes: './src/routes',
             './bootstrap': './src/bootstrap',
-          },
+          }),
           shared: {
             ...deps,
             react: {
