@@ -1,3 +1,12 @@
+# [4.3.0](https://github.com/aotuzuche/autos/compare/v4.2.12...v4.3.0) (2020-12-30)
+
+
+### Features
+
+* add mfe exposes ([5be54d3](https://github.com/aotuzuche/autos/commit/5be54d3092943ee886cd65624b431be23c78b93b))
+
+
+
 ## [4.2.12](https://github.com/aotuzuche/autos/compare/v4.2.11...v4.2.12) (2020-12-16)
 
 
