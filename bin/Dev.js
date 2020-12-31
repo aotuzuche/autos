@@ -51,12 +51,6 @@ module.exports = async (webpackConfig, { port }) => {
     ],
   } = config.APP_CONFIG
 
-  // add hot update
-  webpackConfig.entry.unshift(require.resolve('webpack/hot/dev-server'))
-  webpackConfig.entry.unshift(
-    `${require.resolve('webpack-dev-server/client')}?http://${host}:${port}/sockjs-node`,
-  )
-
   const options = {
     clientLogLevel: 'silent',
     hot: true,
@@ -67,6 +61,8 @@ module.exports = async (webpackConfig, { port }) => {
     overlay: { warnings: false, errors: true },
     proxy,
     noInfo: true,
+    injectClient: true,
+    injectHot: true,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackConfig)
