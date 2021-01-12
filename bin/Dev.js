@@ -63,6 +63,7 @@ module.exports = async (webpackConfig, { port }) => {
     injectClient: true,
     injectHot: true,
     hot: !isMfe,
+    liveReload: !!isMfe,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackConfig)
