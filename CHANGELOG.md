@@ -1,3 +1,17 @@
+# [4.4.0](https://github.com/aotuzuche/autos/compare/v4.3.0...v4.4.0) (2021-01-12)
+
+
+### Bug Fixes
+
+* if not mfe liveReload will disabled ([1651015](https://github.com/aotuzuche/autos/commit/1651015006bea2465b3a9f0a3abb2df87a64da3a))
+
+
+### Features
+
+* use webpack-dev-server beta for mfe ([5ece338](https://github.com/aotuzuche/autos/commit/5ece338948e3baf7be6cf4d2518c3733f6299d9e))
+
+
+
 # [4.3.0](https://github.com/aotuzuche/autos/compare/v4.2.12...v4.3.0) (2020-12-30)
 
 
