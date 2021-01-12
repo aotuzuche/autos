@@ -19,7 +19,9 @@ module.exports = async (webpackConfig, { port }) => {
     return !(isPublicFileRequest || isWdsEndpointRequest)
   }
 
-  const { target, autoLogin } = config.APP_CONFIG
+  const { target, autoLogin, mfe } = config.APP_CONFIG
+  const isMfe = !!mfe
+
   const host = '0.0.0.0'
 
   let {
@@ -52,17 +54,15 @@ module.exports = async (webpackConfig, { port }) => {
   } = config.APP_CONFIG
 
   const options = {
-    clientLogLevel: 'silent',
-    hot: true,
     host,
-    disableHostCheck: true,
+    firewall: false,
     historyApiFallback: true,
     port,
     overlay: { warnings: false, errors: true },
     proxy,
-    noInfo: true,
     injectClient: true,
     injectHot: true,
+    hot: !isMfe,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackConfig)
