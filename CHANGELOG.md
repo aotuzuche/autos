@@ -1,3 +1,12 @@
+## [4.4.1](https://github.com/aotuzuche/autos/compare/v4.4.0...v4.4.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* hot disabled cause compile fail ([14c93a7](https://github.com/aotuzuche/autos/commit/14c93a74c4198405daf2b243a1da1dd651719a67))
+
+
+
 # [4.4.0](https://github.com/aotuzuche/autos/compare/v4.3.0...v4.4.0) (2021-01-12)
 
 
