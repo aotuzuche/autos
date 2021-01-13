@@ -62,7 +62,7 @@ module.exports = async (webpackConfig, { port }) => {
     proxy,
     injectClient: true,
     injectHot: true,
-    hot: !isMfe,
+    hot: true,
     liveReload: !!isMfe,
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
