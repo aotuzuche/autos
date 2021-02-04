@@ -1,3 +1,12 @@
+## [4.5.1](https://github.com/aotuzuche/autos/compare/v4.5.0...v4.5.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* use css-minimizer-webpack-plugin replace optimize-css-assets-webpack-plugin ([470a765](https://github.com/aotuzuche/autos/commit/470a765129c2b2e6960ed73570c7120c7250c877))
+
+
+
 # [4.5.0](https://github.com/aotuzuche/autos/compare/v4.4.1...v4.5.0) (2021-02-04)
 
 
