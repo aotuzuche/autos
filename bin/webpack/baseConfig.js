@@ -89,26 +89,17 @@ const getBaseConfig = async () => {
         },
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
-            publicPath: config[process.env.PACKAGE].cssAssetsPath,
+          type: 'asset',
+          generator: {
+            filename: utils.assetsPath('fonts/[name].[hash:7].[ext]'),
           },
         },
         {
           test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 10000,
-                name: utils.assetsPath('img/[name].[hash:7].[ext]'),
-                publicPath: config[process.env.PACKAGE].cssAssetsPath,
-                esModule: false,
-              },
-            },
-          ],
+          type: 'asset',
+          generator: {
+            filename: utils.assetsPath('img/[name].[hash:7].[ext]'),
+          },
         },
         {
           test: /\.css$/,
@@ -142,6 +133,8 @@ const getBaseConfig = async () => {
           removeAttributeQuotes: false, // 删除引号
         },
         hash: true,
+        scriptLoading: 'blocking',
+        publicPath: 'auto',
       }),
 
       // 提取公共样式

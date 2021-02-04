@@ -24,5 +24,15 @@ module.exports = async function getDevConfig(options) {
         overlay: false,
       }),
     ],
+
+    stats: 'errors-only',
+
+    cache: {
+      type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
+      name: 'autos-dev-cache',
+    },
   })
 }
