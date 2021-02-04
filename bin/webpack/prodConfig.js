@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const config = require('../config')
 const getBaseConfig = require('./baseConfig')
@@ -23,9 +23,15 @@ module.exports = async function getProdConfig(options) {
         },
       },
       minimizer: [
-        new OptimizeCSSAssetsPlugin({
-          cssProcessorOptions: {
-            safe: true,
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                mergeLonghand: false,
+                cssDeclarationSorter: false,
+              },
+            ],
           },
         }),
         new TerserPlugin({

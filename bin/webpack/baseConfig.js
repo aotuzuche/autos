@@ -152,7 +152,7 @@ const getBaseConfig = async () => {
       }),
 
       // Ignore moment locale
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
 
       // 注册微前端服务
       isMfe &&
