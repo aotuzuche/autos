@@ -1,3 +1,12 @@
+## [4.5.2](https://github.com/aotuzuche/autos/compare/v4.5.1...v4.5.2) (2021-02-07)
+
+
+### Bug Fixes
+
+* add static directory option (will delete if webpack-dev-server v4 release) ([8121dcc](https://github.com/aotuzuche/autos/commit/8121dccefe1d3596b193b10f664b78c974b7aa50))
+
+
+
 ## [4.5.1](https://github.com/aotuzuche/autos/compare/v4.5.0...v4.5.1) (2021-02-04)
 
 
