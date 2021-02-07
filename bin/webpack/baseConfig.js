@@ -57,6 +57,8 @@ const getBaseConfig = async () => {
 
     entry: [resolveEntry()],
 
+    output: { uniqueName: syscode },
+
     module: {
       rules: [
         {
@@ -157,7 +159,7 @@ const getBaseConfig = async () => {
       // 注册微前端服务
       isMfe &&
         new ModuleFederationPlugin({
-          name: APP_CONFIG.syscode,
+          name: syscode,
           // library: { type: 'var', name: APP_CONFIG.syscode },
           remotes: {
             layout: `layout@${APP_CONFIG.layout || '/system/layout/'}remoteEntry.js?${Date.now()}`,
