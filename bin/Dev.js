@@ -7,6 +7,7 @@ const path = require('path')
 const fs = require('fs')
 
 const config = require('./config')
+const { resolveProjectPath } = require('./lib/utils')
 
 module.exports = async (webpackConfig, { port }) => {
   function mayProxy(pathname) {
@@ -64,6 +65,10 @@ module.exports = async (webpackConfig, { port }) => {
     injectHot: true,
     hot: true,
     liveReload: !!isMfe,
+    // fix webpack-dev-server next version reload if .git some files changed
+    static: {
+      directory: resolveProjectPath('src'),
+    },
   }
   // WebpackDevServer.addDevServerEntrypoints(webpackDevConfig, options)
   const compiler = Webpack(webpackConfig)
