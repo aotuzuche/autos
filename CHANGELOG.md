@@ -1,3 +1,12 @@
+## [4.5.4](https://github.com/aotuzuche/autos/compare/v4.5.3...v4.5.4) (2021-02-08)
+
+
+### Bug Fixes
+
+* module federation circular exposes ([62639f5](https://github.com/aotuzuche/autos/commit/62639f5bb7f1ab5025db53e07623213e3064907b))
+
+
+
 ## [4.5.3](https://github.com/aotuzuche/autos/compare/v4.5.2...v4.5.3) (2021-02-07)
 
 
