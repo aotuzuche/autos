@@ -1,6 +1,6 @@
 {
   "name": "autos",
-  "version": "4.5.4",
+  "version": "4.5.5",
   "description": "auto standard tooling",
   "main": "bin/index.js",
   "keywords": [

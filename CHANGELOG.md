@@ -1,3 +1,12 @@
+## [4.5.5](https://github.com/aotuzuche/autos/compare/v4.5.4...v4.5.5) (2021-02-08)
+
+
+### Bug Fixes
+
+* layout bootstrap should expose ([5d1eac9](https://github.com/aotuzuche/autos/commit/5d1eac9a31dccf2ebbd3284de9618708413b90f5))
+
+
+
 ## [4.5.4](https://github.com/aotuzuche/autos/compare/v4.5.3...v4.5.4) (2021-02-08)
 
 
