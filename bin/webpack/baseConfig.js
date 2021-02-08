@@ -172,7 +172,7 @@ const getBaseConfig = async () => {
             {
               Routes: './src/routes',
             },
-            isDev ? { './bootstrap': './src/bootstrap' } : {},
+            isDev || syscode === 'layout' ? { './bootstrap': './src/bootstrap' } : {},
           ),
           shared: {
             ...deps,
