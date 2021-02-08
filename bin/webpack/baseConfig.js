@@ -166,10 +166,14 @@ const getBaseConfig = async () => {
           },
           filename: 'remoteEntry.js',
           // eslint-disable-next-line prefer-object-spread
-          exposes: Object.assign({}, exposes, {
-            Routes: './src/routes',
-            './bootstrap': './src/bootstrap',
-          }),
+          exposes: Object.assign(
+            {},
+            exposes,
+            {
+              Routes: './src/routes',
+            },
+            isDev ? { './bootstrap': './src/bootstrap' } : {},
+          ),
           shared: {
             ...deps,
             react: {
