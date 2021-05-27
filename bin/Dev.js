@@ -59,10 +59,12 @@ module.exports = async (webpackConfig, { port }) => {
     firewall: false,
     historyApiFallback: true,
     port,
-    overlay: { warnings: false, errors: true },
     proxy,
-    injectClient: true,
-    injectHot: true,
+    client: {
+      overlay: { warnings: false, errors: true },
+      needClientEntry: true,
+      needHotEntry: true,
+    },
     hot: true,
     liveReload: !!isMfe,
     // fix webpack-dev-server next version reload if .git some files changed
