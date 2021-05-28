@@ -1,3 +1,12 @@
+## [4.5.7](https://github.com/aotuzuche/autos/compare/v4.5.6...v4.5.7) (2021-05-28)
+
+
+### Bug Fixes
+
+* 🐛 update min node version to 10.16.0 ([891cb66](https://github.com/aotuzuche/autos/commit/891cb66a5a50a5dda40e18ba741b9926cbe1d0cf))
+
+
+
 ## [4.5.6](https://github.com/aotuzuche/autos/compare/v4.5.5...v4.5.6) (2021-05-27)
 
 
