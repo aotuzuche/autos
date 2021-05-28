@@ -1,3 +1,12 @@
+## [4.5.8](https://github.com/aotuzuche/autos/compare/v4.5.7...v4.5.8) (2021-05-28)
+
+
+### Bug Fixes
+
+* 🐛 update webpack-dev-server to 4.0.0-beta.2 ([e507de9](https://github.com/aotuzuche/autos/commit/e507de927b84f37a61d399e3600e97086fdb2b9f))
+
+
+
 ## [4.5.7](https://github.com/aotuzuche/autos/compare/v4.5.6...v4.5.7) (2021-05-28)
 
 
