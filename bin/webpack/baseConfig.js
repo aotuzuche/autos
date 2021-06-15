@@ -206,6 +206,9 @@ const getBaseConfig = async () => {
         resolveAutosPath('node_modules'),
         resolveProjectPath('node_modules'),
       ],
+      fallback: {
+        crypto: false,
+      },
     },
     resolveLoader: {
       modules: [
