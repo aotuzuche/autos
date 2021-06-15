@@ -1,3 +1,12 @@
+## [4.5.9](https://github.com/aotuzuche/autos/compare/v4.5.8...v4.5.9) (2021-06-15)
+
+
+### Bug Fixes
+
+* 🐛 set crypto polyfill false ([154b799](https://github.com/aotuzuche/autos/commit/154b799dd36ff6d37577c84be86545a9564efa6c))
+
+
+
 ## [4.5.8](https://github.com/aotuzuche/autos/compare/v4.5.7...v4.5.8) (2021-05-28)
 
 
