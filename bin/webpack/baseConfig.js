@@ -207,7 +207,7 @@ const getBaseConfig = async () => {
         resolveProjectPath('node_modules'),
       ],
       fallback: {
-        crypto: false,
+        crypto: require.resolve('crypto-browserify'),
       },
     },
     resolveLoader: {
