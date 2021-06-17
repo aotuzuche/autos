@@ -1,3 +1,12 @@
+## [4.5.10](https://github.com/aotuzuche/autos/compare/v4.5.9...v4.5.10) (2021-06-17)
+
+
+### Features
+
+* 🎸 add crypto-browserify polyfill ([eb84ceb](https://github.com/aotuzuche/autos/commit/eb84ceb30e1fabeb67d5c6e1e22b83470b321d0c))
+
+
+
 ## [4.5.9](https://github.com/aotuzuche/autos/compare/v4.5.8...v4.5.9) (2021-06-15)
 
 
