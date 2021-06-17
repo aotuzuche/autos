@@ -208,6 +208,7 @@ const getBaseConfig = async () => {
       ],
       fallback: {
         crypto: require.resolve('crypto-browserify'),
+        stream: false,
       },
     },
     resolveLoader: {
