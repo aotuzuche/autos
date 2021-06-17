@@ -1,3 +1,12 @@
+## [4.5.12](https://github.com/aotuzuche/autos/compare/v4.5.11...v4.5.12) (2021-06-17)
+
+
+### Features
+
+* 🎸 update webpack dep ([bb5938a](https://github.com/aotuzuche/autos/commit/bb5938a82b85e6232946974d3b1ae9300c74472e))
+
+
+
 ## [4.5.11](https://github.com/aotuzuche/autos/compare/v4.5.10...v4.5.11) (2021-06-17)
 
 
