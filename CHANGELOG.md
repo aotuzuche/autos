@@ -1,3 +1,12 @@
+## [4.5.11](https://github.com/aotuzuche/autos/compare/v4.5.10...v4.5.11) (2021-06-17)
+
+
+### Features
+
+* 🎸 update htmlWebpackPlugin dep ([8743d25](https://github.com/aotuzuche/autos/commit/8743d25ff3c9e29e684d93faad614f10ceac7cd2))
+
+
+
 ## [4.5.10](https://github.com/aotuzuche/autos/compare/v4.5.9...v4.5.10) (2021-06-17)
 
 
