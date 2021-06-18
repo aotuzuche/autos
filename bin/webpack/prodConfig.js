@@ -76,8 +76,6 @@ module.exports = async function getProdConfig(options) {
       ],
     },
     plugins: [
-      new webpack.optimize.ModuleConcatenationPlugin(),
-
       new webpack.optimize.MinChunkSizePlugin({
         minChunkSize: 10000, // Minimum number of characters
       }),
