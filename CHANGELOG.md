@@ -1,3 +1,12 @@
+## [4.5.13](https://github.com/aotuzuche/autos/compare/v4.5.12...v4.5.13) (2021-06-18)
+
+
+### Features
+
+* 🎸 remove ModuleConcatenationPlugin ([2249159](https://github.com/aotuzuche/autos/commit/2249159e1a996ae34f20c805a25ca462599ff2f2))
+
+
+
 ## [4.5.12](https://github.com/aotuzuche/autos/compare/v4.5.11...v4.5.12) (2021-06-17)
 
 
