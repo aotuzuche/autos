@@ -1,3 +1,12 @@
+## [4.5.15-1](https://github.com/aotuzuche/autos/compare/v4.5.15-0...v4.5.15-1) (2021-07-12)
+
+
+### Bug Fixes
+
+* 🐛 debug ([7e3340d](https://github.com/aotuzuche/autos/commit/7e3340d8ef7360e42352d3ed6c2d9820d2468986))
+
+
+
 ## [4.5.15-0](https://github.com/aotuzuche/autos/compare/v4.5.14-0...v4.5.15-0) (2021-07-12)
 
 
