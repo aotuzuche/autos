@@ -177,12 +177,15 @@ const getBaseConfig = async () => {
           shared: {
             ...deps,
             react: {
-              eager: true,
+              // eager: true,
               singleton: true,
               requiredVersion: deps.react,
+              import: 'react', // the "react" package will be used a provided and fallback module
+              shareKey: 'react', // under this name the shared module will be placed in the share scope
+              shareScope: 'default', // share scope with this name will be used
             },
             'react-dom': {
-              eager: true,
+              // eager: true,
               singleton: true,
               requiredVersion: deps['react-dom'],
             },
